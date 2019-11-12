@@ -27,7 +27,7 @@
 <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-dark navbar-primary">
+    <nav class="main-header navbar navbar-expand navbar-dark navbar-info">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">

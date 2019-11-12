@@ -1,6 +1,6 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-0">
+<aside class="main-sidebar elevation-1 sidebar-light-info">
     <!-- Brand Logo -->
-    <a href="{{url('/home')}}" class="brand-link">
+    <a href="{{url('/home')}}" class="brand-link navbar-info">
         <img src="{{asset('img/backend/adminlte/GruneLogo.png')}}" alt="Grune Logo"
              class="brand-image img-circle elevation-3"
              style="opacity: .8">
