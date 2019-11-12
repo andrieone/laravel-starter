@@ -1,0 +1,98 @@
+version: '3'
+
+services:
+    nginx:
+        image: nginx:1.17
+        container_name: laravel6kit_nginx
+        ports:
+            - 80:80
+        volumes:
+            - /laravel6kit:/usr/share/nginx/html
+            - /laravel6kit/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - /laravel6kit/docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+            - /laravel6kit/docker/nginx/.htpasswd:/etc/nginx/.htpasswd
+            - /laravel6kit/docker/nginx/log:/var/log/nginx
+        networks:
+            my_network:
+                ipv4_address: 172.16.238.103
+
+    php-fpm:
+        build: ../../php-fpm
+        container_name: laravel6kit_php-fpm
+        volumes:
+            - /laravel6kit:/var/www/html
+        networks:
+            - my_network
+        extra_hosts:
+            - "localhost:172.16.238.103"
+
+    mysql:
+        image: mysql:5.7
+        container_name: laravel6kit_mysql
+        environment:
+            MYSQL_DATABASE: db_laravel6kit
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: dev_user
+            MYSQL_PASSWORD: dev_pass
+            TZ: Asia/Tokyo
+        ports:
+            - 3306:3306
+        volumes:
+            - laravel6kit-db-data:/var/lib/mysql
+        networks:
+            - my_network
+    
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=mysql
+            - PMA_USER=root
+            - PMA_PASSWORD=root
+        links:
+            - mysql
+        ports:
+            - 8087:80
+        volumes:
+            - sessions:/sessions
+        networks:
+            - my_network
+
+    redis:
+        image: redis:3.2.9
+        ports:
+            - "6379:6379"
+        command: redis-server --requirepass foobared
+        volumes:
+            - redis-data:/data
+        networks:
+            - my_network
+
+    # on VPN, passwd:secret
+    # * latest version is unenable. > https://stackoverflow.com/questions/56459691/undefined-index-element-laravel-dusk
+    selenium:
+        image: selenium/standalone-chrome-debug:3.141.59-oxygen
+        ports:
+            - 4444:4444
+            - 5900:5900
+        depends_on: 
+            - nginx
+        privileged: true
+        networks:
+            - my_network
+
+networks:
+    my_network:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.16.238.0/24
+volumes:
+    laravel6kit-db-data:
+        driver: local
+    redis-data:
+        driver: local
+    sessions:
+        driver: local
+        
