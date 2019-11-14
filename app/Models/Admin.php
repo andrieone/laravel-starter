@@ -18,17 +18,14 @@ class Admin extends Model implements AuthenticatableContract, AuthorizableContra
     // These traits are used for admin login authentication
     use Authenticatable, Authorizable, CanResetPassword, Notifiable;
 
-    protected $hidden   = [
-        'password',
-        'remember_token'
-    ];
-    protected $fillable = [
-        'admin_role_id',
-        'display_name',
-        'email',
-        'password',
-        'remember_token'
-    ];
+    protected $hidden   = ['password', 'remember_token'];
+    protected $fillable = ['admin_role_id', 'display_name', 'email', 'password', 'remember_token'];
+
+    /**
+     * The attributes that should be cast to native types.
+     * @var array
+     */
+    protected $casts = ['email_verified_at' => 'datetime',];
 
     /** Override the default function to send password reset notification */
     public function sendPasswordResetNotification($token){

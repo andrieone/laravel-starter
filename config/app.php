@@ -174,7 +174,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        // add manually
+        Yajra\DataTables\DataTablesServiceProvider::class,
     ],
 
     /*
@@ -225,6 +226,8 @@ return [
         'URL'          => Illuminate\Support\Facades\URL::class,
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
+        // add manually
+        'DataTables'   => Yajra\DataTables\Facades\DataTables::class,
 
     ],
 
