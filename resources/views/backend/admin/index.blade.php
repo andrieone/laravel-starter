@@ -100,5 +100,40 @@
                 ],
             });
         });
+
+        $('#superadmin').on('click', '.deleteAdmin[data-remote]', function (e) {
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            let url = $(this).data('remote');
+            // confirm then
+            if (confirm('Are you sure you want to delete this?')) {
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    dataType: 'json',
+                    data: {method: '_DELETE', submit: true}
+                }).always(function (data) {
+                    $('#superadmin').DataTable().draw(false);
+                    toastr.success('Data has been successfully deleted!');
+                });
+            } else
+                toastr.error('Sorry, the data could not be deleted');
+        });
+
+
+        $(function () {
+            @if ($message = Session::get('success'))
+            toastr.success('{{ $message }}');
+            @endif
+            @if ($errors->any())
+            toastr.error('@foreach ($errors->all() as $error)' +
+                '<p>{{ $error }}</p>' +
+                '@endforeach');
+            @endif
+        });
     </script>
 @endsection
