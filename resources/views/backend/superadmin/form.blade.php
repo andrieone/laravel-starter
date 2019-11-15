@@ -31,7 +31,7 @@
                     <div class="card card-primary">
                     <!-- /.card-header -->
                         <!-- form start -->
-                        {{ Form::open(array('route' => $form_action, 'method' => 'POST', 'files' => false, 'id' => 'admin-form')) }}
+                        {{ Form::open(array('route' => $form_action, 'method' => 'POST', 'files' => false, 'id' => 'admin-form' , 'data-parsley' => '')) }}
                         {{ $page_type == 'create' ? '' : method_field('PUT') }}
                         <div class="card-body">
 
@@ -41,7 +41,7 @@
                                     <strong class="field-title">@lang('label.name')</strong>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
-                                    {{ Form::text('display_name', $item->display_name, array('placeholder' => '', 'class' => 'form-control')) }}
+                                    {{ Form::text('display_name', $item->display_name, array('placeholder' => '', 'class' => 'form-control', 'data-parsley-trigger' => 'input focusout', 'data-parsley-required' => 'true')) }}
                                 </div>
                             </div>
 
@@ -51,7 +51,7 @@
                                     <strong class="field-title">@lang('label.email')</strong>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
-                                    {{ Form::text('email', $item->email, array('placeholder' => 'tarou@tarou.com', 'class' => 'form-control')) }}
+                                    {{ Form::text('email', $item->email, array('placeholder' => 'tarou@tarou.com', 'class' => 'form-control', 'data-parsley-trigger' => 'input focusout', 'data-parsley-required' => 'true', 'data-parsley-type' => 'email')) }}
                                 </div>
                             </div>
 
@@ -63,7 +63,7 @@
                                         <strong class="field-title">@lang('label.password')</strong>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
-                                        {{ Form::password('password', array('placeholder' => ' ', 'class' => 'form-control')) }}
+                                        {{ Form::password('password', array('placeholder' => ' ', 'class' => 'form-control', 'data-parsley-trigger' => 'input focusout', 'data-parsley-required' => 'true')) }}
                                     </div>
                                 </div>
                                 {{-- case of update --}}

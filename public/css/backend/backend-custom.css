@@ -1,3 +1,11 @@
+/* Sidebar Style*/
+.brand-text{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Form Style Required*/
 .label-required {
     font-size: 8.5px;
     top: -4px;
@@ -10,4 +18,12 @@
 }
 .error {
     color: red;
+}
+
+/* Parsley CSS with AdminLTE 3 */
+.parsley-errors-list {
+    list-style: none;
+    padding: 5px 0;
+    font-size: 12px;
+    color: #dc3545;
 }
