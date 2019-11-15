@@ -73,17 +73,28 @@
 @section('js')
     <script>
         $(function () {
-            $('#superadmin tfoot th').each( function () {
-                if($(this).text() == "Action"){
-                    return;
-                }
+            $('#superadmin thead tr').clone(true).appendTo( '#superadmin thead' );
+            $('#superadmin thead tr:eq(1) th').each( function (i) {
                 var title = $(this).text();
-                $(this).html( '<input class="form-control" type="text" placeholder="Search '+title+'" />' );
+                
+                if(title == "Action"){
+                    $(this).html("");
+                } else {
+                    $(this).html( '<input class="form-control" type="text" placeholder="Search '+title+'" />' );
+                }                
+        
+                $( 'input', this ).on( 'keyup change', function () {
+                    if ( table.column(i).search() !== this.value ) {
+                        table.column(i).search( this.value ).draw();
+                    }
+                } );
             } );
 
             var table = $('#superadmin').DataTable({
                 "processing": true,
                 "serverSide": true,
+                "orderCellsTop": true,
+                "fixedHeader": true,
                 "paging": true,
                 "lengthChange": true,
                 "lengthMenu": [ [25, 50, 100, -1], [25, 50, 100, "All"] ],
@@ -105,16 +116,6 @@
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ],
             });
-
-            table.columns().every( function () {
-                    var that = this;
-            
-                    $( 'input', this.footer() ).on( 'keyup change clear', function () {
-                        if ( that.search() !== this.value ) {
-                            that.search( this.value ).draw();
-                        }
-                    });
-            } );
         });
 
         $(function () {
