@@ -39,22 +39,22 @@
                                     <table id="superadmin" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info" style="width:100%">
                                         <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>@lang('label.name')</th>
-                                            <th>@lang('label.email')</th>
-                                            <th>@lang('label.created_at')</th>
-                                            <th>@lang('label.update_at')</th>
-                                            <th>@lang('label.action')</th>
+                                            <th class="text-center">Id</th>
+                                            <th class="text-center">@lang('label.name')</th>
+                                            <th class="text-center">@lang('label.email')</th>
+                                            <th class="text-center">@lang('label.created_at')</th>
+                                            <th class="text-center">@lang('label.update_at')</th>
+                                            <th rowspan="2" class="text-center align-middle actionDatatables">@lang('label.action')</th>
                                         </tr>
                                         </thead>
                                         <tfoot>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>@lang('label.name')</th>
-                                            <th>@lang('label.email')</th>
-                                            <th>@lang('label.created_at')</th>
-                                            <th>@lang('label.update_at')</th>
-                                            <th>@lang('label.action')</th>
+                                            <th class="text-center">Id</th>
+                                            <th class="text-center">@lang('label.name')</th>
+                                            <th class="text-center">@lang('label.email')</th>
+                                            <th class="text-center">@lang('label.created_at')</th>
+                                            <th class="text-center">@lang('label.update_at')</th>
+                                            <th class="text-center">@lang('label.action')</th>
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -75,13 +75,12 @@
         $(function () {
             $('#superadmin thead tr').clone(true).appendTo( '#superadmin thead' );
             $('#superadmin thead tr:eq(1) th').each( function (i) {
-                var title = $(this).text();
-                
-                if(title == "Action"){
-                    $(this).html("");
-                } else {
-                    $(this).html( '<input class="form-control" type="text" placeholder="Search '+title+'" />' );
-                }                
+                var title = $(this).text();                
+                var attr = $(this).attr('rowspan');
+                if (typeof attr !== typeof undefined && attr !== false) {
+                    $(this).remove();
+                }
+                $(this).html( '<input class="form-control" type="text" placeholder="Search '+title+'" />' );                           
         
                 $( 'input', this ).on( 'keyup change', function () {
                     if ( table.column(i).search() !== this.value ) {

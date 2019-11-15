@@ -39,26 +39,22 @@
                                     <table id="superadmin" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info" style="width:100%">
                                         <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>@lang('label.name')</th>
-                                            <th>@lang('label.email')</th>
-                                            <th>@lang('label.admin_role_id')</th>
-                                            <th>@lang('label.email_verified_at')</th>
-                                            <th>@lang('label.created_at')</th>
-                                            <th>@lang('label.update_at')</th>
-                                            <th>@lang('label.action')</th>
+                                            <th class="text-center">Id</th>
+                                            <th class="text-center">@lang('label.name')</th>
+                                            <th class="text-center">@lang('label.email')</th>
+                                            <th class="text-center">@lang('label.created_at')</th>
+                                            <th class="text-center">@lang('label.update_at')</th>
+                                            <th rowspan="2" class="text-center align-middle actionDatatables">@lang('label.action')</th>
                                         </tr>
                                         </thead>
                                         <tfoot>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>@lang('label.name')</th>
-                                            <th>@lang('label.email')</th>
-                                            <th>@lang('label.admin_role_id')</th>
-                                            <th>@lang('label.email_verified_at')</th>
-                                            <th>@lang('label.created_at')</th>
-                                            <th>@lang('label.update_at')</th>
-                                            <th>@lang('label.action')</th>
+                                            <th class="text-center">Id</th>
+                                            <th class="text-center">@lang('label.name')</th>
+                                            <th class="text-center">@lang('label.email')</th>
+                                            <th class="text-center">@lang('label.created_at')</th>
+                                            <th class="text-center">@lang('label.update_at')</th>
+                                            <th class="text-center">@lang('label.action')</th>
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -77,23 +73,44 @@
 @section('js')
     <script>
         $(function () {
-            $('#superadmin').DataTable({
+            
+            $('#superadmin thead tr').clone(true).appendTo( '#superadmin thead' );
+            $('#superadmin thead tr:eq(1) th').each( function (i) {
+                var title = $(this).text();                
+                var attr = $(this).attr('rowspan');
+                if (typeof attr !== typeof undefined && attr !== false) {
+                    $(this).remove();
+                }
+                $(this).html( '<input class="form-control" type="text" placeholder="Search '+title+'" />' );                           
+        
+                $( 'input', this ).on( 'keyup change', function () {
+                    if ( table.column(i).search() !== this.value ) {
+                        table.column(i).search( this.value ).draw();
+                    }
+                } );
+            } );
+            
+            var table = $('#superadmin').DataTable({
                 "processing": true,
                 "serverSide": true,
+                "orderCellsTop": true,
+                "fixedHeader": true,
                 "paging": true,
                 "lengthChange": true,
                 "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
                 "searching": true,
                 "ordering": true,
                 "info": true,
+                "scrollX": true,
                 "autoWidth": true,
                 "ajax": 'admins/json',
+                "columnDefs": [
+                    { "width": "10px", "targets": 0 },
+                ],
                 "columns": [
                     {data: 'id', name: 'id'},
                     {data: 'display_name', name: 'display_name'},
                     {data: 'email', name: 'email'},
-                    {data: 'admin_role_id', name: 'admin_role_id'},
-                    {data: 'email_verified_at', name: 'email_verified_at'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'updated_at', name: 'updated_at'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
