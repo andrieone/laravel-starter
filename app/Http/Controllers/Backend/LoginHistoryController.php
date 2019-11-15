@@ -39,7 +39,7 @@ class LoginHistoryController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function json(){
-        $history = AdminLogs::select('*');
+        $history = AdminLogs::all();
         return Datatables::of($history)->addColumn('action', function($history){
             return '<div class="btn-group"><a title="Delete History" href="" data-remote="' . route('admin.histories.destroy', ['history' => $history->id]) . '" class="btn btn-danger deleteHistory"><i class="fas fa-trash"></i></a></div>';
         })->editColumn('id', '{{$id}}')->make(true);

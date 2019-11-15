@@ -75,22 +75,22 @@
 @section('js')
     <script>
         $(function () {
-            $('#history thead tr').clone(true).appendTo( '#history thead' );
-            $('#history thead tr:eq(1) th').each( function (i) {
+            $('#history thead tr').clone(true).appendTo('#history thead');
+            $('#history thead tr:eq(1) th').each(function (i) {
                 var title = $(this).text();
 
-                if(title == "Action"){
+                if (title == "Action") {
                     $(this).html("");
                 } else {
-                    $(this).html( '<input class="form-control" type="text" placeholder="Search '+title+'" />' );
+                    $(this).html('<input class="form-control" type="text" placeholder="Search ' + title + '" />');
                 }
 
-                $( 'input', this ).on( 'keyup change', function () {
-                    if ( table.column(i).search() !== this.value ) {
-                        table.column(i).search( this.value ).draw();
+                $('input', this).on('keyup change', function () {
+                    if (table.column(i).search() !== this.value) {
+                        table.column(i).search(this.value).draw();
                     }
-                } );
-            } );
+                });
+            });
 
             let table = $('#history').DataTable({
                 "processing": true,
@@ -99,7 +99,7 @@
                 "fixedHeader": true,
                 "paging": true,
                 "lengthChange": true,
-                "lengthMenu": [ [25, 50, 100, -1], [25, 50, 100, "All"] ],
+                "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
                 "searching": true,
                 "ordering": true,
                 "info": true,
@@ -107,7 +107,7 @@
                 "autoWidth": false,
                 "ajax": 'history/json',
                 "columnDefs": [
-                    { "width": "10px", "targets": 0 },
+                    {"width": "10px", "targets": 0},
                 ],
                 "columns": [
                     {data: 'id', name: 'id'},
@@ -121,15 +121,27 @@
             });
         });
 
-        $(function () {
-            @if ($message = Session::get('success'))
-            toastr.success('{{ $message }}');
-            @endif
-            @if ($errors->any())
-            toastr.error('@foreach ($errors->all() as $error)' +
-                '<p>{{ $error }}</p>' +
-                '@endforeach');
-            @endif
+        $('#history').on('click', '.deleteHistory[data-remote]', function (e) {
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            let url = $(this).data('remote');
+            // confirm then
+            if (confirm('Are you sure you want to delete this?')) {
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    dataType: 'json',
+                    data: {method: '_DELETE', submit: true}
+                }).always(function (data) {
+                    $('#history').DataTable().draw(false);
+                    toastr.success('Data has been successfully deleted!');
+                });
+            } else
+                toastr.error('Sorry, the data could not be deleted');
         });
     </script>
 @endsection
