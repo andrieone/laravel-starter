@@ -9,9 +9,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use DataTables;
+use App\Traits\AdminLogsTraits;
 
 class AdminController extends Controller
 {
+
+    //traits
+    use AdminLogsTraits;
+
     public function __construct(){
         $this->middleware('auth');
     }
@@ -98,13 +103,12 @@ class AdminController extends Controller
 
     public function destroy($id){
         $obj = Admin::findOrFail($id);
-        // $admin_email = $obj->email;
-        // $admin_id = Auth::user(0);
-        // dd($obj);
+        $admin_email = $obj->email;
+        $admin_id = Auth::user(0);
         if($obj->adminRole->name == 'admin'){
             $obj->delete();
             // Save login history
-            // $this->saveLogsHistory('Delete Office Admin', 'Delete Office Admin Email : ' . $admin_email . '', $admin_id);
+            $this->saveLogsHistory('Delete Admin', 'Delete Office Admin Email : ' . $admin_email . '', $admin_id);
             return redirect()->route('admin.admins.index')->with('success', config('const.SUCCESS_DELETE_MESSAGE'));
         }
         return redirect()->route('admin.admins.index')->with('error', config('const.FAILED_DELETE_MESSAGE'));

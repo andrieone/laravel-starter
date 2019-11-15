@@ -75,13 +75,13 @@
         $(function () {
             $('#superadmin thead tr').clone(true).appendTo( '#superadmin thead' );
             $('#superadmin thead tr:eq(1) th').each( function (i) {
-                var title = $(this).text();                
+                var title = $(this).text();
                 var attr = $(this).attr('rowspan');
                 if (typeof attr !== typeof undefined && attr !== false) {
                     $(this).remove();
                 }
-                $(this).html( '<input class="form-control" type="text" placeholder="Search '+title+'" />' );                           
-        
+                $(this).html( '<input class="form-control" type="text" placeholder="Search '+title+'" />' );
+
                 $( 'input', this ).on( 'keyup change', function () {
                     if ( table.column(i).search() !== this.value ) {
                         table.column(i).search( this.value ).draw();
