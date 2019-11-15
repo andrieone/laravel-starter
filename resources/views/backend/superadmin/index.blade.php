@@ -42,8 +42,6 @@
                                             <th>Id</th>
                                             <th>@lang('label.name')</th>
                                             <th>@lang('label.email')</th>
-                                            <th>@lang('label.admin_role_id')</th>
-                                            <th>@lang('label.email_verified_at')</th>
                                             <th>@lang('label.created_at')</th>
                                             <th>@lang('label.update_at')</th>
                                             <th>@lang('label.action')</th>
@@ -54,8 +52,6 @@
                                             <th>Id</th>
                                             <th>@lang('label.name')</th>
                                             <th>@lang('label.email')</th>
-                                            <th>@lang('label.admin_role_id')</th>
-                                            <th>@lang('label.email_verified_at')</th>
                                             <th>@lang('label.created_at')</th>
                                             <th>@lang('label.update_at')</th>
                                             <th>@lang('label.action')</th>
@@ -77,28 +73,48 @@
 @section('js')
     <script>
         $(function () {
-            $('#superadmin').DataTable({
+            $('#superadmin tfoot th').each( function () {
+                if($(this).text() == "Action"){
+                    return;
+                }
+                var title = $(this).text();
+                $(this).html( '<input class="form-control" type="text" placeholder="Search '+title+'" />' );
+            } );
+
+            var table = $('#superadmin').DataTable({
                 "processing": true,
                 "serverSide": true,
                 "paging": true,
                 "lengthChange": true,
                 "lengthMenu": [ [25, 50, 100, -1], [25, 50, 100, "All"] ],
-                "searching": false,
+                "searching": true,
                 "ordering": true,
                 "info": true,
-                "autoWidth": true,
+                "scrollX": true,
+                "autoWidth": false,
                 "ajax": 'superadmin/json',
+                "columnDefs": [
+                    { "width": "10px", "targets": 0 },
+                ],
                 "columns": [
                     {data: 'id', name: 'id'},
                     {data: 'display_name', name: 'display_name'},
                     {data: 'email', name: 'email'},
-                    {data: 'admin_role_id', name: 'admin_role_id'},
-                    {data: 'email_verified_at', name: 'email_verified_at'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'updated_at', name: 'updated_at'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ],
             });
+
+            table.columns().every( function () {
+                    var that = this;
+            
+                    $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                        if ( that.search() !== this.value ) {
+                            that.search( this.value ).draw();
+                        }
+                    });
+            } );
         });
 
         $(function () {

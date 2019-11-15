@@ -17,6 +17,13 @@
         $(this).is(":checked") ? $("#password").prop("type", "text") : $("#password").prop("type", "password");
     });
 
+    // Parsley
+    $('[data-parsley]').parsley({
+        uiEnabled: true,
+        errorClass: 'is-invalid',
+        successClass: 'is-valid'
+    })
+
     // set validation for each items
 
     // $.validator.setDefaults({
@@ -25,72 +32,72 @@
     //     }
     // });
 
-    $("#admin-form").validate({
-        rules: {
-            display_name: {
-                required: true,
-                minlength: 5
-            },
-            password: {
-                required: true,
-                minlength: 8
-            },
-            email: {
-                required: true,
-                email: true
-            },
-        },
-        messages: {
-            display_name: {
-                required: "Please enter a name",
-                minlength: "Your username must consist of at least 5 characters"
-            },
-            password: {
-                required: "Please provide a password",
-                minlength: "Your password must be at least 8 characters long"
-            },
-            email: "Please enter a valid email address",
-        },
-        errorElement: "em",
-        errorPlacement: function (error, element) {
-            // Add the `help-block` class to the error element
-            error.addClass("help-block");
+    // $("#admin-form").validate({
+    //     rules: {
+    //         display_name: {
+    //             required: true,
+    //             minlength: 5
+    //         },
+    //         password: {
+    //             required: true,
+    //             minlength: 8
+    //         },
+    //         email: {
+    //             required: true,
+    //             email: true
+    //         },
+    //     },
+    //     messages: {
+    //         display_name: {
+    //             required: "Please enter a name",
+    //             minlength: "Your username must consist of at least 5 characters"
+    //         },
+    //         password: {
+    //             required: "Please provide a password",
+    //             minlength: "Your password must be at least 8 characters long"
+    //         },
+    //         email: "Please enter a valid email address",
+    //     },
+    //     errorElement: "em",
+    //     errorPlacement: function (error, element) {
+    //         // Add the `help-block` class to the error element
+    //         error.addClass("help-block");
 
-            // Add `has-feedback` class to the parent div.form-group
-            // in order to add icons to inputs
-            element.parents(".col-content").addClass("has-feedback");
+    //         // Add `has-feedback` class to the parent div.form-group
+    //         // in order to add icons to inputs
+    //         element.parents(".col-content").addClass("has-feedback");
 
-            if (element.prop("type") === "checkbox") {
-                error.insertAfter(element.parent("label"));
-            } else {
-                error.insertAfter(element);
-            }
+    //         if (element.prop("type") === "checkbox") {
+    //             error.insertAfter(element.parent("label"));
+    //         } else {
+    //             error.insertAfter(element);
+    //         }
 
-            console.log($(element).find("input").addClass('wwawan'));
-            // Add the span element, if doesn't exists, and apply the icon classes to it.
-            // if (!element.next("input")[0]) {
-                // $("<span class='glyphicon glyphicon-remove form-control-feedback is-invalid'></span>").insertAfter(element);
-            // }
+    //         console.log($(element).find("input").addClass('wwawan'));
+    //         // Add the span element, if doesn't exists, and apply the icon classes to it.
+    //         // if (!element.next("input")[0]) {
+    //             // $("<span class='glyphicon glyphicon-remove form-control-feedback is-invalid'></span>").insertAfter(element);
+    //         // }
 
-        },
-        success: function (label, element) {
-            // Add the span element, if doesn't exists, and apply the icon classes to it.
+    //     },
+    //     success: function (label, element) {
+    //         // Add the span element, if doesn't exists, and apply the icon classes to it.
 
-            if (!$(element).next("input")[0]) {
-                // $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>").insertAfter($(element));
-            }
-        },
-        highlight: function (element, errorClass, validClass) {
-            $(element).parents(".col-content").addClass("has-error").removeClass("has-success");
-            $(element).next(".col-content").find('.form-control').addClass("is-invalid");
-            // $(element).next("input").addClass("is-invalid").removeClass("glyphicon-ok");
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).parents(".col-content").addClass("has-success").removeClass("has-error");
-            $(element).next(".col-content").find('.form-control').addClass("is-invalid").removeClass("glyphicon-ok");
-            // $(element).next("input").addClass("glyphicon-ok").removeClass("is-invalid");
-        }
-    });
+    //         if (!$(element).next("input")[0]) {
+    //             // $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>").insertAfter($(element));
+    //         }
+    //     },
+    //     highlight: function (element, errorClass, validClass) {
+    //         $(element).parents(".col-content").addClass("has-error").removeClass("has-success");
+    //         $(element).next(".col-content").find('.form-control').addClass("is-invalid");
+    //         // $(element).next("input").addClass("is-invalid").removeClass("glyphicon-ok");
+    //     },
+    //     unhighlight: function (element, errorClass, validClass) {
+    //         $(element).parents(".col-content").addClass("has-success").removeClass("has-error");
+    //         $(element).next(".col-content").find('.form-control').addClass("is-invalid").removeClass("glyphicon-ok");
+    //         // $(element).next("input").addClass("glyphicon-ok").removeClass("is-invalid");
+    //     }
+    // });
 
     // $("#signupForm1").validate({
     //     rules: {
