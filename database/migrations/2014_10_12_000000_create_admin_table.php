@@ -13,10 +13,12 @@ class CreateAdminTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('display_name');
             $table->string('email')->unique();
+            $table->unsignedBigInteger('admin_role_id')->nullable();
+            $table->foreign('admin_role_id')->references('id')->on('admin_roles')->onUpdate('cascade')->onDelete('set null');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
