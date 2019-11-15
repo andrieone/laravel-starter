@@ -1,0 +1,13 @@
+.label-required {
+    font-size: 8.5px;
+    top: -4px;
+    position: relative;
+    padding: 3px;
+}
+.field-title {
+    font-size: 17px;
+    display: block;
+}
+.error {
+    color: red;
+}

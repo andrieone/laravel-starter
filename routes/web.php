@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth'], function(){
         */
         Route::group(['middleware' => ['role:super_admin']], function(){
             Route::get('superadmin/json','SuperAdminController@json'); // datatable
-            Route::resource('super-admin', 'SuperAdminController')->only(['edit', 'update', 'index', 'show', 'create']);
+            Route::resource('super-admin', 'SuperAdminController')->only(['edit', 'update', 'index', 'show', 'create', 'store']);
 
             // --------------------------------------------------------------
             // Route::resource('histories', 'LoginHistoryController');

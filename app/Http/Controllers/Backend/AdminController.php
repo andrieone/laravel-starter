@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use DataTables;
 
@@ -35,13 +36,39 @@ class AdminController extends Controller
                          <a title="Edit Admin" href="' . route('admin.admins.edit', ['admin' => $admin->id]) . '" class="btn btn-success"><i class="fas fa-eye"></i></a>
                          <a title="Delete Admin" href="' . route('admin.admins.destroy', ['admin' => $admin->id]) . '" class="btn btn-danger"><i class="fas fa-trash"></i></a></div>';
             })
-            // ->editColumn('id', 'ID: {{$id}}')
             ->editColumn('id', '{{$id}}')->make(true);
     }
 
     public function index(){
-        // $data['page_title'] = trans('label.admin');
         $data['page_title'] = __('label.admin');
         return view('backend.admin.index', $data);
     }
+
+    public function edit($id) {
+        $data['item']           = Admin::find($id);
+        $data['page_title']     = __('label.edit').' '.__('label.superAdmin');
+        $data['form_action']    = ['admin.admins.update', $id];
+        $data['page_type']      = 'edit';
+
+        return view('backend.admin.form', $data);
+    }
+
+    public function update(Request $request, $id){
+        $data = $request->all();
+        $currentAdmin = Admin::find($id);
+        $data['password'] = !empty($data['password']) ? $data['password'] : $currentAdmin['password'];
+
+        $this->validator($data, 'update')->validate();
+
+        if(Hash::needsRehash($data['password'])){
+            $data['password'] = bcrypt($data['password']);
+        }
+
+        $currentAdmin->update($data);
+
+        return redirect()->route('admin.admins.edit', $id)->with('success', config('const.SUCCESS_UPDATE_MESSAGE'));
+    }
+
+
+
 }

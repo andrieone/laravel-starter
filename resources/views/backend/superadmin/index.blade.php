@@ -83,7 +83,7 @@
                 "paging": true,
                 "lengthChange": true,
                 "lengthMenu": [ [25, 50, 100, -1], [25, 50, 100, "All"] ],
-                "searching": true,
+                "searching": false,
                 "ordering": true,
                 "info": true,
                 "autoWidth": true,
@@ -99,6 +99,17 @@
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ],
             });
+        });
+
+        $(function () {
+            @if ($message = Session::get('success'))
+            toastr.success('{{ $message }}');
+            @endif
+            @if ($errors->any())
+            toastr.error('@foreach ($errors->all() as $error)' +
+                '<p>{{ $error }}</p>' +
+                '@endforeach');
+            @endif
         });
     </script>
 @endsection

@@ -23,6 +23,7 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     {{--custom css--}}
+    <link rel="stylesheet" href="{{asset('css/backend/backend-custom.css')}}">
     @yield('css')
 </head>
 <body class="hold-transition sidebar-mini">
@@ -139,26 +140,26 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    @include('backend._base._backend_main_sidebar')
+@include('backend._base._backend_main_sidebar')
 
-    <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         @yield('content')
     </div>
     <!-- /.content-wrapper -->
 
     <!-- Control Right Sidebar -->
-        @yield('control-right-sidebar')
-    <!-- /.control-Right sidebar -->
+@yield('control-right-sidebar')
+<!-- /.control-Right sidebar -->
 
     <!-- Main Footer -->
     <footer class="main-footer">
         <!-- To the right -->
         <div class="float-right d-none d-sm-inline">
-            Anything you want
+            Version 3
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2005-2019 <a href="https://grune.co.jp">Grune</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2019 <a href="https://grune.co.jp">Grune</a>.</strong> All rights reserved.
     </footer>
 </div>
 <!-- ./wrapper -->
@@ -172,8 +173,18 @@
 <!-- DataTables -->
 <script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
 <script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+<!-- SweetAlert2 -->
+<script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<!-- Toastr -->
+<script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('js/backend/adminlte/adminlte.min.js')}}"></script>
+<!-- validation -->
+<script src="{{asset('plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+<script src="{{asset('plugins/jquery-validation/additional-methods.min.js')}}"></script>
+<!-- form -->
+<script src="{{asset('js/backend/form.js')}}"></script>
+
 {{--custom js--}}
 @yield('js')
 </body>
