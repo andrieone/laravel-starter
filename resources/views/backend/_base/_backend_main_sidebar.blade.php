@@ -3,7 +3,7 @@
 @endif
 <aside class="main-sidebar elevation-1 sidebar-light-info">
     <!-- Brand Logo -->
-    <a href="{{route('dashboard')}}" class="brand-link navbar-info text-center">        
+    <a href="{{route('dashboard')}}" class="brand-link navbar-info text-center">
         <span class="brand-text">{{ env('APP_NAME','') }}</span>
     </a>
 
@@ -19,31 +19,31 @@
             </div>
         </div>
 
-    <!-- Sidebar Menu -->
+        <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
                 @if($roles == 'super_admin')
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-circle"></i>
-                        <p> @lang('label.superAdmin')<i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('admin.super-admin.create')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>@lang('label.createNew')</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('admin.super-admin.index')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>@lang('label.list')</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-circle"></i>
+                            <p> @lang('label.superAdmin')<i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.super-admin.create')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('label.createNew')</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.super-admin.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('label.list')</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
@@ -66,6 +66,14 @@
                         </li>
                     </ul>
                 </li>
+                @if($roles == 'super_admin')
+                    <li class="nav-item">
+                        <a href="{{route('admin.histories.index')}}" class="nav-link">
+                            <i class="nav-icon far fa-circle text-danger"></i>
+                            <p class="text">@lang('label.historyLog')</p>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

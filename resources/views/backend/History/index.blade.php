@@ -28,32 +28,34 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    {{--<div class="card-header">--}}
-                    {{--    <h3 class="card-title">DataTable with default features</h3>--}}
-                    {{--</div>--}}
-                    <!-- /.card-header -->
+                {{--<div class="card-header">--}}
+                {{--    <h3 class="card-title">DataTable with default features</h3>--}}
+                {{--</div>--}}
+                <!-- /.card-header -->
                     <div class="card-body">
                         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <table id="superadmin" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info" style="width:100%">
+                                    <table id="history" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info" style="width:100%">
                                         <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>@lang('label.name')</th>
-                                            <th>@lang('label.email')</th>
-                                            <th>@lang('label.created_at')</th>
-                                            <th>@lang('label.update_at')</th>
+                                            <th>admins_id</th>
+                                            <th>activity</th>
+                                            <th>detail</th>
+                                            <th>ip</th>
+                                            <th>last_access</th>
                                             <th>@lang('label.action')</th>
                                         </tr>
                                         </thead>
                                         <tfoot>
                                         <tr>
                                             <th>Id</th>
-                                            <th>@lang('label.name')</th>
-                                            <th>@lang('label.email')</th>
-                                            <th>@lang('label.created_at')</th>
-                                            <th>@lang('label.update_at')</th>
+                                            <th>admins_id</th>
+                                            <th>activity</th>
+                                            <th>detail</th>
+                                            <th>ip</th>
+                                            <th>last_access</th>
                                             <th>@lang('label.action')</th>
                                         </tr>
                                         </tfoot>
@@ -73,8 +75,8 @@
 @section('js')
     <script>
         $(function () {
-            $('#superadmin thead tr').clone(true).appendTo( '#superadmin thead' );
-            $('#superadmin thead tr:eq(1) th').each( function (i) {
+            $('#history thead tr').clone(true).appendTo( '#history thead' );
+            $('#history thead tr:eq(1) th').each( function (i) {
                 var title = $(this).text();
 
                 if(title == "Action"){
@@ -90,7 +92,7 @@
                 } );
             } );
 
-            var table = $('#superadmin').DataTable({
+            let table = $('#history').DataTable({
                 "processing": true,
                 "serverSide": true,
                 "orderCellsTop": true,
@@ -103,16 +105,17 @@
                 "info": true,
                 "scrollX": true,
                 "autoWidth": false,
-                "ajax": 'superadmin/json',
+                "ajax": 'history/json',
                 "columnDefs": [
                     { "width": "10px", "targets": 0 },
                 ],
                 "columns": [
                     {data: 'id', name: 'id'},
-                    {data: 'display_name', name: 'display_name'},
-                    {data: 'email', name: 'email'},
-                    {data: 'created_at', name: 'created_at'},
-                    {data: 'updated_at', name: 'updated_at'},
+                    {data: 'admins_id', name: 'admins_id'},
+                    {data: 'activity', name: 'activity'},
+                    {data: 'detail', name: 'detail'},
+                    {data: 'ip', name: 'ip'},
+                    {data: 'last_access', name: 'last_access'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ],
             });

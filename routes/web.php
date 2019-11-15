@@ -19,7 +19,7 @@ Auth::routes();
 
 /*
 |------------------------------------------------------------------
-| Route groups backend route
+| Route groups backend
 |------------------------------------------------------------------
 */
 Route::group(['middleware' => 'auth'], function(){
@@ -35,11 +35,13 @@ Route::group(['middleware' => 'auth'], function(){
         Route::group(['middleware' => ['role:super_admin']], function(){
             Route::get('superadmin/json','SuperAdminController@json'); // datatable
             Route::resource('super-admin', 'SuperAdminController')->only(['edit', 'update', 'index', 'show', 'create', 'store']);
-
             // Login history ------------------------------------------------
+            Route::get('history/json','LoginHistoryController@json'); // datatable
             Route::resource('histories', 'LoginHistoryController');
-            // --------------------------------------------------------------
+
+
         });
+        // Sharing super admin and admin -----------------------------------
         Route::group(['middleware' => ['role:super_admin, admin']], function(){
             Route::get('admins/json','AdminController@json'); // datatable
             Route::resource('admins', 'AdminController');

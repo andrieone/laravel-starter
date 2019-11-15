@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\AdminLogs;
+use App\Traits\AdminLogsTraits;
 
 class LoginHistoryController extends Controller
 {
@@ -32,19 +33,22 @@ class LoginHistoryController extends Controller
         ]);
     }
 
+    /**
+     * first create route in web.php
+     * and point to this method
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function json(){
+        $history = AdminLogs::select('*');
+        return Datatables::of($history)->addColumn('action', function($history){
+            return '<div class="btn-group"><a title="Delete History" href="" data-remote="' . route('admin.histories.destroy', ['history' => $history->id]) . '" class="btn btn-danger deleteHistory"><i class="fas fa-trash"></i></a></div>';
+        })->editColumn('id', '{{$id}}')->make(true);
+    }
+
     // Admin Logs history view
     public function index() {
-        // ------------------------------------------------------------------
-        $data = new \stdClass;
-        $data->page_title = __('label.log');
-        $countries = Place::where('type', 'country')->get();
-        $data->country_filters = array( '' => __('label.all'));
-        foreach( $countries as $country ){
-            $data->country_filters[ $country->label_en] = $country->label_en;
-        }
-        $data->json_path = route('admin.histories.show', 'json');
-        // dd($data);
-        return view('backend.histories.index', (array)$data);
+        $data['page_title'] = __('label.historyLog');
+        return view('backend.history.index', $data);
     }
 
     /**
