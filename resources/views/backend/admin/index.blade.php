@@ -39,7 +39,7 @@
                                     <table id="superadmin" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info" style="width:100%">
                                         <thead>
                                         <tr>
-                                            <th class="text-center">Id</th>
+                                            <th class="text-center">ID</th>
                                             <th class="text-center">@lang('label.name')</th>
                                             <th class="text-center">@lang('label.email')</th>
                                             <th class="text-center">@lang('label.created_at')</th>
@@ -49,7 +49,7 @@
                                         </thead>
                                         <tfoot>
                                         <tr>
-                                            <th class="text-center">Id</th>
+                                            <th class="text-center">ID</th>
                                             <th class="text-center">@lang('label.name')</th>
                                             <th class="text-center">@lang('label.email')</th>
                                             <th class="text-center">@lang('label.created_at')</th>
