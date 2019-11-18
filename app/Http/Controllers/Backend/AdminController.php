@@ -18,7 +18,6 @@ class AdminController extends Controller
     use AdminLogsTraits;
 
     public function __construct(){
-        $this->middleware('auth');
     }
 
     protected function validator(array $data, $type){
@@ -35,20 +34,28 @@ class AdminController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function json(){
-        // return datatables(Admin::where('admin_role_id', 2))->toJson();
         $admin = admin::select('*')->where('admin_role_id', 2);
         return Datatables::of($admin)->addColumn('action', function($admin){
             return '<div class="btn-group">
-                         <a title="Edit Admin" href="' . route('admin.admins.edit', ['admin' => $admin->id]) . '" class="btn btn-success"><i class="fas fa-eye"></i></a>
-                         <a title="Delete Admin" href="" data-remote="' . route('admin.admins.destroy', ['admin' => $admin->id]) . '" class="btn btn-danger deleteAdmin"><i class="fas fa-trash"></i></a></div>';
+                         <a title="Edit Admin" href="' . route('admin.admins.edit', ['admin' => $admin->id]) . '" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                         <a title="Delete Admin" href="" data-remote="' . route('admin.admins.destroy', ['admin' => $admin->id]) . '" class="btn btn-warning deleteAdmin"><i class="fas fa-trash"></i></a></div>';
         })->editColumn('id', '{{$id}}')->make(true);
     }
 
+    /**
+     * admin index page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(){
         $data['page_title'] = __('label.admin');
         return view('backend.admin.index', $data);
     }
 
+    /**
+     * edit
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($id){
         $data['item'] = Admin::find($id);
         $data['page_title'] = __('label.edit') . ' ' . __('label.admin');
@@ -58,6 +65,12 @@ class AdminController extends Controller
         return view('backend.admin.form', $data);
     }
 
+    /**
+     * Update
+     * @param Request $request
+     * @param         $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, $id){
         $data = $request->all();
         $currentAdmin = Admin::find($id);
@@ -74,6 +87,10 @@ class AdminController extends Controller
         return redirect()->route('admin.admins.edit', $id)->with('success', config('const.SUCCESS_UPDATE_MESSAGE'));
     }
 
+    /**
+     * create and send to store function
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create(){
         $data['item'] = new Admin();
         $data['page_title'] = __('label.add') . ' ' . __('label.admin');
@@ -82,6 +99,11 @@ class AdminController extends Controller
         return view('backend.admin.form', $data);
     }
 
+    /**
+     * storing data
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request){
         try{
             $data = $request->all();
@@ -96,19 +118,28 @@ class AdminController extends Controller
         }
     }
 
-    public function show(Request $request){
+    /**
+     * show data
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show(){
         $data['page_title'] = __('label.admin');
         return view('backend.admin.index', $data);
     }
 
+    /**
+     * delete data
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id){
         $obj = Admin::findOrFail($id);
         $admin_email = $obj->email;
         $admin_id = Auth::user(0);
         if($obj->adminRole->name == 'admin'){
             $obj->delete();
-            // Save login history
-            $this->saveLogsHistory('Delete Admin', 'Delete Office Admin Email : ' . $admin_email . '', $admin_id);
+            // Save logs
+            $this->saveLogsHistory('Delete Admin', 'Delete Admin Email : ' . $admin_email . '', $admin_id);
             return redirect()->route('admin.admins.index')->with('success', config('const.SUCCESS_DELETE_MESSAGE'));
         }
         return redirect()->route('admin.admins.index')->with('error', config('const.FAILED_DELETE_MESSAGE'));

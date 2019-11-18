@@ -28,34 +28,31 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                {{--<div class="card-header">--}}
-                {{--    <h3 class="card-title">DataTable with default features</h3>--}}
-                {{--</div>--}}
                 <!-- /.card-header -->
                     <div class="card-body">
                         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <table id="history" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info" style="width:100%">
+                                    <table id="history" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="history" style="width:100%">
                                         <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>admins_id</th>
-                                            <th>activity</th>
-                                            <th>detail</th>
-                                            <th>ip</th>
-                                            <th>last_access</th>
+                                            <th>ID</th>
+                                            <th>@lang('label.admins_id')</th>
+                                            <th>@lang('label.activity')</th>
+                                            <th>@lang('label.detail')</th>
+                                            <th>@lang('label.ip')</th>
+                                            <th>@lang('label.last_access')</th>
                                             <th>@lang('label.action')</th>
                                         </tr>
                                         </thead>
                                         <tfoot>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>admins_id</th>
-                                            <th>activity</th>
-                                            <th>detail</th>
-                                            <th>ip</th>
-                                            <th>last_access</th>
+                                            <th>ID</th>
+                                            <th>@lang('label.admins_id')</th>
+                                            <th>@lang('label.activity')</th>
+                                            <th>@lang('label.detail')</th>
+                                            <th>@lang('label.ip')</th>
+                                            <th>@lang('label.last_access')</th>
                                             <th>@lang('label.action')</th>
                                         </tr>
                                         </tfoot>
@@ -77,12 +74,12 @@
         $(function () {
             $('#history thead tr').clone(true).appendTo('#history thead');
             $('#history thead tr:eq(1) th').each(function (i) {
-                var title = $(this).text();
+                let title = $(this).text();
 
                 if (title == "Action") {
                     $(this).html("");
                 } else {
-                    $(this).html('<input class="form-control" type="text" placeholder="Search ' + title + '" />');
+                    $(this).html('<input class="form-control" type="text" placeholder="@lang('label.search') ' + title + '" />');
                 }
 
                 $('input', this).on('keyup change', function () {
@@ -130,18 +127,18 @@
             });
             let url = $(this).data('remote');
             // confirm then
-            if (confirm('Are you sure you want to delete this?')) {
+            if (confirm('@lang('label.jsConfirmDeleteData')')) {
                 $.ajax({
                     url: url,
                     type: 'DELETE',
                     dataType: 'json',
-                    data: {method: '_DELETE', submit: true}
+                    data: {method: 'DELETE', submit: true}
                 }).always(function (data) {
                     $('#history').DataTable().draw(false);
-                    toastr.success('Data has been successfully deleted!');
+                    toastr.success('@lang('label.jsInfoDeletedData')');
                 });
             } else
-                toastr.error('Sorry, the data could not be deleted');
+                toastr.error('@lang('label.jsSorry')');
         });
     </script>
 @endsection

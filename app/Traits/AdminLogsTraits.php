@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Models\AdminLogs;
+use App\Models\AdminLogHistory;
 use Carbon\Carbon;
 
 trait AdminLogsTraits
@@ -14,9 +14,8 @@ trait AdminLogsTraits
      * @param $admin
      */
     private function saveLogsHistory($article, $detail, $admin){
-        $loginHistory = new AdminLogs;
+        $loginHistory = new AdminLogHistory;
         $loginHistory->admins_id = $admin->id;
-        // $loginHistory->country_id = !empty(Place::find($admin->office_id)->id)?Place::find($admin->office_id)->id:Null;
         $loginHistory->activity = $article;
         $loginHistory->detail = $detail;
         $loginHistory->ip = request()->ip();

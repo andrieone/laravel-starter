@@ -73,23 +73,23 @@
 @section('js')
     <script>
         $(function () {
-            
+
             $('#superadmin thead tr').clone(true).appendTo( '#superadmin thead' );
             $('#superadmin thead tr:eq(1) th').each( function (i) {
-                var title = $(this).text();                
+                var title = $(this).text();
                 var attr = $(this).attr('rowspan');
                 if (typeof attr !== typeof undefined && attr !== false) {
                     $(this).remove();
                 }
-                $(this).html( '<input class="form-control" type="text" placeholder="Search '+title+'" />' );                           
-        
+                $(this).html( '<input class="form-control" type="text" placeholder="@lang('label.search') '+title+'" />' );
+
                 $( 'input', this ).on( 'keyup change', function () {
                     if ( table.column(i).search() !== this.value ) {
                         table.column(i).search( this.value ).draw();
                     }
                 } );
             } );
-            
+
             var table = $('#superadmin').DataTable({
                 "processing": true,
                 "serverSide": true,
@@ -127,18 +127,18 @@
             });
             let url = $(this).data('remote');
             // confirm then
-            if (confirm('Are you sure you want to delete this?')) {
+            if (confirm('@lang('label.jsConfirmDeleteData')')) {
                 $.ajax({
                     url: url,
                     type: 'DELETE',
                     dataType: 'json',
-                    data: {method: '_DELETE', submit: true}
+                    data: {method: 'DELETE', submit: true}
                 }).always(function (data) {
                     $('#superadmin').DataTable().draw(false);
-                    toastr.success('Data has been successfully deleted!');
+                    toastr.success('@lang('label.jsInfoDeletedData')');
                 });
             } else
-                toastr.error('Sorry, the data could not be deleted');
+                toastr.error('@lang('label.jsSorry')');
         });
 
 
