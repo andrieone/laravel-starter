@@ -11,7 +11,7 @@ class CreateAdminLogHistory extends Migration
      * @return void
      */
     public function up(){
-        Schema::create('admin_log_history', function(Blueprint $table){
+        Schema::create('admin_log_histories', function(Blueprint $table){
             $table->bigIncrements('id');
             $table->unsignedBigInteger('admins_id')->nullable();
             $table->foreign('admins_id')->references('id')->on('admins')->onUpdate('cascade')->onDelete('set null');
@@ -19,8 +19,6 @@ class CreateAdminLogHistory extends Migration
             $table->text('detail');
             $table->string('ip', 50);
             $table->dateTime('last_access');
-            $table->string('not_exist_user', 50);
-            $table->dateTime('failed_login_at');
             $table->timestamps();
         });
     }

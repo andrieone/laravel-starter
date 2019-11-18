@@ -23,7 +23,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{url('/')}}"><b>Grune</b>Asia</a>
+        <a href="{{url('/')}}"><b>管理者ログイン画面</b></a>
     </div>
     @yield('content')
 </div>

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AdminLogs extends Model
+class AdminLogHistory extends Model
 {
     /**
      * flyable form

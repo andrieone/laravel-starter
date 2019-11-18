@@ -28,9 +28,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    {{--<div class="card-header">--}}
-                    {{--    <h3 class="card-title">DataTable with default features</h3>--}}
-                    {{--</div>--}}
+                    {{--Header--}}
+                    <div class="card-header">
+                        <h3 class="card-title">DataTable with default features</h3>
+                        {{Form::select('*', \App\Models\Admin::pluck('display_name','id'), null, ['placeholder' => 'Choose'])}}
+                    </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -39,7 +41,7 @@
                                     <table id="superadmin" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info" style="width:100%">
                                         <thead>
                                         <tr>
-                                            <th class="text-center">Id</th>
+                                            <th class="text-center">ID</th>
                                             <th class="text-center">@lang('label.name')</th>
                                             <th class="text-center">@lang('label.email')</th>
                                             <th class="text-center">@lang('label.created_at')</th>
@@ -49,7 +51,7 @@
                                         </thead>
                                         <tfoot>
                                         <tr>
-                                            <th class="text-center">Id</th>
+                                            <th class="text-center">ID</th>
                                             <th class="text-center">@lang('label.name')</th>
                                             <th class="text-center">@lang('label.email')</th>
                                             <th class="text-center">@lang('label.created_at')</th>
@@ -73,30 +75,31 @@
 @section('js')
     <script>
         $(function () {
-            $('#superadmin thead tr').clone(true).appendTo( '#superadmin thead' );
-            $('#superadmin thead tr:eq(1) th').each( function (i) {
-                var title = $(this).text();
+            $('#superadmin thead tr').clone(true).appendTo('#superadmin thead');
+            $('#superadmin thead tr:eq(1) th').each(function (i) {
+                let title = $(this).text();
                 var attr = $(this).attr('rowspan');
                 if (typeof attr !== typeof undefined && attr !== false) {
                     $(this).remove();
                 }
-                $(this).html( '<input class="form-control" type="text" placeholder="Search '+title+'" />' );
+                $(this).html('<input class="form-control" type="text" placeholder="@lang('label.search') ' + title + '" />');
 
-                $( 'input', this ).on( 'keyup change', function () {
-                    if ( table.column(i).search() !== this.value ) {
-                        table.column(i).search( this.value ).draw();
+                $('input', this).on('keyup change', function () {
+                    if (table.column(i).search() !== this.value) {
+                        table.column(i).search(this.value).draw();
                     }
-                } );
-            } );
+                });
+            });
 
-            var table = $('#superadmin').DataTable({
+            let table = $('#superadmin').DataTable({
+                "order": [[3, "desc"]],
                 "processing": true,
                 "serverSide": true,
                 "orderCellsTop": true,
                 "fixedHeader": true,
                 "paging": true,
                 "lengthChange": true,
-                "lengthMenu": [ [25, 50, 100, -1], [25, 50, 100, "All"] ],
+                "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
                 "searching": true,
                 "ordering": true,
                 "info": true,
@@ -104,7 +107,7 @@
                 "autoWidth": false,
                 "ajax": 'superadmin/json',
                 "columnDefs": [
-                    { "width": "10px", "targets": 0 },
+                    {"width": "10px", "targets": 0},
                 ],
                 "columns": [
                     {data: 'id', name: 'id'},
@@ -115,6 +118,30 @@
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ],
             });
+
+        });
+
+        $('#superadmin').on('click', '.deleteAdmin[data-remote]', function (e) {
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            let url = $(this).data('remote');
+            // confirm then
+            if (confirm('@lang('label.jsConfirmDeleteData')')) {
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    dataType: 'json',
+                    data: {method: 'DELETE', submit: true}
+                }).always(function (data) {
+                    $('#superadmin').DataTable().draw(false);
+                    toastr.success('@lang('label.jsInfoDeletedData')');
+                });
+            } else
+                toastr.error('@lang('label.jsSorry')');
         });
 
         $(function () {

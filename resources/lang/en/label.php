@@ -13,11 +13,15 @@ return [
     |
     */
     // common words
+    /** Login ============================= */
+    'enterEmailAddress'      => 'Enter Email Address',
+    'enterPassword'          => 'Enter Password',
+    'remember'          => 'Remember Me',
+    'login'          => 'Login',
     'dashboard'              => 'Dashboard',
     'superAdmin'             => 'Super Admin',
     'admin'                  => 'Admin',
     'createNew'              => 'Create New',
-    'historyLog'             => 'History Logs',
     'list'                   => 'List',
     'add'                    => 'Add New',
     'edit'                   => 'Edit',
@@ -27,8 +31,12 @@ return [
     'showPassword'           => 'Show Password',
     'change'                 => 'Change',
     'register'               => 'Register',
+    'search'                 => 'Search',
     'choosePasswordLength'   => 'Please choose a password with a minimum length of 8 characters.',
     'updatePasswordSentence' => 'Click change button when you wish to update your password.',
+    'jsConfirmDeleteData'    => 'Are you sure you want to delete this data?',
+    'jsInfoDeletedData'      => 'Data has been successfully deleted!',
+    'jsSorry'                => 'Sorry, the data could not be deleted',
     /** =================================== */
     'name'                   => 'Name',
     'email'                  => 'Email',
@@ -38,6 +46,12 @@ return [
     'created_at'             => 'Created at',
     'update_at'              => 'Updated at',
     'action'                 => 'Action',
-    /** =================================== */
+    /** Login History====================== */
+    'historyLog'             => 'Log Activity',
+    'admins_id'              => 'Admin ID',
+    'activity'               => 'Activity',
+    'detail'                 => 'Detail',
+    'ip'                     => 'Ip Address',
+    'last_access'            => 'Last Access',
 
 ];

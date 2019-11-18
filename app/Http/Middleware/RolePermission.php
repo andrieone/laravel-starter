@@ -4,31 +4,24 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class RolePermission
 {
     /**
      * Handle an incoming request.
+     * db admin_roles->name == name
      * @param \Illuminate\Http\Request $request
      * @param \Closure                 $next
+     * @param array                    $role
      * @return mixed
      */
     public function handle($request, Closure $next, ...$role){
-        $allowed = false;
-        foreach($role as $r){
-            if(Auth::user()->adminRole->name == $r){
-                $allowed = true;
-                break;
-            }
-        }
-        //dd($allowed);
-
-        if($allowed === true){
+        if(in_array(Auth::user()->adminRole->name, $role))
+        {
             return $next($request);
         }
         else{
-            abort(404);
+            return redirect('/login');
         }
     }
 }
