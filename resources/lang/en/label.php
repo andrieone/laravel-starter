@@ -16,8 +16,8 @@ return [
     /** Login ============================= */
     'enterEmailAddress'      => 'Enter Email Address',
     'enterPassword'          => 'Enter Password',
-    'remember'          => 'Remember Me',
-    'login'          => 'Login',
+    'remember'               => 'Remember Me',
+    'login'                  => 'Login',
     'dashboard'              => 'Dashboard',
     'superAdmin'             => 'Super Admin',
     'admin'                  => 'Admin',

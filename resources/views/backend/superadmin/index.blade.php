@@ -29,10 +29,10 @@
             <div class="col-12">
                 <div class="card">
                     {{--Header--}}
-                    <div class="card-header">
-                        <h3 class="card-title">DataTable with default features</h3>
-                        {{Form::select('*', \App\Models\Admin::pluck('display_name','id'), null, ['placeholder' => 'Choose'])}}
-                    </div>
+                    {{--<div class="card-header">--}}
+                    {{--    <h3 class="card-title">DataTable with default features</h3>--}}
+                    {{--    {{Form::select('*', \App\Models\Admin::pluck('display_name','id'), null, ['placeholder' => 'Choose'])}}--}}
+                    {{--</div>--}}
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">

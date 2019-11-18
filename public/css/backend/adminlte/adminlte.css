@@ -2545,15 +2545,15 @@ fieldset:disabled a.btn {
 
 .btn-info {
   color: #ffffff;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+  background-color: #3c8dbc;
+  border-color: #3c8dbc;
   box-shadow: none;
 }
 
 .btn-info:hover {
   color: #ffffff;
-  background-color: #138496;
-  border-color: #117a8b;
+  background-color: #327aa5;
+  border-color: #327aa5;
 }
 
 .btn-info:focus, .btn-info.focus {
@@ -2579,14 +2579,14 @@ fieldset:disabled a.btn {
 }
 
 .btn-warning {
-  color: #1F2D3D;
+  color: #ffffff;
   background-color: #ffc107;
   border-color: #ffc107;
   box-shadow: none;
 }
 
 .btn-warning:hover {
-  color: #1F2D3D;
+  color: #ffffff;
   background-color: #e0a800;
   border-color: #d39e00;
 }
@@ -13196,7 +13196,7 @@ body.text-sm .control-sidebar {
 }
 
 .navbar-info {
-  background-color: #17a2b8;
+  background-color: #3c8dbc;
 }
 
 .navbar-warning {
@@ -28498,4 +28498,3 @@ a.text-muted:hover {
   background-color: #ffffff;
   border-color: #dee2e6;
 }
-/*# sourceMappingURL=adminlte.css.map */

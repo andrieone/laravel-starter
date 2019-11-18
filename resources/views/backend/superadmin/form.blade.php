@@ -91,7 +91,7 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer text-center">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-info">
                                 <i class="fas fa-save"></i> {{ $page_type == 'create' ? __('label.register') : __('label.update')  }}
                             </button>
                         </div>

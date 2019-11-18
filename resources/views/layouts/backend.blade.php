@@ -21,7 +21,7 @@
     <!-- Toastr -->
     <link rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('css/backend/adminlte/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/backend/adminlte/adminlte.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     {{--custom css--}}
@@ -49,7 +49,7 @@
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('dashboard') }}" target="_blank"><i class="fa fa-home" aria-hidden="true"></i>
+                <a class="nav-link" href="{{ url('/') }}" target="_blank"><i class="fa fa-home" aria-hidden="true"></i>
                     サイトTOPページへ</a>
             </li>
             <li>
