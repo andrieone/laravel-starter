@@ -47,7 +47,7 @@
         </ul>
 
         <!-- Right navbar links -->
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto rightNavbar">
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/') }}" target="_blank"><i class="fa fa-home" aria-hidden="true"></i>
                     サイトTOPページへ</a>

@@ -2,18 +2,30 @@
 
 @section('content')
     <!-- Content Header (Page header) -->
-    @component('backend._components._breadcrumbs')
-        @slot('page_title')
-            {{$page_title}}
-        @endslot
-    @endcomponent
+    @breadcrumbs()
+    @slot('page_title')
+        {{$page_title}}
+    @endslot
+    @endbreadcrumbs
     <!-- /.content-header -->
     <!-- Main content -->
     <section class="content">
         <div class="row">
             <div class="col-12">
                 <div class="card">
+                    {{--Header--}}
+                    <div class="card-header">
+                        <div class="row mb-2">
+                            <div class="col-sm-12 col-sm-6">
+                                <h3 class="card-title">@lang('label.list')</h3>
+                            </div>
+                            {{--<div class="col-sm-12 col-sm-6">--}}
+                            {{--    <a href="{{route('admin.admins.create')}}" class="btn btn-info float-sm-right">@lang('label.createNew')</a>--}}
+                            {{--</div>--}}
+                        </div>
+                    </div>
                     <!-- /.card-header -->
+                    <!-- .card-body -->
                     <div class="card-body">
                         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                             <div class="row">
@@ -87,12 +99,12 @@
                 "fixedHeader": true,
                 "paging": true,
                 "lengthChange": true,
-                "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+                "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "@lang('label.all')"]],
                 "searching": true,
                 "ordering": true,
                 "info": true,
                 "scrollX": true,
-                "autoWidth": false,
+                "autoWidth": true,
                 "ajax": 'history/json',
                 "columnDefs": [
                     {"width": "10px", "targets": 0},

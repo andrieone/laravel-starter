@@ -32,6 +32,7 @@ return [
     'change'                 => 'Change',
     'register'               => 'Register',
     'search'                 => 'Search',
+    'all'                    => 'All',
     'newPassword'            => 'Enter new password to update your old password',
     'choosePasswordLength'   => 'Please choose a password with a minimum length of 8 characters.',
     'updatePasswordSentence' => 'Click change button when you wish to update your password.',
