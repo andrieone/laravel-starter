@@ -6,7 +6,7 @@
 @section('title', 'Reset Password | ' . env('APP_NAME',''))
 
 @section('content')
-<div class="container">
+<div class="container leak">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">

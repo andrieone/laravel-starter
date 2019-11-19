@@ -23,20 +23,20 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
                 @if($roles == 'super_admin')
-                    <li class="nav-item has-treeview">
+                    <li class="nav-item has-treeview" id="superadmins">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-circle"></i>
+                            <i class="nav-icon fas fa-user"></i>
                             <p> @lang('label.superAdmin')<i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li id="create_superadmin" class="nav-item">
                                 <a href="{{route('admin.super-admin.create')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>@lang('label.createNew')</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li id="list_superadmin" class="nav-item">
                                 <a href="{{route('admin.super-admin.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>@lang('label.list')</p>
@@ -45,20 +45,20 @@
                         </ul>
                     </li>
                 @endif
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview" id="admins">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-circle"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p> @lang('label.admin') <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <li id="create_admin" class="nav-item">
                             <a href="{{route('admin.admins.create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>@lang('label.createNew')</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li id="list_admin" class="nav-item">
                             <a href="{{route('admin.admins.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>@lang('label.list')</p>
@@ -67,7 +67,7 @@
                     </ul>
                 </li>
                 @if($roles == 'super_admin')
-                    <li class="nav-item">
+                    <li class="nav-item" id="menu-login-histories">
                         <a href="{{route('admin.histories.index')}}" class="nav-link">
                             <i class="nav-icon far fa-circle text-danger"></i>
                             <p class="text">@lang('label.historyLog')</p>

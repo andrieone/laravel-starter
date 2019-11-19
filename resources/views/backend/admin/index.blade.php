@@ -1,27 +1,12 @@
 @extends('layouts.backend')
 
-@section('content-page-header')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{$page_title}}</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">@lang('label.dashboard')</a></li>
-                        <li class="breadcrumb-item active">{{$page_title}}</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-@endsection
-
-
 @section('content')
     <!-- Content Header (Page header) -->
-    @yield('content-page-header')
+    @component('backend._components._breadcrumbs')
+        @slot('page_title')
+            {{$page_title}}
+        @endslot
+    @endcomponent
     <!-- /.content-header -->
     <!-- Main content -->
     <section class="content">
@@ -73,24 +58,26 @@
 @section('js')
     <script>
         $(function () {
-
-            $('#superadmin thead tr').clone(true).appendTo( '#superadmin thead' );
-            $('#superadmin thead tr:eq(1) th').each( function (i) {
+            // input fields in datatable
+            $('#superadmin thead tr').clone(true).appendTo('#superadmin thead');
+            $('#superadmin thead tr:eq(1) th').each(function (i) {
                 var title = $(this).text();
                 var attr = $(this).attr('rowspan');
                 if (typeof attr !== typeof undefined && attr !== false) {
                     $(this).remove();
                 }
-                $(this).html( '<input class="form-control" type="text" placeholder="@lang('label.search') '+title+'" />' );
+                $(this).html('<input class="form-control" type="text" placeholder="@lang('label.search') ' + title + '" />');
 
-                $( 'input', this ).on( 'keyup change', function () {
-                    if ( table.column(i).search() !== this.value ) {
-                        table.column(i).search( this.value ).draw();
+                $('input', this).on('keyup change', function () {
+                    if (table.column(i).search() !== this.value) {
+                        table.column(i).search(this.value).draw();
                     }
-                } );
-            } );
+                });
+            });
 
-            var table = $('#superadmin').DataTable({
+            // datatable setting
+            let table = $('#superadmin').DataTable({
+                "order": [[0, "desc"]],
                 "processing": true,
                 "serverSide": true,
                 "orderCellsTop": true,
@@ -105,7 +92,7 @@
                 "autoWidth": true,
                 "ajax": 'admins/json',
                 "columnDefs": [
-                    { "width": "10px", "targets": 0 },
+                    {"width": "10px", "targets": 0},
                 ],
                 "columns": [
                     {data: 'id', name: 'id'},
@@ -115,9 +102,13 @@
                     {data: 'updated_at', name: 'updated_at'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ],
+                "language": {
+                    "url": "{{asset('js/backend/adminlte/Japanese.json')}}"
+                }
             });
         });
 
+        // delete button in datatable for initiation is in controllers
         $('#superadmin').on('click', '.deleteAdmin[data-remote]', function (e) {
             e.preventDefault();
             $.ajaxSetup({
@@ -141,6 +132,10 @@
                 toastr.error('@lang('label.jsSorry')');
         });
 
+        // init: side menu for current page
+        $('li#admins').addClass('menu-open');
+        $('.menu-open a').addClass('active');
+        $('li#admins').find('.nav-treeview').find('#create_admin a').removeClass('active');
 
         $(function () {
             @if ($message = Session::get('success'))

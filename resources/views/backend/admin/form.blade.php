@@ -1,27 +1,12 @@
 @extends('layouts.backend')
 
-@section('content-page-header')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{$page_title}}</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">@lang('label.dashboard')</a></li>
-                        <li class="breadcrumb-item active">{{$page_title}}</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-@endsection
-
-
 @section('content')
     <!-- Content Header (Page header) -->
-    @yield('content-page-header')
+    @component('backend._components._breadcrumbs')
+        @slot('page_title')
+            {{$page_title}}
+        @endslot
+    @endcomponent
     <!-- /.content-header -->
     <!-- Main content -->
     <section class="content">
@@ -75,10 +60,10 @@
                                         <strong class="field-title">@lang('label.password')</strong>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 col-content">
-                                        <button type="button" name="reset" id="reset-button" class="btn btn-primary" style="margin-top: 4px;">@lang('label.change')</button>
+                                        <button type="button" name="reset" id="reset-button" class="btn btn-info">@lang('label.change')</button>
                                     </div>
                                     <div id="reset-field" class="col-xs-10 col-sm-10 col-md-8 col-lg-9 col-content d-none">
-                                        {{ Form::password('password', array('id' => 'password', 'placeholder' => 'Enter new password to update your old password', 'class' => 'form-control', 'style' => 'margin-top:5px')) }}
+                                        {{ Form::password('password', array('id' => 'password', 'placeholder' => __('label.newPassword'), 'class' => 'form-control')) }}
                                         <label for="show-password">
                                             <input id="show-password" type="checkbox" name="show-password" value="1">
                                             <span>@lang('label.showPassword')</span>
@@ -116,5 +101,10 @@
                 '@endforeach');
             @endif
         });
+
+        // init: side menu for current page
+        $('li#admins').addClass('menu-open');
+        $('.menu-open a').addClass('active');
+        $('li#admins').find('.nav-treeview').find('#list_admin a').removeClass('active');
     </script>
 @endsection

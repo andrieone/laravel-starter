@@ -86,7 +86,6 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
 <!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
@@ -102,10 +101,7 @@
 <script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('js/backend/adminlte/adminlte.min.js')}}"></script>
-<!-- validation -->
-<script src="{{asset('plugins/jquery-validation/jquery.validate.min.js')}}"></script>
-<script src="{{asset('plugins/jquery-validation/additional-methods.min.js')}}"></script>
-<!-- parsley -->
+<!-- parsley validation -->
 <script src="{{asset('plugins/parsley/parsley.min.js')}}"></script>
 <script src="{{asset('plugins/parsley/i18n/ja.js')}}"></script>
 <!-- form -->

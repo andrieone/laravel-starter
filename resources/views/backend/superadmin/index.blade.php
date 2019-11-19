@@ -1,39 +1,24 @@
 @extends('layouts.backend')
 
-@section('content-page-header')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{$page_title}}</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">@lang('label.dashboard')</a></li>
-                        <li class="breadcrumb-item active">{{$page_title}}</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-@endsection
-
-
 @section('content')
     <!-- Content Header (Page header) -->
-    @yield('content-page-header')
+    @component('backend._components._breadcrumbs')
+        @slot('page_title')
+            {{$page_title}}
+        @endslot
+    @endcomponent
     <!-- /.content-header -->
     <!-- Main content -->
     <section class="content">
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    {{--Header--}}
-                    {{--<div class="card-header">--}}
-                    {{--    <h3 class="card-title">DataTable with default features</h3>--}}
-                    {{--    {{Form::select('*', \App\Models\Admin::pluck('display_name','id'), null, ['placeholder' => 'Choose'])}}--}}
-                    {{--</div>--}}
-                    <!-- /.card-header -->
+                {{--Header--}}
+                {{--<div class="card-header">--}}
+                {{--    <h3 class="card-title">DataTable with default features</h3>--}}
+                {{--    {{Form::select('*', \App\Models\Admin::pluck('display_name','id'), null, ['placeholder' => 'Choose'])}}--}}
+                {{--</div>--}}
+                <!-- /.card-header -->
                     <div class="card-body">
                         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                             <div class="row">
@@ -75,6 +60,7 @@
 @section('js')
     <script>
         $(function () {
+            // input fields in datatable
             $('#superadmin thead tr').clone(true).appendTo('#superadmin thead');
             $('#superadmin thead tr:eq(1) th').each(function (i) {
                 let title = $(this).text();
@@ -91,8 +77,9 @@
                 });
             });
 
+            // datatable setting
             let table = $('#superadmin').DataTable({
-                "order": [[3, "desc"]],
+                "order": [[0, "desc"]],
                 "processing": true,
                 "serverSide": true,
                 "orderCellsTop": true,
@@ -117,10 +104,14 @@
                     {data: 'updated_at', name: 'updated_at'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ],
+                "language": {
+                    "url": "{{asset('js/backend/adminlte/Japanese.json')}}"
+                }
             });
 
         });
 
+        // delete button in datatable for initiation is in controllers
         $('#superadmin').on('click', '.deleteAdmin[data-remote]', function (e) {
             e.preventDefault();
             $.ajaxSetup({
@@ -154,5 +145,10 @@
                 '@endforeach');
             @endif
         });
+
+        // init: side menu for current page
+        $('li#superadmins').addClass('menu-open');
+        $('.menu-open a').addClass('active');
+        $('li#superadmins').find('.nav-treeview').find('#create_superadmin a').removeClass('active');
     </script>
 @endsection
