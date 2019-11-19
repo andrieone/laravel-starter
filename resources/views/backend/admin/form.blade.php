@@ -2,18 +2,37 @@
 
 @section('content')
     <!-- Content Header (Page header) -->
-    @component('backend._components._breadcrumbs')
-        @slot('page_title')
-            {{$page_title}}
-        @endslot
-    @endcomponent
+    @breadcrumbs()
+    @slot('page_title')
+        {{$page_title}}
+    @endslot
+    @endbreadcrumbs
     <!-- /.content-header -->
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-primary">
+                    <div class="card">
+                        {{--Header--}}
+                        <div class="card-header">
+                            <div class="row mb-2">
+                                <div class="col-sm-12 col-sm-6">
+                                    @if ($page_type == "create")
+                                        <h3 class="card-title">@lang('label.add')</h3>
+                                    @else
+                                        <h3 class="card-title">@lang('label.edit')</h3>
+                                    @endif
+                                </div>
+                                <div class="col-sm-12 col-sm-6">
+                                    @if ($page_type == "create")
+                                        <a href="{{route('admin.admins.index')}}" class="btn btn-info float-sm-right">@lang('label.list')</a>
+                                    @else
+                                        <a href="{{route('admin.admins.create')}}" class="btn btn-info float-sm-right">@lang('label.createNew')</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         {{ Form::open(array('route' => $form_action, 'method' => 'POST', 'files' => false, 'id' => 'admin-form')) }}

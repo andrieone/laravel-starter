@@ -17,11 +17,11 @@
 
 @section('content')
     <!-- Content Header (Page header) -->
-    @component('backend._components._breadcrumbs')
-        @slot('page_title')
-            Start page
-        @endslot
-    @endcomponent
+    @breadcrumbs()
+    @slot('page_title')
+        {{$page_title}}
+    @endslot
+    @endbreadcrumbs
     <!-- /.content-header -->
     <!-- Main content -->
     <div class="content">
