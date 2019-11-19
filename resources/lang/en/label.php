@@ -32,6 +32,7 @@ return [
     'change'                 => 'Change',
     'register'               => 'Register',
     'search'                 => 'Search',
+    'newPassword'            => 'Enter new password to update your old password',
     'choosePasswordLength'   => 'Please choose a password with a minimum length of 8 characters.',
     'updatePasswordSentence' => 'Click change button when you wish to update your password.',
     'jsConfirmDeleteData'    => 'Are you sure you want to delete this data?',
@@ -53,5 +54,6 @@ return [
     'detail'                 => 'Detail',
     'ip'                     => 'Ip Address',
     'last_access'            => 'Last Access',
+    'IForgotMyPassword'      => 'I forgot my password',
 
 ];

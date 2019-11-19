@@ -1,4 +1,4 @@
-@extends('auth.layouts.admin_app')
+@extends('auth.layouts.superadmin')
 
 <!-- page title -->
 @section('title', 'Password updated | ' . env('APP_NAME',''))

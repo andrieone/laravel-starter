@@ -1,34 +1,19 @@
 @extends('layouts.backend')
 
-@section('content-page-header')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{$page_title}}</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">@lang('label.dashboard')</a></li>
-                        <li class="breadcrumb-item active">{{$page_title}}</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-@endsection
-
-
 @section('content')
     <!-- Content Header (Page header) -->
-    @yield('content-page-header')
+    @component('backend._components._breadcrumbs')
+        @slot('page_title')
+            {{$page_title}}
+        @endslot
+    @endcomponent
     <!-- /.content-header -->
     <!-- Main content -->
     <section class="content">
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                <!-- /.card-header -->
+                    <!-- /.card-header -->
                     <div class="card-body">
                         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                             <div class="row">
@@ -42,7 +27,7 @@
                                             <th>@lang('label.detail')</th>
                                             <th>@lang('label.ip')</th>
                                             <th>@lang('label.last_access')</th>
-                                            <th>@lang('label.action')</th>
+                                            <th rowspan="2" class="text-center align-middle">@lang('label.action')</th>
                                         </tr>
                                         </thead>
                                         <tfoot>
@@ -72,10 +57,14 @@
 @section('js')
     <script>
         $(function () {
+            // input fields in datatable
             $('#history thead tr').clone(true).appendTo('#history thead');
             $('#history thead tr:eq(1) th').each(function (i) {
                 let title = $(this).text();
-
+                let attr = $(this).attr('rowspan');
+                if (typeof attr !== typeof undefined && attr !== false) {
+                    $(this).remove();
+                }
                 if (title == "Action") {
                     $(this).html("");
                 } else {
@@ -89,7 +78,9 @@
                 });
             });
 
+            // datatable setting
             let table = $('#history').DataTable({
+                "order": [[0, "desc"]],
                 "processing": true,
                 "serverSide": true,
                 "orderCellsTop": true,
@@ -115,9 +106,13 @@
                     {data: 'last_access', name: 'last_access'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ],
+                "language": {
+                    "url": "{{asset('js/backend/adminlte/Japanese.json')}}"
+                }
             });
         });
 
+        // delete button in datatable for initiation is in controllers
         $('#history').on('click', '.deleteHistory[data-remote]', function (e) {
             e.preventDefault();
             $.ajaxSetup({
@@ -140,5 +135,8 @@
             } else
                 toastr.error('@lang('label.jsSorry')');
         });
+
+        //side nav menu for current page
+        $('li#menu-login-histories').find('a').addClass('active');
     </script>
 @endsection
