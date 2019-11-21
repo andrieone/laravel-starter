@@ -14,9 +14,9 @@ return [
     */
     // common words
     /** Login ============================= */
-    'enterEmailAddress'      => 'メールアドレスを入力してください',
-    'enterPassword'          => 'パスワードを入力してください',
-    'remember'               => 'ログイン状態を保存する',
+    'enterEmailAddress'      => 'メールアドレス',
+    'enterPassword'          => 'パスワード',
+    'remember'               => 'ログイン状態を保持する',
     'login'                  => 'ログイン',
     'dashboard'              => 'ダッシュボード',
     'superAdmin'             => '特権管理者',

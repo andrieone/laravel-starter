@@ -21,7 +21,7 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
+            <ul id="nav-left" class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
                 @if($roles == 'super_admin')
                     <li class="nav-item has-treeview" id="superadmins">
                         <a href="#" class="nav-link">

@@ -21,10 +21,14 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
+
 <div class="login-box">
+
+    {{--
     <div class="login-logo">
         <a href="{{url('/')}}"><b>管理者ログイン画面</b></a>
     </div>
+    --}}
     @yield('content')
 </div>
 <!-- /.login-box -->

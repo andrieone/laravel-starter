@@ -7,10 +7,10 @@
 }
 
 /* Sidebar */
-.brand-text{
+.brand-text {
     color: #fff;
     font-size: 20px;
-    font-weight: 600;
+    text-transform: uppercase;
 }
 
 /* Form */
@@ -40,4 +40,14 @@
 .actionDatatables{
     border-left: 1px solid #dee2e6 !important;
     margin-left: -1px;
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+}
+
+.card-header-link a {
+    margin-left: 10px;
+    float: right;
 }

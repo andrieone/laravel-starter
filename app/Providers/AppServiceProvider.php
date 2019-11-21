@@ -22,7 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(){
         Schema::defaultStringLength(191);
-        // blade custom call it @breadcrumbs
-        Blade::component('backend._components._breadcrumbs', 'breadcrumbs');
+        // Blade::component('backend._components.breadcrumbs', 'breadcrumbs');
     }
 }

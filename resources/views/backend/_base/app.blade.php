@@ -6,14 +6,16 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $page_title }} | {{ env('APP_NAME','') }}</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <!-- DataTables Button -->
+    <link rel="stylesheet" href="{{asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
     {{--multi select--}}
     <link href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css" rel="stylesheet">
     <!-- SweetAlert2 -->
@@ -38,12 +40,6 @@
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
             </li>
-            {{-- <li class="nav-item d-none d-sm-inline-block">
-                <a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="{{ route('admin.logout') }}" class="nav-link">Logout</a>
-            </li> --}}
         </ul>
 
         <!-- Right navbar links -->
@@ -61,11 +57,11 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-@include('backend._base._backend_main_sidebar')
+@include('backend._base.nav_left')
 
-<!-- Content Wrapper. Contains page content -->
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        @yield('content')
+        @yield('content-wrapper')
     </div>
     <!-- /.content-wrapper -->
 
@@ -77,7 +73,7 @@
     <footer class="main-footer">
         <!-- To the right -->
         <div class="float-right d-none d-sm-inline">
-            Version 3
+            Version 1
         </div>
         <!-- Default to the left -->
         <strong>Copyright &copy; 2019 <a href="https://grune.co.jp">Grune</a>.</strong> All rights reserved.
@@ -91,8 +87,8 @@
 <!-- Bootstrap 4 -->
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- DataTables -->
-<script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
-<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 {{--multiselect--}}
 <script src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
 <!-- SweetAlert2 -->
@@ -104,10 +100,24 @@
 <!-- parsley validation -->
 <script src="{{asset('plugins/parsley/parsley.min.js')}}"></script>
 <script src="{{asset('plugins/parsley/i18n/ja.js')}}"></script>
-<!-- form -->
+<!-- custom backend -->
 <script src="{{asset('js/backend/form.js')}}"></script>
+<script src="{{asset('js/backend/backend.js')}}"></script>
 
 {{--custom js--}}
 @yield('js')
+@stack('scripts')
+<script>
+    $(function () {
+        @if ($message = Session::get('success'))
+        toastr.success('{{ $message }}');
+        @endif
+        @if ($errors->any())
+        toastr.error('@foreach ($errors->all() as $error)' +
+            '<p>{{ $error }}</p>' +
+            '@endforeach');
+        @endif
+    });
+</script>
 </body>
 </html>
