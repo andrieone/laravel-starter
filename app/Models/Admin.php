@@ -14,12 +14,21 @@ use App\Notifications\AdminResetPassword;
 
 class Admin extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
-
     // These traits are used for admin login authentication
     use Authenticatable, Authorizable, CanResetPassword, Notifiable;
 
-    protected $hidden   = ['password', 'remember_token'];
-    protected $fillable = ['admin_role_id', 'display_name', 'email', 'password', 'remember_token'];
+    protected $hidden   = [
+        'password',
+        'remember_token'
+    ];
+
+    protected $fillable =[
+        'admin_role_id',
+        'display_name',
+        'email',
+        'password',
+        'remember_token'
+    ];
 
     /**
      * The attributes that should be cast to native types.

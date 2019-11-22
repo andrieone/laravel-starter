@@ -1,21 +1,5 @@
 ;(function ($, document, window, undefined) {
-    // init: show tooltip on hover
-    $('[data-toggle="tooltip"]').tooltip({
-        container: 'body'
-    });
 
-    // show password field only after 'change password' is clicked
-    $('#reset-button').click(function (e) {
-        $('#reset-field').removeClass('d-none');
-        $('#show-password-check').removeClass('d-none');
-        // to always uncheck the checkbox after button click
-        $('#show-password').prop('checked', false);
-    });
-
-    // toggle password in plaintext if checkbox is selected
-    $("#show-password").click(function () {
-        $(this).is(":checked") ? $("#password").prop("type", "text") : $("#password").prop("type", "password");
-    });
 
     // Parsley
     $('[data-parsley]').parsley({

@@ -4,7 +4,7 @@
 <aside class="main-sidebar elevation-1 sidebar-light-info">
     <!-- Brand Logo -->
     <a href="{{route('dashboard')}}" class="brand-link navbar-info text-center">
-        <span class="brand-text">{{ env('APP_NAME','') }}</span>
+        <span class="brand-text">{{ config('app.name')  }}</span>
     </a>
 
     <!-- Sidebar -->
@@ -21,7 +21,8 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
+            <ul id="nav-left" class="nav nav-pills nav-sidebar flex-column text-sm" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header">MAIN NAVIGATION</li>
                 @if($roles == 'super_admin')
                     <li class="nav-item has-treeview" id="superadmins">
                         <a href="#" class="nav-link">
@@ -66,14 +67,6 @@
                         </li>
                     </ul>
                 </li>
-                @if($roles == 'super_admin')
-                    <li class="nav-item" id="menu-login-histories">
-                        <a href="{{route('admin.histories.index')}}" class="nav-link">
-                            <i class="nav-icon far fa-circle text-danger"></i>
-                            <p class="text">@lang('label.historyLog')</p>
-                        </a>
-                    </li>
-                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

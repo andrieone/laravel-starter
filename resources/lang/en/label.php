@@ -14,8 +14,8 @@ return [
     */
     // common words
     /** Login ============================= */
-    'enterEmailAddress'      => 'Enter Email Address',
-    'enterPassword'          => 'Enter Password',
+    'enterEmailAddress'      => 'Email',
+    'enterPassword'          => 'Password',
     'remember'               => 'Remember Me',
     'login'                  => 'Login',
     'dashboard'              => 'Dashboard',
@@ -26,6 +26,7 @@ return [
     'add'                    => 'Add New',
     'edit'                   => 'Edit',
     'required'               => 'Required',
+    'optional'               => 'Optional',
     'update'                 => 'Update',
     'password'               => 'Password',
     'showPassword'           => 'Show Password',

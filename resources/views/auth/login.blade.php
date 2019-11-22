@@ -8,7 +8,7 @@
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">管理者ログイン</p>
+            <h4 class="login-box-msg mb-3">管理者ログイン</h4>
 
             <form action="{{ route('login') }}" method="post">
                 @csrf
@@ -38,11 +38,11 @@
                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                     @enderror
                 </div>
-                <div class="row">
+                <div class="row mt-5">
                     <div class="col-8">
                         <div class="icheck-primary">
                             <input id="remember" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} >
-                            <label for="remember">
+                            <label for="remember" style="font-weight: normal; font-size: 0.8rem">
                                 @lang('label.remember')
                             </label>
                         </div>
@@ -67,8 +67,8 @@
         <!-- /.social-auth-links -->
 
             @if (Route::has('password.request'))
-                <p class="mb-1">
-                    <a href="{{ route('password.request') }}">@lang('label.IForgotMyPassword')</a>
+                <p class="mb-1 mt-3" style="text-align: right">
+                    <a href="{{ route('password.request') }}"  style="font-weight: normal; font-size: 0.8rem">@lang('label.IForgotMyPassword')</a>
                 </p>
             @endif
             {{--<p class="mb-0">--}}

@@ -15,11 +15,6 @@ class SuperAdminController extends Controller
 {
     use AdminLogsTraits;
 
-    /**
-     * @param array $data
-     * @param       $type
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data, $type){
         return Validator::make($data, [
             'display_name' => 'required|string|max:100',
@@ -37,18 +32,11 @@ class SuperAdminController extends Controller
             })->editColumn('id', '{{$id}}')->make(true);
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index(){
         $data['page_title'] = __('label.superAdmin');
         return view('backend.superadmin.index', $data);
     }
 
-    /**
-     * show data
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function show(){
         $data['page_title'] = __('label.admin');
         return view('backend.superadmin.index', $data);
@@ -87,11 +75,6 @@ class SuperAdminController extends Controller
         return view('backend.superadmin.form', $data);
     }
 
-    /**
-     * storing data
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(Request $request){
         try{
             $data = $request->all();
@@ -106,10 +89,6 @@ class SuperAdminController extends Controller
         }
     }
 
-    /**
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function destroy($id){
         $superAdmin = Admin::findOrFail($id);
         $admin_email = $superAdmin->email;

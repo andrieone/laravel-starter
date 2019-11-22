@@ -1,16 +1,51 @@
 /* override old value*/
+
+a {
+    color: #17a2b8;
+}
+body {
+    font-size: 0.85rem;
+}
 .content-header h1.h1title{
     font-size: 1.5rem !important;
 }
 .rightNavbar li{
     font-size: 0.8rem;
 }
+.btn-warning {
+    color: #fff;
+}
+.page-item.active .page-link {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+.page-link {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    color: #17a2b8;
+}
+#nav-left > li {
+    margin-bottom: 15px;
+}
+#nav-left i {
+    font-size: 14px;
+}
+.btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled).active, .show > .btn-warning.dropdown-toggle {
+    color: #FFFFFF;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+    content: '>\00a0';
+    color: #acacac;
+}
+li.breadcrumb-item {
+    font-size: 0.75rem;
+}
 
 /* Sidebar */
-.brand-text{
+.brand-text {
     color: #fff;
     font-size: 20px;
-    font-weight: 600;
+    text-transform: uppercase;
 }
 
 /* Form */
@@ -39,5 +74,17 @@
 /* Datatables */
 .actionDatatables{
     border-left: 1px solid #dee2e6 !important;
-    margin-left: -1px;
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+}
+
+.card-header-link a {
+    margin-left: 10px;
+    float: right;
+}
+#datatable tbody tr > td:last-of-type {
+    text-align: center;
 }
