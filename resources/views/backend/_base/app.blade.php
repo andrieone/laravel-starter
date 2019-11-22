@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $page_title }} | {{ env('APP_NAME','') }}</title>
+    <title>{{ $page_title }} | {{ config('app.name') }}</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
@@ -70,7 +70,7 @@
 <!-- /.control-Right sidebar -->
 
     <!-- Main Footer -->
-    <footer class="main-footer">
+    <footer class="main-footer text-sm">
         <!-- To the right -->
         <div class="float-right d-none d-sm-inline">
             Version 1
@@ -97,15 +97,10 @@
 <script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('js/backend/adminlte/adminlte.min.js')}}"></script>
-<!-- parsley validation -->
-<script src="{{asset('plugins/parsley/parsley.min.js')}}"></script>
-<script src="{{asset('plugins/parsley/i18n/ja.js')}}"></script>
 <!-- custom backend -->
-<script src="{{asset('js/backend/form.js')}}"></script>
 <script src="{{asset('js/backend/backend.js')}}"></script>
 
 {{--custom js--}}
-@yield('js')
 @stack('scripts')
 <script>
     $(function () {

@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function register(){
-        //
+        require_once app_path() . '/Helpers/DatatablesHelper.php';
     }
 
     /**

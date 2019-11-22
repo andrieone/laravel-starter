@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v3.0.1-pre
+ *   AdminLTE v3.0.1
  *   Author: Colorlib
  *   Website: AdminLTE.io <http://adminlte.io>
  *   License: Open source - MIT <http://opensource.org/licenses/MIT>
@@ -2545,15 +2545,15 @@ fieldset:disabled a.btn {
 
 .btn-info {
   color: #ffffff;
-  background-color: #3c8dbc;
-  border-color: #3c8dbc;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
   box-shadow: none;
 }
 
 .btn-info:hover {
   color: #ffffff;
-  background-color: #327aa5;
-  border-color: #327aa5;
+  background-color: #138496;
+  border-color: #117a8b;
 }
 
 .btn-info:focus, .btn-info.focus {
@@ -2579,16 +2579,16 @@ fieldset:disabled a.btn {
 }
 
 .btn-warning {
-  color: #ffffff;
-  background-color: #f39c12;
-  border-color: #e08e0b;
+  color: #1F2D3D;
+  background-color: #ffc107;
+  border-color: #ffc107;
   box-shadow: none;
 }
 
 .btn-warning:hover {
-  color: #ffffff;
-  background-color: #e08e0b;
-  border-color: #ab6b04;
+  color: #1F2D3D;
+  background-color: #e0a800;
+  border-color: #d39e00;
 }
 
 .btn-warning:focus, .btn-warning.focus {
@@ -4873,7 +4873,7 @@ input[type="button"].btn-block {
   display: inline-block;
   padding-right: 0.5rem;
   color: #6c757d;
-  content: ">\00a0";
+  content: "/";
 }
 
 .breadcrumb-item + .breadcrumb-item:hover::before {
@@ -11291,7 +11291,6 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   line-height: 1.8rem;
   margin-bottom: 0;
   padding: 0;
-  font-size: 0.8rem;
 }
 
 .text-sm .content-header .breadcrumb {
@@ -11896,7 +11895,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 
 .sidebar-dark-info .nav-sidebar > .nav-item > .nav-link.active,
 .sidebar-light-info .nav-sidebar > .nav-item > .nav-link.active {
-  background-color: #3b8dbc;
+  background-color: #17a2b8;
   color: #ffffff;
 }
 
@@ -13018,7 +13017,6 @@ body.text-sm .control-sidebar {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   padding: 0;
-  border-top-width: 0;
   width: 280px;
 }
 
@@ -13197,7 +13195,7 @@ body.text-sm .control-sidebar {
 }
 
 .navbar-info {
-  background-color: #3c8dbc;
+  background-color: #17a2b8;
 }
 
 .navbar-warning {
@@ -28499,3 +28497,4 @@ a.text-muted:hover {
   background-color: #ffffff;
   border-color: #dee2e6;
 }
+/*# sourceMappingURL=adminlte.css.map */

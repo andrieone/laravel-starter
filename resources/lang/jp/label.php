@@ -26,6 +26,7 @@ return [
     'add'                    => '新規作成',
     'edit'                   => '編集',
     'required'               => '必須',
+    'optional'               => '任意',
     'update'                 => '更新',
     'password'               => 'パスワード',
     'showPassword'           => 'パスワードを表示',
@@ -56,5 +57,4 @@ return [
     'ip'                     => 'IPアドレス',
     'last_access'            => '最終アクセス',
     'IForgotMyPassword'      => 'パスワードをお忘れの方',
-
 ];

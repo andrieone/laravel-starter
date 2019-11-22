@@ -43,7 +43,9 @@ Route::get('email/resend', 'Auth\VerificationController@resend')->name('verifica
 |------------------------------------------------------------------
 */
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/dashboard', 'Backend\DashboardController@index')->name('dashboard');
+    Route::get('/dashboard', function(){
+        return "1";
+    })->name('dashboard');
     Route::get('admin/logout', 'Auth\LoginController@logout')->name('admin.logout');
     Route::namespace('Backend')->prefix('admin')->name('admin.')->group(function(){
         //------------------------------------------------------------------

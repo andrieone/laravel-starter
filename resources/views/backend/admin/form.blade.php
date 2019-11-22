@@ -1,129 +1,31 @@
-@extends('layouts.backend')
+@extends('backend._base.content_form')
 
-@section('content')
-    <!-- Content Header (Page header) -->
-    @breadcrumbs()
-    @slot('page_title')
-        {{$page_title}}
-    @endslot
-    @endbreadcrumbs
-    <!-- /.content-header -->
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        {{--Header--}}
-                        <div class="card-header">
-                            <div class="row mb-2">
-                                <div class="col-sm-12 col-sm-6">
-                                    @if ($page_type == "create")
-                                        <h3 class="card-title">@lang('label.add')</h3>
-                                    @else
-                                        <h3 class="card-title">@lang('label.edit')</h3>
-                                    @endif
-                                </div>
-                                <div class="col-sm-12 col-sm-6">
-                                    @if ($page_type == "create")
-                                        <a href="{{route('admin.admins.index')}}" class="btn btn-info float-sm-right">@lang('label.list')</a>
-                                    @else
-                                        <a href="{{route('admin.admins.create')}}" class="btn btn-info float-sm-right">@lang('label.createNew')</a>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        {{ Form::open(array('route' => $form_action, 'method' => 'POST', 'files' => false, 'id' => 'admin-form')) }}
-                        {{ $page_type == 'create' ? '' : method_field('PUT') }}
-                        <div class="card-body">
-
-                            <div id="form-display_name" class="row form-group">
-                                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
-                                    <span class="bg-danger label-required">@lang('label.required')</span>
-                                    <strong class="field-title">@lang('label.name')</strong>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
-                                    {{ Form::text('display_name', $item->display_name, array('placeholder' => '', 'class' => 'form-control')) }}
-                                </div>
-                            </div>
-
-                            <div id="form-email" class="row form-group">
-                                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
-                                    <span class="bg-danger label-required">@lang('label.required')</span>
-                                    <strong class="field-title">@lang('label.email')</strong>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
-                                    {{ Form::text('email', $item->email, array('placeholder' => 'tarou@tarou.com', 'class' => 'form-control')) }}
-                                </div>
-                            </div>
-
-                            @if ($page_type == "create")
-                                <div id="form-password" class="row form-group">
-                                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
-                                        <span class="bg-danger label-required">@lang('label.required')</span>
-                                        <i class="fa fa-question-circle tooltip-img" data-toggle="tooltip" data-placement="right" title="@lang('label.choosePasswordLength')"></i>
-                                        <strong class="field-title">@lang('label.password')</strong>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
-                                        {{ Form::password('password', array('placeholder' => ' ', 'class' => 'form-control')) }}
-                                    </div>
-                                </div>
-                                {{-- case of update --}}
-                            @else
-                                <div id="form-password" class="row form-group">
-                                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
-                                        <span class="bg-danger label-required">@lang('label.required')</span>
-                                        <i class="fa fa-question-circle tooltip-img" data-toggle="tooltip" data-placement="right" title="@lang('label.updatePasswordSentence')"></i>
-                                        <strong class="field-title">@lang('label.password')</strong>
-                                    </div>
-                                    <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 col-content">
-                                        <button type="button" name="reset" id="reset-button" class="btn btn-info">@lang('label.change')</button>
-                                    </div>
-                                    <div id="reset-field" class="col-xs-10 col-sm-10 col-md-8 col-lg-9 col-content d-none">
-                                        {{ Form::password('password', array('id' => 'password', 'placeholder' => __('label.newPassword'), 'class' => 'form-control')) }}
-                                        <label for="show-password">
-                                            <input id="show-password" type="checkbox" name="show-password" value="1">
-                                            <span>@lang('label.showPassword')</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            @endif
-
-                        </div>
-                        <!-- /.card-body -->
-
-                        <div class="card-footer text-center">
-                            <button type="submit" class="btn btn-info">
-                                <i class="fas fa-save"></i> {{ $page_type == 'create' ? __('label.register') : __('label.update')  }}
-                            </button>
-                        </div>
-                        {{ Form::close() }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- /Main content -->
+@section('breadcrumbs')
+    <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}"><i class="fas fa-tachometer-alt"></i> @lang('label.dashboard')</a></li>
+        <li class="breadcrumb-item active">{{ $page_title }}</li>
+    </ol>
 @endsection
 
-@section('js')
-    <script>
-        $(function () {
-            @if ($message = Session::get('success'))
-            toastr.success('{{ $message }}');
-            @endif
-            @if ($errors->any())
-            toastr.error('@foreach ($errors->all() as $error)' +
-                '<p>{{ $error }}</p>' +
-                '@endforeach');
-            @endif
-        });
+@section('top_buttons')
+    @if ($page_type == "create")
+        <a href="{{route('admin.admins.index')}}" class="btn btn-info float-sm-right">@lang('label.list')</a>
+    @else
+        <a href="{{route('admin.admins.create')}}" class="btn btn-info float-sm-right">@lang('label.createNew')</a>
+    @endif
+@endsection
 
-        // init: side menu for current page
-        $('li#admins').addClass('menu-open');
-        $('.menu-open a').addClass('active');
-        $('li#admins').find('.nav-treeview').find('#list_admin a').removeClass('active');
-    </script>
+@section('content')
+    @component('backend._components.form_container', ["action" => $form_action, "page_type" => $page_type, "files" => false])
+        @component('backend._components.input_text', ['name' => 'display_name', 'label' => __('label.name'), 'required' => 1, 'value' => $item->display_name]) @endcomponent
+        @component('backend._components.input_email', ['name' => 'email', 'label' => __('label.email'), 'required' => 1, 'value' => $item->email]) @endcomponent
+
+        @if ($page_type == "create")
+            @component('backend._components.input_password') @endcomponent
+        @else
+            @component('backend._components.input_password_edit') @endcomponent
+        @endif
+
+        @component('backend._components.input_buttons', ['page_type' => $page_type])@endcomponent
+    @endcomponent
 @endsection

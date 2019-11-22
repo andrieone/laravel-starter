@@ -7,7 +7,7 @@
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark h1title">{{$page_title}}</h1>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6 text-sm">
                     @yield("breadcrumbs")
                 </div>
             </div>
@@ -29,18 +29,16 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <table id="datatable" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info" style="width:100%">
-                                            <thead>
-                                            <tr>
-                                                @yield('content')
-                                                <th rowspan="2" class="text-center align-middle actionDatatables">@lang('label.action')</th>
-                                            </tr>
-                                            </thead>
-                                        </table>
-                                    </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="datatable" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info" style="width:100%">
+                                        <thead>
+                                        <tr>
+                                            @yield('content')
+                                            <th rowspan="2" class="text-center align-middle actionDatatables">@lang('label.action')</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +53,7 @@
     <script>
         $(function () {
             var column = [];
-            // input fields in datatable
+            // COLUMN SEARCH
             $('#datatable thead tr').clone(true).appendTo('#datatable thead');
             $('#datatable thead tr:eq(1) th').each(function (i) {
                 if( $(this).attr("id") ){
@@ -78,11 +76,9 @@
             });
             column.push({data: 'action', name: 'action', orderable: false, searchable: false});
 
-            // datatable setting
+            // DATATABLE SETUP
             let table = $('#datatable').DataTable({
                 "order": [[0, "desc"]],
-                "processing": true,
-                "serverSide": true,
                 "orderCellsTop": true,
                 "fixedHeader": true,
                 "paging": true,
@@ -93,6 +89,9 @@
                 "info": true,
                 "scrollX": true,
                 "autoWidth": true,
+                "serverSide": true,
+                "processing": true,
+                "responsive": true,
                 "ajax": "{{ url()->current() . "/json" }}",
                 "columnDefs": [
                     {"width": "10px", "targets": 0},
@@ -104,8 +103,8 @@
             });
 
 
-            // delete button in datatable for initiation is in controllers
-            $('#datatable').on('click', '.deleteAdmin[data-remote]', function (e) {
+            // DELETE
+            $('#datatable').on('click', '.deleteData[data-remote]', function (e) {
                 e.preventDefault();
                 $.ajaxSetup({
                     headers: {
@@ -113,7 +112,7 @@
                     }
                 });
                 let url = $(this).data('remote');
-                // confirm then
+                // CONFIRMATION
                 if (confirm('@lang('label.jsConfirmDeleteData')')) {
                     $.ajax({
                         url: url,

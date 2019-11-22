@@ -26,6 +26,7 @@ return [
     'add'                    => 'Add New',
     'edit'                   => 'Edit',
     'required'               => 'Required',
+    'optional'               => 'Optional',
     'update'                 => 'Update',
     'password'               => 'Password',
     'showPassword'           => 'Show Password',

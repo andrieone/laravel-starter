@@ -1,4 +1,4 @@
-@extends('backend._base.listing_datatables')
+@extends('backend._base.content_datatables')
 
 @section('breadcrumbs')
     <ol class="breadcrumb float-sm-right">

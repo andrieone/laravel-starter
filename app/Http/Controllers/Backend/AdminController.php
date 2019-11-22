@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Helpers\DatatablesHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
@@ -34,42 +35,45 @@ class AdminController extends Controller
     public function create(){
         $data['item'] = new Admin();
         $data['page_title'] = __('label.add') . ' ' . __('label.admin');
-        $data['form_action'] = 'admin.admins.store';
+        $data['form_action'] = route('admin.admins.store');
         $data['page_type'] = 'create';
+
         return view('backend.admin.form', $data);
     }
 
     public function store(Request $request){
-        try{
-            $data = $request->all();
-            $this->validator($data, 'create')->validate();
-            $data['password'] = bcrypt($data['password']);
-            $data['admin_role_id'] = 2; // Admin
-            $new = new Admin();
-            $new->fill($data)->save();
-            return redirect()->route('admin.admins.index')->with('success', config('const.SUCCESS_CREATE_MESSAGE'));
-        }catch(\Exception $e){
-            return redirect()->route('admin.admins.index')->with('error', config('const.FAILED_CREATE_MESSAGE'));
-        }
+        $data = $request->all();
+        $this->validator($data, 'create')->validate();
+        $data['admin_role_id']  = 2;
+        $data['password']       = bcrypt($data['password']);
+        $new = new Admin();
+        $new->fill($data)->save();
+        return redirect()->route('admin.admins.index')->with('success', config('const.SUCCESS_CREATE_MESSAGE'));
     }
 
+    /**
+     * @param string parameter - url of custom resources page
+     *
+     * @return string - Any
+     *
+     * You may add custom page/api/route, this wrapped middleware as well
+     */
     public function show( $param ){
         if( $param == 'json' ){
-            $admin = admin::select('*')->where('admin_role_id', 2);
-            return Datatables::of($admin)->addColumn('action', function($admin){
-                return '<div class="btn-group">
-                         <a title="Edit Admin" href="' . route('admin.admins.edit', ['admin' => $admin->id]) . '" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                         <a title="Delete Admin" href="" data-remote="' . route('admin.admins.destroy', ['admin' => $admin->id]) . '" class="btn btn-warning deleteAdmin"><i class="fas fa-trash"></i></a></div>';
-            })->editColumn('id', '{{$id}}')->make(true);
+
+            $model = admin::where('admin_role_id', 2);
+            return DatatablesHelper::json($model);
+
         }
         abort(404);
     }
 
     public function edit($id){
-        $data['item'] = Admin::find($id);
-        $data['page_title'] = __('label.edit') . ' ' . __('label.admin');
-        $data['form_action'] = ['admin.admins.update', $id];
-        $data['page_type'] = 'edit';
+        $data['item']           = Admin::find($id);
+
+        $data['page_title']     = __('label.edit') . ' ' . __('label.admin');
+        $data['form_action']    = route('admin.admins.update', $id);
+        $data['page_type']      = 'edit';
 
         return view('backend.admin.form', $data);
     }
@@ -91,13 +95,12 @@ class AdminController extends Controller
     }
 
     public function destroy($id){
-        $obj = Admin::findOrFail($id);
-        $admin_email = $obj->email;
+        $item = Admin::findOrFail($id);
+        $admin_email = $item->email;
         $admin_id = Auth::user(0);
-        if($obj->adminRole->name == 'admin'){
-            $obj->delete();
-            // Save logs
-            $this->saveLogsHistory('Delete Admin', 'Delete Admin Email : ' . $admin_email . '', $admin_id);
+        if($item->adminRole->name == 'admin'){
+            $item->delete();
+            $this->saveLogsHistory('Delete Admin', 'Delete Admin Email : ' . $admin_email . '', $admin_id); // @TODO: This function not exist
             return redirect()->route('admin.admins.index')->with('success', config('const.SUCCESS_DELETE_MESSAGE'));
         }
         return redirect()->route('admin.admins.index')->with('error', config('const.FAILED_DELETE_MESSAGE'));
