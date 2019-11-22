@@ -34,6 +34,7 @@ return [
     'register'               => '登録',
     'search'                 => '検索',
     'all'                    => '全部',
+    'adminloginscreen'       => '管理者ログイン画面',
     'newPassword'            => '新しいパスワードを入力してください',
     'choosePasswordLength'   => '最小8文字のパスワードを作成してください。',
     'updatePasswordSentence' => 'パスワードを更新したい場合は、変更ボタンを選択してください。',

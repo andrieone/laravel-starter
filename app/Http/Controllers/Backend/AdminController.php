@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use DataTables;
 use App\Traits\AdminLogsTraits;
+use DataTables;
 
 class AdminController extends Controller
 {
@@ -25,6 +25,23 @@ class AdminController extends Controller
             'email'         => 'required|string|max:255|unique:admins,email,' . $type == 'update' ? ','.$data['id'] : '',
             'password'      => $type == 'create' ? 'required|string|min:8|max:255' : 'string|min:8|max:255',
         ]);
+    }
+
+    /**
+     * @param string parameter - url of custom resources page
+     *
+     * @return string - Any
+     *
+     * You may add custom page/api/route, this wrapped middleware as well
+     */
+    public function show( $param ){
+        if( $param == 'json' ){
+
+            $model = admin::where('admin_role_id', 2);
+            return DatatablesHelper::json($model);
+
+        }
+        abort(404);
     }
 
     public function index(){
@@ -49,23 +66,6 @@ class AdminController extends Controller
         $new = new Admin();
         $new->fill($data)->save();
         return redirect()->route('admin.admins.index')->with('success', config('const.SUCCESS_CREATE_MESSAGE'));
-    }
-
-    /**
-     * @param string parameter - url of custom resources page
-     *
-     * @return string - Any
-     *
-     * You may add custom page/api/route, this wrapped middleware as well
-     */
-    public function show( $param ){
-        if( $param == 'json' ){
-
-            $model = admin::where('admin_role_id', 2);
-            return DatatablesHelper::json($model);
-
-        }
-        abort(404);
     }
 
     public function edit($id){

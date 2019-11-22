@@ -8,7 +8,7 @@
         <button type="button" name="reset" id="reset-button" class="btn btn-info">@lang('label.change')</button>
     </div>
     <div id="reset-field" class="col-xs-10 col-sm-10 col-md-8 col-lg-9 col-content d-none">
-        <input type="password" id="id-password" name="password" class="form-control" value="{{ old("password") }}">
+        <input type="password" id="id-password" name="password" class="form-control" value="{{ old("password") }}" data-parsley-minlength="8">
         <label for="show-password">
             <input id="show-password" type="checkbox" name="show-password" value="1">
             <span>@lang('label.showPassword')</span>

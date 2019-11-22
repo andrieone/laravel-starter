@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminLogHistory extends Migration
+class CreateAdminLogHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -28,6 +28,6 @@ class CreateAdminLogHistory extends Migration
      * @return void
      */
     public function down(){
-        Schema::dropIfExists('admin_log_history');
+        Schema::dropIfExists('admin_log_histories');
     }
 }

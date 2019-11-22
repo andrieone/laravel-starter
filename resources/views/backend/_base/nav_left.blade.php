@@ -32,13 +32,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li id="create_superadmin" class="nav-item">
-                                <a href="{{route('admin.super-admin.create')}}" class="nav-link">
+                                <a href="{{route('admin.superadmin.create')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>@lang('label.createNew')</p>
                                 </a>
                             </li>
                             <li id="list_superadmin" class="nav-item">
-                                <a href="{{route('admin.super-admin.index')}}" class="nav-link">
+                                <a href="{{route('admin.superadmin.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>@lang('label.list')</p>
                                 </a>
