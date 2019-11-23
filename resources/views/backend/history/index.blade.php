@@ -34,7 +34,7 @@
                                         <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>@lang('label.admins_id')</th>
+                                            <th>@lang('label.admin_id')</th>
                                             <th>@lang('label.activity')</th>
                                             <th>@lang('label.detail')</th>
                                             <th>@lang('label.ip')</th>
@@ -45,7 +45,7 @@
                                         <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>@lang('label.admins_id')</th>
+                                            <th>@lang('label.admin_id')</th>
                                             <th>@lang('label.activity')</th>
                                             <th>@lang('label.detail')</th>
                                             <th>@lang('label.ip')</th>
@@ -111,7 +111,7 @@
                 ],
                 "columns": [
                     {data: 'id', name: 'id'},
-                    {data: 'admins_id', name: 'admins_id'},
+                    {data: 'admin_id', name: 'admin_id'},
                     {data: 'activity', name: 'activity'},
                     {data: 'detail', name: 'detail'},
                     {data: 'ip', name: 'ip'},

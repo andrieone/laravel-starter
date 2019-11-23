@@ -52,11 +52,19 @@ return [
     'action'                 => 'Action',
     /** Login History====================== */
     'historyLog'             => 'Log Activity',
-    'admins_id'              => 'Admin ID',
+    'admin_id'              => 'Admin ID',
     'activity'               => 'Activity',
     'detail'                 => 'Detail',
     'ip'                     => 'Ip Address',
     'last_access'            => 'Last Access',
     'IForgotMyPassword'      => 'I forgot my password',
 
+    /**
+     * TODO: Please add below words to JP lang
+     */
+    'news'                  => 'News',
+    'title'                 => 'Title',
+    'body'                  => 'Body',
+    'image'                 => 'Image',
+    'publish_date'          => 'Publish Date',
 ];

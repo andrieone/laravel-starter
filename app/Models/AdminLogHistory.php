@@ -11,7 +11,7 @@ class AdminLogHistory extends Model
      * @var array
      */
     protected $fillable = [
-        'admins_id',
+        'admin_id',
         'activity',
         'detail',
         'ip',
@@ -19,7 +19,7 @@ class AdminLogHistory extends Model
     ];
 
     public function admin(){
-        return $this->belongsTo('App\Models\Admin', 'admins_id', 'id');
+        return $this->belongsTo('App\Models\Admin', 'admin_id', 'id');
     }
 }
 

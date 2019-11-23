@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'jp',
+    'locale' => 'en', /** TODO: Change the lang **/
 
     /*
     |--------------------------------------------------------------------------
@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         // add manually
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
     ],
 
@@ -232,6 +233,7 @@ return [
         'Form'         => Collective\Html\FormFacade::class,
         'Html'         => Collective\Html\HtmlFacade::class,
         'DatatableHelper' => App\Helpers\DatatableHelper::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

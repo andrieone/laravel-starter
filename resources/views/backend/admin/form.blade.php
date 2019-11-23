@@ -12,6 +12,7 @@
         <a href="{{route('admin.admins.index')}}" class="btn btn-info float-sm-right">@lang('label.list')</a>
     @else
         <a href="{{route('admin.admins.create')}}" class="btn btn-info float-sm-right">@lang('label.createNew')</a>
+        <a href="{{route('admin.admins.index')}}" class="btn btn-info float-sm-right">@lang('label.list')</a>
     @endif
 @endsection
 

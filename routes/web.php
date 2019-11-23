@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function(){
         //------------------------------------------------------------------
         Route::group(['middleware' => ['role:super_admin,admin']], function(){
             Route::resource('admins', 'AdminController');
+            Route::resource('news', 'NewsController');
         });
     });
 });

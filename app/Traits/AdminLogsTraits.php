@@ -15,7 +15,7 @@ trait AdminLogsTraits
      */
     private function saveLogsHistory($article, $detail, $admin){
         $loginHistory = new AdminLogHistory;
-        $loginHistory->admins_id = $admin->id;
+        $loginHistory->admin_id = $admin->id;
         $loginHistory->activity = $article;
         $loginHistory->detail = $detail;
         $loginHistory->ip = request()->ip();

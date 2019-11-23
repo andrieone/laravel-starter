@@ -12,14 +12,18 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function uploadImage($file, $fileName, $deleteImage = false) {
+    public function uploadImage($file, $deleteImage = false, $fileName = null) {
 
         if (!empty($deleteImage)) {
             $this->removeImage($deleteImage);
         }
 
         $image = $file;
-        $image_name = $fileName . '.' . $image->getClientOriginalExtension();
+        if(empty($fileName)){
+            $image_name = time() . '.' . $file->getClientOriginalExtension();
+        } else {
+            $image_name = $fileName . '.' . $image->getClientOriginalExtension();
+        }
         $directory = 'uploads/';
         $path = public_path($directory . $image_name);
 

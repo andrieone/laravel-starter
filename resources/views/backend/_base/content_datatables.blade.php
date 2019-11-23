@@ -13,6 +13,7 @@
             </div>
         </div>
     </div>
+    @include("backend._includes.alert")
     <section class="content">
         <div class="container-fluid">
             <div class="row">

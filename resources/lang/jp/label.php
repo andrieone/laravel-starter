@@ -52,7 +52,7 @@ return [
     'action'                 => '編集',
     /** Login History====================== */
     'historyLog'             => '管理者ログイン履歴',
-    'admins_id'              => '管理者ID',
+    'admin_id'              => '管理者ID',
     'activity'               => 'したこと',
     'detail'                 => '詳細',
     'ip'                     => 'IPアドレス',

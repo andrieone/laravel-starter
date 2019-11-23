@@ -13,8 +13,8 @@ class CreateAdminLogHistoriesTable extends Migration
     public function up(){
         Schema::create('admin_log_histories', function(Blueprint $table){
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('admins_id')->nullable();
-            $table->foreign('admins_id')->references('id')->on('admins')->onUpdate('cascade')->onDelete('set null');
+            $table->unsignedBigInteger('admin_id')->nullable();
+            $table->foreign('admin_id')->references('id')->on('admins')->onUpdate('cascade')->onDelete('set null');
             $table->string('activity', 100);
             $table->text('detail');
             $table->string('ip', 50);
