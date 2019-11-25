@@ -52,7 +52,7 @@ return [
     'action'                 => 'Action',
     /** Login History====================== */
     'historyLog'             => 'Log Activity',
-    'admin_id'              => 'Admin ID',
+    'admin_id'               => 'Admin ID',
     'activity'               => 'Activity',
     'detail'                 => 'Detail',
     'ip'                     => 'Ip Address',
@@ -67,4 +67,6 @@ return [
     'body'                  => 'Body',
     'image'                 => 'Image',
     'publish_date'          => 'Publish Date',
+    'status'                => 'Status',
+    'last_update'         => 'Latest Update'
 ];

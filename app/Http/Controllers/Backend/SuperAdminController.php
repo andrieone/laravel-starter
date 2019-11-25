@@ -96,13 +96,14 @@ class SuperAdminController extends Controller
 
     public function destroy($id){
         $item = Admin::findOrFail($id);
-        $admin_email = $item->email;
-        $admin_id = Auth::user(0);
-        if($item->adminRole->name == 'admin'){
-            $item->delete();
-            $this->saveLogsHistory('Delete Admin', 'Delete Admin Email : ' . $admin_email . '', $admin_id); // @TODO: This function not exist
-            return redirect()->route('admin.superadmin.index')->with('success', config('const.SUCCESS_DELETE_MESSAGE'));
-        }
+        $item->delete();
+//        // $admin_email = $item->email;
+//        // $admin_id = Auth::user(0);
+//        if($item->adminRole->name == 'admin'){
+//            $item->delete();
+//            // $this->saveLogsHistory('Delete Admin', 'Delete Admin Email : ' . $admin_email . '', $admin_id); // @TODO: This function not exist
+//            return redirect()->route('admin.superadmin.index')->with('success', config('const.SUCCESS_DELETE_MESSAGE'));
+//        }
         return redirect()->route('admin.superadmin.index')->with('error', config('const.FAILED_DELETE_MESSAGE'));
     }
 }

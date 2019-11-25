@@ -44,6 +44,27 @@
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto rightNavbar">
+            <li class="nav-item dropdown dropdown-lang">
+                <a class="nav-link" data-toggle="dropdown" href="#" style="display: flex;">
+                    <?php
+                        $lang = 'img/backend/jp.png';
+                        if(App::isLocale('en')){
+                            $lang = 'img/backend/en.png';
+                        }
+                    ?>
+                    <i class="fa fa-language" style="font-size: 24px; margin-top: -3px; margin-right: 3px"></i>
+                    <span class="span-locale">{{ App::getLocale() }}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+                    <a href="{{ route('setlanguage', ['language' => 'en']) }}" class="dropdown-item">
+                        <img src="{{ asset("img/backend/en.png") }}" class="img-lang mr-2" /> English
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{{ route('setlanguage', ['language' => 'jp']) }}" class="dropdown-item">
+                        <img src="{{ asset("img/backend/jp.png") }}" class="img-lang mr-2" /> Japan
+                    </a>
+                </div>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/') }}" target="_blank"><i class="fa fa-home" aria-hidden="true"></i>
                     サイトTOPページへ</a>

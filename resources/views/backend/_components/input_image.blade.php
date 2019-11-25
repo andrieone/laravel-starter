@@ -1,6 +1,6 @@
 <div id="form-group--{{ $name }}" class="row form-group">
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-header">
-        @if( !empty($required) )
+        @if( !empty($required) && empty($value) )
             <span class="bg-danger label-required">@lang('label.required')</span>
         @else
             <span class="bg-success label-required">@lang('label.optional')</span>
@@ -14,7 +14,7 @@
                    name="{{ $name }}"
                    accept="image/gif,image/jpeg,image/jpg,image/png"
                    class="@error($name) is-invalid @enderror"
-                  {{ !empty($required) ? 'required' : '' }} >
+                  {{ !empty($required) && empty($value) ? 'required' : '' }} >
 
             @if(!empty($value))
                 <div id="image-preview-{{$name}}" class="image-preview">

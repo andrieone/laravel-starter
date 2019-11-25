@@ -44,6 +44,7 @@ Route::get('email/resend', 'Auth\VerificationController@resend')->name('verifica
 */
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/dashboard', function(){ return "TODO: Create simple dashboard contained count and simple chart"; })->name('dashboard');
+    Route::get('/setlanguage/{language}', 'Backend\LanguageController@SetLanguage')->name('setlanguage');
     Route::get('admin/logout', 'Auth\LoginController@logout')->name('admin.logout');
     Route::namespace('Backend')->prefix('admin')->name('admin.')->group(function(){
         //------------------------------------------------------------------

@@ -76,6 +76,9 @@ span.brand-text {
 .actionDatatables {
     min-width: 100px;
 }
+.img-lang {
+    width: 30px;
+}
 
     /* Sidebar */
 .brand-text {

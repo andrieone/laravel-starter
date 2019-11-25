@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Helpers\DatatablesHelper;
+use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Models\News;
 use Illuminate\Http\Request;
@@ -59,7 +60,7 @@ class NewsController extends Controller
         $data = $request->all();
         $this->validator($data, 'create')->validate();
 
-        $data['image']    = $this->uploadImage( $request->file('image') );
+        $data['image']     = ImageHelper::uploadImage( $request->file('image') );
         $data['admin_id']  = Auth::user()->id;
 
         $new = new News();
@@ -79,22 +80,27 @@ class NewsController extends Controller
 
     public function update(Request $request, $id){
         $data               = $request->all();
-        $currentAdmin       = News::find($id);
         $this->validator($data, 'update')->validate();
-        $currentAdmin->update($data);
+
+        $edit = News::find($id);
+
+        $data['image']     = ImageHelper::updateImage( $request->file('image'), $edit->image );
+        $data['admin_id']  = Auth::user()->id;
+
+        $edit->update($data);
 
         return redirect()->route('admin.news.edit', $id)->with('success', config('const.SUCCESS_UPDATE_MESSAGE'));
     }
 
     public function destroy($id){
-        $item = News::findOrFail($id);
-        $admin_email = $item->email;
-        $admin_id = Auth::user(0);
-        if($item->adminRole->name == 'admin'){
-            $item->delete();
-            $this->saveLogsHistory('Delete Admin', 'Delete Admin Email : ' . $admin_email . '', $admin_id); // @TODO: This function not exist
-            return redirect()->route('admin.news.index')->with('success', config('const.SUCCESS_DELETE_MESSAGE'));
-        }
+        $delete = News::findOrFail($id);
+        ImageHelper::removeImage($delete->image);
+        $delete->delete();
+        // $admin_id = Auth::user(0);
+//        if($delete->adminRole->name == 'admin'){
+//           $this->saveLogsHistory('Delete News', 'Delete News : ' . $delete->title . '', $admin_id); // @TODO: This function not exist
+//            return redirect()->route('admin.news.index')->with('success', config('const.SUCCESS_DELETE_MESSAGE'));
+//        }
         return redirect()->route('admin.news.index')->with('error', config('const.FAILED_DELETE_MESSAGE'));
     }
 }
