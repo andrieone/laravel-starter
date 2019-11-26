@@ -89,6 +89,13 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{route('admin.logactivities.index')}}" class="nav-link">
+                        <i class="fas fa-terminal nav-icon"></i>
+                        <p>@lang('label.log')</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

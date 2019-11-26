@@ -13,9 +13,10 @@
 
 @section('content')
     <th id="id">ID</th>
-    <th id="title">@lang('label.title')</th>
-    <th id="body">@lang('label.body')</th>
-    <th id="publish_date" width="77">@lang('label.publish_date')</th>
-    <th id="status">@lang('label.status')</th>
-    <th id="updated_at">@lang('label.last_update')</th>
+    <th id="display_name">@lang('label.admin_id')</th>
+    <th id="activity">@lang('label.activity')</th>
+    <th id="detail">@lang('label.detail')</th>
+    <th id="ip">@lang('label.ip')</th>
+    <th id="access_time">@lang('label.access_time')</th>
+    <th id="hide_action"></th>
 @endsection

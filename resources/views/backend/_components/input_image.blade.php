@@ -13,14 +13,20 @@
                    id="input-{{ $name }}"
                    name="{{ $name }}"
                    accept="image/gif,image/jpeg,image/jpg,image/png"
-                   class="@error($name) is-invalid @enderror"
+                   class="input-image @error($name) is-invalid @enderror"
                   {{ !empty($required) && empty($value) ? 'required' : '' }} >
 
-            @if(!empty($value))
-                <div id="image-preview-{{$name}}" class="image-preview">
-                    <img src="{{ asset($value) }}" class="img-thumbnail">
-                </div>
-            @endif
+            <div id="image-preview-{{$name}}" class="image-preview">
+                @if(!empty($value) && empty($required))
+                <a id="remove-image-{{$name}}" class="remove-image btn btn-xs btn-default">
+                    <i class="fa fa-trash"></i>
+                </a>
+                @endif
+                <input type="hidden" class="input-remove-image" name="removable_image[{{$name}}]" value="false" />
+                <img src="{{ !empty($value) ? asset($value) : asset('img/backend/noimage.png') }}"
+                     data-default="{{ !empty($value) ? asset($value) : asset('img/backend/noimage.png') }}"
+                     data-empty="{{ asset('img/backend/noimage.png') }}" class="img-thumbnail">
+            </div>
         </div>
     </div>
 </div>

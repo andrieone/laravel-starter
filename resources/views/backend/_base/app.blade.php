@@ -53,7 +53,7 @@
                         }
                     ?>
                     <i class="fa fa-language" style="font-size: 24px; margin-top: -3px; margin-right: 3px"></i>
-                    <span class="span-locale">{{ App::getLocale() }}</span>
+                    <span class="span-locale">@lang('label.language')</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                     <a href="{{ route('setlanguage', ['language' => 'en']) }}" class="dropdown-item">
@@ -61,7 +61,7 @@
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('setlanguage', ['language' => 'jp']) }}" class="dropdown-item">
-                        <img src="{{ asset("img/backend/jp.png") }}" class="img-lang mr-2" /> Japan
+                        <img src="{{ asset("img/backend/jp.png") }}" class="img-lang mr-2" /> 日本語
                     </a>
                 </div>
             </li>

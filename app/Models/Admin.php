@@ -42,7 +42,7 @@ class Admin extends Model implements AuthenticatableContract, AuthorizableContra
     }
 
     public function adminRole(){
-        return $this->belongsTo('App\Models\AdminRoles');
+        return $this->belongsTo('App\Models\AdminRole');
     }
 
 }

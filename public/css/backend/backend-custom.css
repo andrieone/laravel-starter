@@ -52,6 +52,19 @@ div#alert-wrapper ul, div#alert-wrapper ol{
 .image-preview {
     width: 120px;
     margin-top: 10px;
+    position: relative;
+}
+.remove-image {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+body div#datatable_processing {
+    background: #000000ba;
+    color: #fff;
+    position: fixed;
+    top: 20% !important;
+    bottom: auto;
 }
 .form-group {
     display: flex;
@@ -78,6 +91,9 @@ span.brand-text {
 }
 .img-lang {
     width: 30px;
+}
+span.span-locale {
+    text-transform: uppercase;
 }
 
     /* Sidebar */

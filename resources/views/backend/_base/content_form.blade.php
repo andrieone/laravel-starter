@@ -109,6 +109,32 @@
                     format: 'YYYY-M-D'
                 }
             });
+
+            $("body").on('change', '.input-image', function() {
+                input = this;
+                var img = $(input).closest('.field-group').find('img');
+                var input_remove = $(input).closest('.field-group').find('.input-remove-image');
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        img.attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    img.attr('src', img.data('default'));
+                    input_remove.val('false');
+                }
+            });
+
+            $('body').on('click', '.remove-image', function(){
+                var img = $(this).closest('.field-group').find('img');
+
+                $(this).closest('.field-group').find('.input-image').val('');
+                $(this).closest('.image-preview').find('.input-remove-image').val( 'true' );
+                img.attr('src', img.data('empty'));
+            })
         });
     </script>
 @endpush

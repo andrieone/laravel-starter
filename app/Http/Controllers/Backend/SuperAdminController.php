@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Traits\AdminLogsTraits;
+use App\Traits\LogActivityTrait;
 use DataTables;
 
 class SuperAdminController extends Controller
 {
-    use AdminLogsTraits;
+    use LogActivityTrait;
 
     public function __construct(){
     }
@@ -97,13 +97,10 @@ class SuperAdminController extends Controller
     public function destroy($id){
         $item = Admin::findOrFail($id);
         $item->delete();
-//        // $admin_email = $item->email;
-//        // $admin_id = Auth::user(0);
-//        if($item->adminRole->name == 'admin'){
-//            $item->delete();
-//            // $this->saveLogsHistory('Delete Admin', 'Delete Admin Email : ' . $admin_email . '', $admin_id); // @TODO: This function not exist
-//            return redirect()->route('admin.superadmin.index')->with('success', config('const.SUCCESS_DELETE_MESSAGE'));
-//        }
-        return redirect()->route('admin.superadmin.index')->with('error', config('const.FAILED_DELETE_MESSAGE'));
+
+        $admin_email    = $item->email;
+        $this->saveLog('Delete SuperAdmin', 'Delete SuperAdmin, Email : ' . $admin_email . '', Auth::user()->id);
+
+        return 1;
     }
 }

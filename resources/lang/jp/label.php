@@ -58,4 +58,5 @@ return [
     'ip'                     => 'IPアドレス',
     'last_access'            => '最終アクセス',
     'IForgotMyPassword'      => 'パスワードをお忘れの方',
+    'language'               => '言語',
 ];

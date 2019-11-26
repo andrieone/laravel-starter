@@ -18,7 +18,7 @@ class News extends Model
         'status'
     ];
 
-    public function user(){
+    public function admin(){
         return $this->belongsTo('App\Models\Admin');
     }
 }

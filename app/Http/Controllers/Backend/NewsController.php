@@ -84,7 +84,7 @@ class NewsController extends Controller
 
         $edit = News::find($id);
 
-        $data['image']     = ImageHelper::updateImage( $request->file('image'), $edit->image );
+        $data['image']     = ImageHelper::updateImage( $request->file('image'), $edit->image, $data['removable_image']['image'] ); // $data['removable_image']['image'] -> ['image'] is field name
         $data['admin_id']  = Auth::user()->id;
 
         $edit->update($data);
@@ -96,11 +96,9 @@ class NewsController extends Controller
         $delete = News::findOrFail($id);
         ImageHelper::removeImage($delete->image);
         $delete->delete();
-        // $admin_id = Auth::user(0);
-//        if($delete->adminRole->name == 'admin'){
-//           $this->saveLogsHistory('Delete News', 'Delete News : ' . $delete->title . '', $admin_id); // @TODO: This function not exist
-//            return redirect()->route('admin.news.index')->with('success', config('const.SUCCESS_DELETE_MESSAGE'));
-//        }
-        return redirect()->route('admin.news.index')->with('error', config('const.FAILED_DELETE_MESSAGE'));
+
+        $this->saveLog('Delete News', 'Delete News, Title : ' . $delete->title . '', Auth::user()->id);
+
+        return 1;
     }
 }

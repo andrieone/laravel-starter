@@ -52,7 +52,17 @@
 
 @push('scripts')
     <script>
-        $(function () {
+        var noaction = false;
+
+        $(document).ready(function() {
+            if($('#hide_action').length){
+                noaction = true;
+                $('#hide_action').remove();
+                $('.actionDatatables').remove();
+            }
+        });
+
+        $( window ).on("load", function() {
             var column = [];
             // COLUMN SEARCH
             $('#datatable thead tr').clone(true).appendTo('#datatable thead');
@@ -75,7 +85,9 @@
                     }
                 });
             });
-            column.push({data: 'action', name: 'action', orderable: false, searchable: false});
+            if(noaction === false) {
+                column.push({data: 'action', name: 'action', orderable: false, searchable: false});
+            }
 
             // DATATABLE SETUP
             let table = $('#datatable').DataTable({
@@ -121,13 +133,13 @@
                         dataType: 'json',
                         data: {method: 'DELETE', submit: true}
                     }).always(function (data) {
+                        console.log(data);
                         $('#datatable').DataTable().draw(false);
                         toastr.success('@lang('label.jsInfoDeletedData')');
                     });
                 } else
                     toastr.error('@lang('label.jsSorry')');
             });
-
         });
     </script>
 @endpush

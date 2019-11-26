@@ -58,9 +58,10 @@ return [
     'ip'                     => 'Ip Address',
     'last_access'            => 'Last Access',
     'IForgotMyPassword'      => 'I forgot my password',
+    'language'               => 'Language',
 
     /**
-     * TODO: Please add below words to JP lang
+     * TODO: Please add below words to JP lang and please translate
      */
     'news'                  => 'News',
     'title'                 => 'Title',
@@ -68,5 +69,8 @@ return [
     'image'                 => 'Image',
     'publish_date'          => 'Publish Date',
     'status'                => 'Status',
-    'last_update'         => 'Latest Update'
+    'last_update'           => 'Latest Update',
+    'log'                   => 'Log',
+    'access_time'           => 'Access Time'
+
 ];
