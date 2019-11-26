@@ -34,6 +34,7 @@ return [
     'register'               => '登録',
     'search'                 => '検索',
     'all'                    => '全部',
+    'adminloginscreen'       => '管理者ログイン画面',
     'newPassword'            => '新しいパスワードを入力してください',
     'choosePasswordLength'   => '最小8文字のパスワードを作成してください。',
     'updatePasswordSentence' => 'パスワードを更新したい場合は、変更ボタンを選択してください。',
@@ -51,10 +52,11 @@ return [
     'action'                 => '編集',
     /** Login History====================== */
     'historyLog'             => '管理者ログイン履歴',
-    'admins_id'              => '管理者ID',
+    'admin_id'              => '管理者ID',
     'activity'               => 'したこと',
     'detail'                 => '詳細',
     'ip'                     => 'IPアドレス',
     'last_access'            => '最終アクセス',
     'IForgotMyPassword'      => 'パスワードをお忘れの方',
+    'language'               => '言語',
 ];

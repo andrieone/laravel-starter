@@ -8,7 +8,7 @@ $factory->define(App\Models\Admin::class, function(Faker $faker){
     return [
         'display_name'      => $faker->name,
         'email'             => $faker->unique()->safeEmail,
-        'password'          => bcrypt('123456789'),
+        'password'          => bcrypt('12345678'),
         'email_verified_at' => Carbon::now(),
         'created_at'        => Carbon::now(),
         'updated_at'        => Carbon::now(),

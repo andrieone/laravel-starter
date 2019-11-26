@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AdminRoles extends Model
+class AdminRole extends Model
 {
     public $timestamps = false;
 
@@ -15,6 +15,6 @@ class AdminRoles extends Model
 
     // relation has many rules for admin
     public function admin(){
-        return $this->hasMany('App\Models\Admin', 'id');
+        return $this->hasMany('App\Models\Admin');
     }
 }

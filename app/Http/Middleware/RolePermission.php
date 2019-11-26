@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class RolePermission
@@ -18,6 +19,9 @@ class RolePermission
     public function handle($request, Closure $next, ...$role){
         if(in_array(Auth::user()->adminRole->name, $role))
         {
+            if(!empty( $request->hasSession('language') )){
+                App::setLocale( $request->session()->get('language') );
+            }
             return $next($request);
         }
         else{

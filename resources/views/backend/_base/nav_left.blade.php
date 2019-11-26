@@ -24,7 +24,7 @@
             <ul id="nav-left" class="nav nav-pills nav-sidebar flex-column text-sm" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header">MAIN NAVIGATION</li>
                 @if($roles == 'super_admin')
-                    <li class="nav-item has-treeview" id="superadmins">
+                    <li class="nav-item has-treeview" id="tree_superadmins">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p> @lang('label.superAdmin')<i class="right fas fa-angle-left"></i>
@@ -32,13 +32,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li id="create_superadmin" class="nav-item">
-                                <a href="{{route('admin.super-admin.create')}}" class="nav-link">
+                                <a href="{{route('admin.superadmin.create')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>@lang('label.createNew')</p>
                                 </a>
                             </li>
                             <li id="list_superadmin" class="nav-item">
-                                <a href="{{route('admin.super-admin.index')}}" class="nav-link">
+                                <a href="{{route('admin.superadmin.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>@lang('label.list')</p>
                                 </a>
@@ -46,7 +46,7 @@
                         </ul>
                     </li>
                 @endif
-                <li class="nav-item has-treeview" id="admins">
+                <li class="nav-item has-treeview" id="tree_admins">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p> @lang('label.admin') <i class="right fas fa-angle-left"></i>
@@ -66,6 +66,35 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+
+                <li class="nav-item has-treeview" id="tree_news">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p> @lang('label.news') <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li id="create_news" class="nav-item">
+                            <a href="{{route('admin.news.create')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>@lang('label.createNew')</p>
+                            </a>
+                        </li>
+                        <li id="list_admin" class="nav-item">
+                            <a href="{{route('admin.news.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>@lang('label.list')</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{route('admin.logactivities.index')}}" class="nav-link">
+                        <i class="fas fa-terminal nav-icon"></i>
+                        <p>@lang('label.log')</p>
+                    </a>
                 </li>
             </ul>
         </nav>

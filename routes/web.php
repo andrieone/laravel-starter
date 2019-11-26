@@ -43,26 +43,23 @@ Route::get('email/resend', 'Auth\VerificationController@resend')->name('verifica
 |------------------------------------------------------------------
 */
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/dashboard', function(){
-        return "1";
-    })->name('dashboard');
+    Route::get('dashboard', function(){ return "TODO: Create simple dashboard contained count and simple chart"; })->name('dashboard');
+    Route::get('setlanguage/{language}', 'Backend\LanguageController@SetLanguage')->name('setlanguage');
     Route::get('admin/logout', 'Auth\LoginController@logout')->name('admin.logout');
     Route::namespace('Backend')->prefix('admin')->name('admin.')->group(function(){
         //------------------------------------------------------------------
         // Only super admin group
         //------------------------------------------------------------------
         Route::group(['middleware' => ['role:super_admin']], function(){
-            Route::get('superadmin/json','SuperAdminController@json'); // datatable
-            Route::resource('super-admin', 'SuperAdminController');// add this value as necessarily: ->only(['edit', 'update', 'index', 'show', 'create', 'store'])
-            // Login history ------------------------------------------------
-            Route::get('history/json','LoginHistoryController@json'); // datatable
-            Route::resource('histories', 'LoginHistoryController');
+            Route::resource('superadmin', 'SuperAdminController');
+            Route::resource('logactivities', 'LogActivityController')->only(['index', 'show']);
         });
         //------------------------------------------------------------------
         // Sharing for super admin and admin
         //------------------------------------------------------------------
         Route::group(['middleware' => ['role:super_admin,admin']], function(){
             Route::resource('admins', 'AdminController');
+            Route::resource('news', 'NewsController');
         });
     });
 });

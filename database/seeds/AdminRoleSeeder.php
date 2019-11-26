@@ -1,17 +1,17 @@
 <?php
 
-use App\Models\AdminRoles;
+use App\Models\AdminRole;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 
-class AdminRolesSeeder extends Seeder
+class AdminRoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      * @return void
      */
     public function run(){
-        $admin = new AdminRoles();
+        $admin = new AdminRole();
         $admin->insert([
             [
                 'name'       => 'super_admin',

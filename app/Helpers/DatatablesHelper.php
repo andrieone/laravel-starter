@@ -36,7 +36,7 @@ class DatatablesHelper
 
                                 $render = "";
                                 if(count($buttons) > 0){
-                                    $render .= '<div class="btn-group">';
+                                    $render .= '<div class="btn-group-normal">';
                                     foreach ($buttons as $button){
                                         $render .= $button;
                                     }

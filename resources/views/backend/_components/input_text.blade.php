@@ -8,6 +8,12 @@
         <strong class="field-title">{{ $label  }}</strong>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 col-content">
-        <input type="text" id="id-{{ $name }}" name="{{ $name }}" class="form-control" value="{{ !empty($value) ? $value : old($name) }}" {{ !empty($required) ? 'required' : '' }}>
+        <input type="text"
+               id="input-{{ $name }}"
+               name="{{ $name }}"
+               class="form-control @error($name) is-invalid @enderror"
+               value="{{ !empty($value) ? $value : old($name) }}"
+               {{ !empty($required) ? 'required' : '' }}
+        >
     </div>
 </div>

@@ -5,6 +5,9 @@
 @section('title', 'Administrator Login Page | ' . env('APP_NAME',''))
 
 @section('content')
+    <div class="login-logo">
+        <a href="javascript:;">@lang("label.adminloginscreen")</a>
+    </div>
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">

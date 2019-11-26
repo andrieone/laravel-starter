@@ -34,6 +34,7 @@ return [
     'register'               => 'Register',
     'search'                 => 'Search',
     'all'                    => 'All',
+    'adminloginscreen'       => 'Administration Login',
     'newPassword'            => 'Enter new password to update your old password',
     'choosePasswordLength'   => 'Please choose a password with a minimum length of 8 characters.',
     'updatePasswordSentence' => 'Click change button when you wish to update your password.',
@@ -51,11 +52,25 @@ return [
     'action'                 => 'Action',
     /** Login History====================== */
     'historyLog'             => 'Log Activity',
-    'admins_id'              => 'Admin ID',
+    'admin_id'               => 'Admin ID',
     'activity'               => 'Activity',
     'detail'                 => 'Detail',
     'ip'                     => 'Ip Address',
     'last_access'            => 'Last Access',
     'IForgotMyPassword'      => 'I forgot my password',
+    'language'               => 'Language',
+
+    /**
+     * TODO: Please add below words to JP lang and please translate
+     */
+    'news'                  => 'News',
+    'title'                 => 'Title',
+    'body'                  => 'Body',
+    'image'                 => 'Image',
+    'publish_date'          => 'Publish Date',
+    'status'                => 'Status',
+    'last_update'           => 'Latest Update',
+    'log'                   => 'Log',
+    'access_time'           => 'Access Time'
 
 ];
