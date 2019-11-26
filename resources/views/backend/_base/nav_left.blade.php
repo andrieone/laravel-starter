@@ -90,12 +90,14 @@
                     </ul>
                 </li>
 
+                @if($roles == 'super_admin')
                 <li class="nav-item">
                     <a href="{{route('admin.logactivities.index')}}" class="nav-link">
-                        <i class="fas fa-terminal nav-icon"></i>
-                        <p>@lang('label.log')</p>
+                        <i class="fas fa-list-alt nav-icon"></i>
+                        <p>@lang('label.log_activity')</p>
                     </a>
                 </li>
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
