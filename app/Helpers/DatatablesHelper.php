@@ -17,7 +17,7 @@ class DatatablesHelper
      */
     public static function json($eloquent, $edit = true, $delete = true, $custom = null) {
 
-        return Datatables::eloquent($eloquent)
+        return Datatables::of($eloquent)
                             ->addColumn('action', function($query) use($edit, $delete, $custom){
                                 $routeCurrent   = Route::currentRouteName();
                                 $routeEdit      = str_replace('show', 'edit', $routeCurrent);

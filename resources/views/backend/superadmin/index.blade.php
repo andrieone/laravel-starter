@@ -12,9 +12,10 @@
 @endsection
 
 @section('content')
-    <th id="id">ID</th>
-    <th id="display_name">@lang('label.name')</th>
-    <th id="email">@lang('label.email')</th>
-    <th id="created_at">@lang('label.created_at')</th>
-    <th id="updated_at">@lang('label.update_at')</th>
+    <th data-col="id">ID</th>
+    <th data-col="display_name">@lang('label.name')</th>
+    <th data-col="email">@lang('label.email')</th>
+    <th data-col="created_at">@lang('label.created_at')</th>
+    <th data-col="updated_at">@lang('label.update_at')</th>
+    <th data-col="action">@lang('label.action')</th>
 @endsection
