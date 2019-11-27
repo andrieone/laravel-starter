@@ -45,6 +45,28 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="nav-item has-treeview" id="tree_companies">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-building"></i>
+                            <p> @lang('label.company')<i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li id="create_company" class="nav-item">
+                                <a href="{{route('admin.company.create')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('label.createNew')</p>
+                                </a>
+                            </li>
+                            <li id="list_company" class="nav-item">
+                                <a href="{{route('admin.company.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('label.list')</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
                 <li class="nav-item has-treeview" id="tree_admins">
                     <a href="#" class="nav-link">

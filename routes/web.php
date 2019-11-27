@@ -52,6 +52,10 @@ Route::group(['middleware' => 'auth'], function(){
         //------------------------------------------------------------------
         Route::group(['middleware' => ['role:super_admin']], function(){
             Route::resource('superadmin', 'SuperAdminController');
+
+            Route::resource('company', 'CompanyController');
+            Route::resource('company.user', 'UserController');
+
             Route::resource('logactivities', 'LogActivityController')->only(['index', 'show']);
         });
         //------------------------------------------------------------------

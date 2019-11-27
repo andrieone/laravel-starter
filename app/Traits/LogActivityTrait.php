@@ -19,7 +19,6 @@ trait LogActivityTrait
         $log->activity = $activity;
         $log->detail = $detail;
         $log->ip = request()->ip();
-        $log->not_exist_user = "";
         $log->access_time = Carbon::now();
         $log->save();
     }
