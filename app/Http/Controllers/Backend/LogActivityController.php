@@ -32,7 +32,7 @@ class LogActivityController extends Controller
     }
 
     public function index(){
-        $data['page_title'] = __('label.news');
+        $data['page_title'] = __('label.log_activity');
         return view('backend.logactivity.index', $data);
     }
 }

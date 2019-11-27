@@ -8,7 +8,6 @@
 @endsection
 
 @section('top_buttons')
-    <a href="{{ route('admin.news.create') }}" class="btn btn-info">@lang(('label.createNew'))</a>
 @endsection
 
 @section('content')
