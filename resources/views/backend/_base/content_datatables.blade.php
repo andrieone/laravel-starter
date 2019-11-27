@@ -36,7 +36,6 @@
                                         <thead>
                                         <tr>
                                             @yield('content')
-                                            <th rowspan="2" class="text-center align-middle actionDatatables">@lang('label.action')</th>
                                         </tr>
                                         </thead>
                                     </table>
@@ -52,23 +51,15 @@
 
 @push('scripts')
     <script>
-        var noaction = false;
 
-        $(document).ready(function() {
-            if($('#hide_action').length){
-                noaction = true;
-                $('#hide_action').remove();
-                $('.actionDatatables').remove();
-            }
-        });
-
-        $( window ).on("load", function() {
+        $(function() {
+            $("[data-col=action]").attr("rowspan", 2).addClass("text-center align-middle actionDatatables");
             var column = [];
             // COLUMN SEARCH
             $('#datatable thead tr').clone(true).appendTo('#datatable thead');
             $('#datatable thead tr:eq(1) th').each(function (i) {
-                if( $(this).attr("id") ){
-                    var id = $(this).attr("id");
+                var id = $(this).data("col");
+                if( id !== "action" ){
                     column.push({data: id, name: id})
                 }
 
@@ -85,7 +76,7 @@
                     }
                 });
             });
-            if(noaction === false) {
+            if( $("[data-col=action]").length ){
                 column.push({data: 'action', name: 'action', orderable: false, searchable: false});
             }
 

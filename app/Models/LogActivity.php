@@ -8,7 +8,7 @@ class LogActivity extends Model
 {
     public $timestamps = false;
 
-    protected $appends  = ['display_name'];
+    //protected $appends  = ['display_name'];
 
     protected $fillable =[
         'admin_id',

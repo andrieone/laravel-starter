@@ -72,6 +72,6 @@ return [
     'last_update'           => 'Latest Update',
     'log'                   => 'Log',
     'log_activity'          => 'Log Activity',
-    'access_time'           => 'Access Time'
+    'access_time'           => 'Access Time',
 
 ];

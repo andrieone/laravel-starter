@@ -12,11 +12,11 @@
 @endsection
 
 @section('content')
-    <th id="id">ID</th>
-    <th id="display_name">@lang('label.admin_id')</th>
-    <th id="activity">@lang('label.activity')</th>
-    <th id="detail">@lang('label.detail')</th>
-    <th id="ip">@lang('label.ip')</th>
-    <th id="access_time">@lang('label.access_time')</th>
-    <th id="hide_action"></th>
+    <th data-col="id">ID</th>
+    <th data-col="admins.display_name">@lang('label.name')</th>
+    <th data-col="admins.email">@lang('label.email')</th>
+    <th data-col="activity">@lang('label.activity')</th>
+    <th data-col="detail">@lang('label.detail')</th>
+    <th data-col="ip">@lang('label.ip')</th>
+    <th data-col="access_time">@lang('label.access_time')</th>
 @endsection
