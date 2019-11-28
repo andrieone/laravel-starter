@@ -60,18 +60,5 @@ return [
     'IForgotMyPassword'      => 'I forgot my password',
     'language'               => 'Language',
 
-    /**
-     * TODO: Please add below words to JP lang and please translate
-     */
-    'news'                  => 'News',
-    'title'                 => 'Title',
-    'body'                  => 'Body',
-    'image'                 => 'Image',
-    'publish_date'          => 'Publish Date',
-    'status'                => 'Status',
-    'last_update'           => 'Latest Update',
-    'log'                   => 'Log',
-    'log_activity'          => 'Log Activity',
-    'access_time'           => 'Access Time',
 
 ];
