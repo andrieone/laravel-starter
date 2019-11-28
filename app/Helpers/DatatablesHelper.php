@@ -29,8 +29,8 @@ class DatatablesHelper
                                     $url_edit   = URL::route($routeEdit, [$nested_parent_id, $query->id]);
                                     $url_delete = URL::route($routeDestroy, [$nested_parent_id, $query->id]);
                                 } else {
-                                    $url_edit   = URL::route($routeEdit, $query->id);
-                                    $url_delete = URL::route($routeDestroy, $query->id);
+                                    $url_edit   = !empty($btn_edit) ? URL::route($routeEdit, $query->id) : '';
+                                    $url_delete = !empty($btn_delete) ? URL::route($routeDestroy, $query->id) : '';
                                 }
 
                                 $buttons = [];
