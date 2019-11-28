@@ -55,7 +55,7 @@ return [
     'admin_id'               => 'Admin ID',
     'activity'               => 'Activity',
     'detail'                 => 'Detail',
-    'ip'                     => 'Ip Address',
+    'ip'                     => 'IP Address',
     'last_access'            => 'Last Access',
     'IForgotMyPassword'      => 'I forgot my password',
     'language'               => 'Language',
