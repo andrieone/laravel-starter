@@ -24,6 +24,12 @@ class AdminRoleSeeder extends Seeder
                 'label'      => 'Admin',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
+            ],
+            [
+                'name'       => 'user',
+                'label'      => 'User',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]
         ]);
     }
