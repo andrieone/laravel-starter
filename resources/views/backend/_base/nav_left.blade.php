@@ -45,29 +45,9 @@
                             </li>
                         </ul>
                     </li>
-
-                    <li class="nav-item has-treeview" id="tree_companies">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-building"></i>
-                            <p> @lang('label.company')<i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li id="create_company" class="nav-item">
-                                <a href="{{route('admin.company.create')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>@lang('label.createNew')</p>
-                                </a>
-                            </li>
-                            <li id="list_company" class="nav-item">
-                                <a href="{{route('admin.company.index')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>@lang('label.list')</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                 @endif
+
+                @if($roles == 'admin' || $roles == 'super_admin')
                 <li class="nav-item has-treeview" id="tree_admins">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
@@ -111,6 +91,47 @@
                         </li>
                     </ul>
                 </li>
+                @endif
+
+                @if($roles == 'super_admin')
+                    <li class="nav-item has-treeview" id="tree_companies">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-building"></i>
+                            <p> @lang('label.company')<i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li id="create_company" class="nav-item">
+                                <a href="{{route('admin.company.create')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('label.createNew')</p>
+                                </a>
+                            </li>
+                            <li id="list_company" class="nav-item">
+                                <a href="{{route('admin.company.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('label.list')</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+
+                @if($roles == 'company_admin')
+                    <li class="nav-item">
+                        <a href="{{route('admin.company.edit', Auth::user()->company->id)}}" class="nav-link">
+                            <i class="fas fa-building nav-icon"></i>
+                            <p>@lang('label.company_info')</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('admin.company.user.index', Auth::user()->company->id)}}" class="nav-link">
+                            <i class="fas fa-users nav-icon"></i>
+                            <p>@lang('label.user')</p>
+                        </a>
+                    </li>
+                @endif
+                {{--Auth::user()->company->id--}}
 
                 @if($roles == 'super_admin')
                 <li class="nav-item">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Helpers\DatatablesHelper;
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Company;
 use App\Traits\LogActivityTrait;
 use Illuminate\Http\Request;
@@ -19,6 +20,10 @@ class CompanyController extends Controller
 
     protected function validator( array $data, $type ){
         return Validator::make($data, [
+            'display_name'  => 'required|string|max:100',
+            'email'         => 'required|email|max:255|unique:admins,email' . ($type == 'update' ? ','.$data['admin_id'] : ''),
+            'password'      => $type == 'create' ? 'required|string|min:8|max:255' : 'string|min:8|max:255',
+
             'company_name'  => 'required|string|max:50',
             'post_code'     => 'required|max:7|min:5',
             'address'       => 'required|max:100|min:5',
@@ -35,8 +40,14 @@ class CompanyController extends Controller
      */
     public function show( $param ){
         if( $param == 'json' ){
-
-            $model = Company::query();
+            switch (Auth::user()->admin_role_id){
+                case 1:
+                    $model = Company::query();
+                    break;
+                case 3:
+                    $model = Company::where('admin_id', Auth::user()->id);
+                    break;
+            }
             return DatatablesHelper::json($model, true, true, null, ['current_nest' => 'user', 'style' => 'success', 'icon' => 'users']);
 
         }
@@ -50,6 +61,7 @@ class CompanyController extends Controller
 
     public function create(){
         $data['item']       = new Company();
+        $data['item']->admin= new Admin();
         $data['page_title'] = __('label.add') . ' ' . __('label.company');
         $data['form_action']= route('admin.company.store');
         $data['page_type']  = 'create';
@@ -61,13 +73,20 @@ class CompanyController extends Controller
         $data = $request->all();
         $this->validator($data, 'create')->validate();
 
+        $data['admin_role_id']  = 3; // Company Admin
+        $data['password']       = bcrypt($data['password']);
+        $admin = new Admin();
+        $admin->fill($data)->save();
+
         $new = new Company();
+        $new->admin_id = $admin->id;
         $new->fill($data)->save();
+
         return redirect()->route('admin.company.index')->with('success', config('const.SUCCESS_CREATE_MESSAGE'));
     }
 
     public function edit($id){
-        $data['item']           = Company::find($id);
+        $data['item']           = Company::with('admin')->where('companies.id', $id)->first();
 
         $data['page_title']     = __('label.edit') . ' ' . __('label.company');
         $data['form_action']    = route('admin.company.update', $id);
@@ -78,9 +97,18 @@ class CompanyController extends Controller
 
     public function update(Request $request, $id){
         $data               = $request->all();
+        $currentCompany     = Company::find($id);
+        $currentAdmin       = Admin::find($currentCompany->admin_id);
+        $data['password']   = !empty($data['password']) ? $data['password'] : $currentAdmin['password'];
+        $data['admin_id']   = $currentAdmin->id;
+
         $this->validator($data, 'update')->validate();
 
-        $currentAdmin       = Company::find($id);
+        if(Hash::needsRehash($data['password'])){
+            $data['password'] = bcrypt($data['password']);
+        }
+
+        $currentCompany->update($data);
         $currentAdmin->update($data);
 
         return redirect()->route('admin.company.edit', $id)->with('success', config('const.SUCCESS_UPDATE_MESSAGE'));

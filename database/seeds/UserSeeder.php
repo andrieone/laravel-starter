@@ -14,11 +14,10 @@ class UserSeeder extends Seeder
         $user = new User();
         $user->insert([
             [
-                'allow_login'       => 1,
                 'company_id'        => 1,
-                'display_name'      => 'Normal User',
-                'email'             => 'normal@user.com',
-                'admin_role_id'     => 3,
+                'user_role_id'      => 2,
+                'display_name'      => 'Operator',
+                'email'             => 'operator@operator.com',
                 'password'          => bcrypt('12345678'),
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),

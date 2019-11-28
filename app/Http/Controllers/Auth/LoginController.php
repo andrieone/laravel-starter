@@ -38,4 +38,18 @@ class LoginController extends Controller
     protected function loggedOut(Request $request) {
         return redirect('/login');
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        switch ($user->admin_role_id){
+            case 1:
+                return redirect()->route('admin.superadmin.index');
+            case 2:
+                return redirect()->route('admin.news.index');
+            case 3:
+                return redirect()->route('admin.company.user.index', $user->company->id);
+        }
+
+        return redirect('/home');
+    }
 }

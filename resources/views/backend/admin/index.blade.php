@@ -16,6 +16,6 @@
     <th data-col="display_name">@lang('label.name')</th>
     <th data-col="email">@lang('label.email')</th>
     <th data-col="created_at">@lang('label.created_at')</th>
-    <th data-col="updated_at">@lang('label.update_at')</th>
+    <th data-col="updated_at">@lang('label.last_update')</th>
     <th data-col="action">@lang('label.action')</th>
 @endsection

@@ -45,4 +45,9 @@ class Admin extends Model implements AuthenticatableContract, AuthorizableContra
         return $this->belongsTo('App\Models\AdminRole');
     }
 
+    /** For company_admin role **/
+    public function company(){
+        return $this->hasOne('App\Models\Company');
+    }
+
 }

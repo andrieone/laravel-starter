@@ -11,15 +11,8 @@
         <div class="field-group clearfix @error($name) is-invalid @enderror">
             @foreach($options as $option)
                 <div class="icheck-info d-inline">
-                    <input type="radio"
-                           value="{{ $option }}"
-                           id="input-{{ $name }}-{{ $loop->index }}"
-                           name="{{ $name }}"
-                           {{ !empty($loop->first) && !empty($value) ? "checked" : "" }}
-                           {{ $value == $option ? "checked" : "" }} />
-                    <label for="input-{{ $name }}-{{ $loop->index }}" class="text-uppercase mr-5">
-                        {{ $option }}
-                    </label>
+                    <input type="radio" value="{{ $option }}" id="input-{{ $name }}-{{ $loop->index }}" name="{{ $name }}" {{ !empty($loop->first) && (!empty($value) || $value == "") ? "checked" : "" }} {{ $value == $option ? "checked" : "" }} />
+                    <label for="input-{{ $name }}-{{ $loop->index }}" class="text-uppercase mr-5">{{ $option }}</label>
                 </div>
             @endforeach
         </div>

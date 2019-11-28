@@ -60,5 +60,24 @@ return [
     'IForgotMyPassword'      => 'I forgot my password',
     'language'               => 'Language',
 
-
+    // @TODO: Below are not arranged well and translated to JP, need some help from linguist
+    'login_form'             => 'Login Form',
+    'last_update'            => 'Last Update',
+    'image'                  => 'Image',
+    'body'                   => 'Body', // Content textarea, not human body
+    'title'                  => 'Title',
+    'publish_date'           => 'Publish Date',
+    'status'                 => 'Status',
+    'news'                   => 'News',
+    'company'                => 'Company',
+    'log_activity'           => 'Log Activity',
+    'top_page'               => 'TOP PAGE',
+    'logout'                 => 'LOG OUT',
+    'company_name'           => 'Company Name',
+    'post_code'              => 'Post Code',
+    'address'                => 'Address',
+    'phone'                  => 'Phone',
+    'access_time'            => 'Access Time',
+    'user'                   => 'User',
+    'user_role'              => 'User Role'
 ];

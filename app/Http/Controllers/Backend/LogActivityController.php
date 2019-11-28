@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Helpers\DatatablesHelper;
 use App\Http\Controllers\Controller;
 use App\Models\LogActivity;
-use Illuminate\Support\Facades\DB;
 
 class LogActivityController extends Controller
 {

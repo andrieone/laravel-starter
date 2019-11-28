@@ -19,9 +19,15 @@ class RolePermission
     public function handle($request, Closure $next, ...$role){
         if(in_array(Auth::user()->adminRole->name, $role))
         {
+            /** RESTRICT TO EDIT ANOTHER COMPANY DATA **/
+            if(Auth::user()->adminRole->name == "company_admin" && $request->route('company') != Auth::user()->company->id ){
+                abort(404);
+            }
+
             if(!empty( $request->hasSession('language') )){
                 App::setLocale( $request->session()->get('language') );
             }
+
             return $next($request);
         }
         else{
