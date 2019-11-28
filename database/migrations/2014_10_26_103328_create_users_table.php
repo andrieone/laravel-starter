@@ -16,13 +16,11 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->tinyInteger("allow_login")->default(0);
-
             $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('set null');
 
-            $table->unsignedBigInteger('admin_role_id')->nullable();
-            $table->foreign('admin_role_id')->references('id')->on('admin_roles')->onUpdate('cascade')->onDelete('set null');
+            $table->unsignedBigInteger('user_role_id')->nullable();
+            $table->foreign('user_role_id')->references('id')->on('user_roles')->onUpdate('cascade')->onDelete('set null');
 
             $table->string('display_name');
             $table->string('email')->unique();

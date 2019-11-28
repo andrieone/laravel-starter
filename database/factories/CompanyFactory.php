@@ -10,6 +10,7 @@ $factory->define(App\Models\Company::class, function(Faker $faker){
         'post_code'         => rand(1000000, 9999999),
         'address'           => $faker->address,
         'phone'             => $faker->e164PhoneNumber,
+        'status'            => 'active',
         'created_at'        => Carbon::now(),
         'updated_at'        => Carbon::now()
     ];

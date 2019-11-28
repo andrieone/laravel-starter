@@ -11,7 +11,7 @@
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
-            <h4 class="login-box-msg mb-3">管理者ログイン</h4>
+            <h4 class="login-box-msg mb-3">@lang('label.login_form')</h4>
 
             <form action="{{ route('login') }}" method="post">
                 @csrf

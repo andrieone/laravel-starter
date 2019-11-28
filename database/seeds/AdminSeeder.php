@@ -30,10 +30,19 @@ class AdminSeeder extends Seeder
                 'password'          => bcrypt('12345678'),
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
+            ],
+            [
+                'display_name'      => 'Grune Company Admin',
+                'email'             => 'company@admin.com',
+                'admin_role_id'     => 3,
+                'email_verified_at' => Carbon::now(),
+                'password'          => bcrypt('12345678'),
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now(),
             ]
         ]);
 
-        factory(Admin::class, 298)->create();
+        factory(Admin::class, 97)->create();
 
     }
 }

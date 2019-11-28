@@ -15,9 +15,8 @@ class CreateAdminRolesTable extends Migration
     {
         Schema::create('admin_roles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 200);
-            $table->string('label', 200);
-            $table->timestamps();
+            $table->string('name', 100);
+            $table->string('label', 100);
         });
     }
 

@@ -43,7 +43,7 @@ Route::get('email/resend', 'Auth\VerificationController@resend')->name('verifica
 |------------------------------------------------------------------
 */
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('dashboard', function(){ return "TODO: Create simple dashboard contained count and simple chart"; })->name('dashboard');
+    Route::get('dashboard', function(){ return "@TODO: Create simple dashboard contained count and simple chart"; })->name('dashboard');
     Route::get('setlanguage/{language}', 'Backend\LanguageController@SetLanguage')->name('setlanguage');
     Route::get('admin/logout', 'Auth\LoginController@logout')->name('admin.logout');
     Route::namespace('Backend')->prefix('admin')->name('admin.')->group(function(){
@@ -53,11 +53,17 @@ Route::group(['middleware' => 'auth'], function(){
         Route::group(['middleware' => ['role:super_admin']], function(){
             Route::resource('superadmin', 'SuperAdminController');
 
-            Route::resource('company', 'CompanyController');
-            Route::resource('company.user', 'UserController');
-
             Route::resource('logactivities', 'LogActivityController')->only(['index', 'show']);
+            Route::resource('company', 'CompanyController');
         });
+        //------------------------------------------------------------------
+        // Sharing for super admin and company admin
+        //------------------------------------------------------------------
+        Route::group(['middleware' => ['role:super_admin,company_admin']], function(){
+            Route::resource('company', 'CompanyController')->only(['index', 'update', 'show', 'edit']);
+            Route::resource('company.user', 'UserController');
+        });
+
         //------------------------------------------------------------------
         // Sharing for super admin and admin
         //------------------------------------------------------------------

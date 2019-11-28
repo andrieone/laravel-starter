@@ -23,17 +23,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ];
 
     protected $fillable =[
-        'allow_login',
         'company_id',
-        'admin_role_id',
+        'user_role_id',
         'display_name',
         'email',
         'password',
         'remember_token'
     ];
 
-    public function adminRole(){
-        return $this->belongsTo('App\Models\AdminRole');
+    public function userRole(){
+        return $this->belongsTo('App\Models\UserRole');
     }
 
 }

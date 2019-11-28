@@ -67,10 +67,10 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/') }}" target="_blank"><i class="fa fa-home" aria-hidden="true"></i>
-                    サイトTOPページへ</a>
+                @lang('label.top_page')</a>
             </li>
             <li>
-                <a class="nav-link" href="{{ route('admin.logout') }}"><span><i class="fas fa-sign-out-alt"></i> ログアウト</span></a>
+                <a class="nav-link" href="{{ route('admin.logout') }}"><span><i class="fas fa-sign-out-alt"></i> @lang('label.logout')</span></a>
             </li>
         </ul>
 

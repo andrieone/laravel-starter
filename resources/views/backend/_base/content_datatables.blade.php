@@ -101,9 +101,11 @@
                     {"width": "10px", "targets": 0},
                 ],
                 "columns": column,
+                @if(App::isLocale('jp'))
                 "language": {
                     "url": "{{asset('js/backend/adminlte/Japanese.json')}}"
                 }
+                @endif
             });
 
 
