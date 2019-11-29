@@ -28,11 +28,9 @@ Route::get('/auth-check', function(){
 // Authentication Routes...
 Route::get('/admin/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/admin/login', 'Auth\LoginController@login');
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/login', 'Auth\CompanyUserLoginController@showLoginForm')->name('company-user-login');
 Route::post('/login', 'Auth\CompanyUserLoginController@login')->name('company-user-login-action');;
-Route::post('/logout', 'Auth\CompanyUserLoginController@logout')->name('company-user-logout');
 
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -85,7 +83,7 @@ Route::group(['middleware' => 'auth:web'], function(){
 
 Route::group(['middleware' => 'auth:user'], function() {
 
-    Route::get('logout', 'Auth\UserController@logout')->name('logout');
+    Route::get('logout', 'Auth\CompanyUserLoginController@logout')->name('logout');
     Route::group(['middleware' => ['user_role:supervisor,operator']], function () {
 
         Route::get('user', 'Backend\UserController@editAsUserOwner')->name('userowner-edit');
