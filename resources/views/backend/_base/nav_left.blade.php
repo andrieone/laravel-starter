@@ -1,6 +1,12 @@
-@php $roles = Auth::user()->adminRole->name; @endphp
-@if($roles == 'super_admin')
-@endif
+@php
+    if(Auth::guard('user')->check()){
+        $username   = Auth::guard('user')->user()->display_name;
+        $role       = Auth::guard('user')->user()->userRole->name;
+    } else if(Auth::check()) {
+        $username   = Auth::user()->display_name;
+        $role       = Auth::user()->adminRole->name;
+    }
+@endphp
 <aside class="main-sidebar elevation-1 sidebar-light-info">
     <!-- Brand Logo -->
     <a href="{{route('dashboard')}}" class="brand-link navbar-info text-center">
@@ -12,10 +18,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{asset('img/backend/adminlte/avatar.png')}}" class="img-circle" alt="{{ Auth::user()->display_name }}">
+                <img src="{{asset('img/backend/adminlte/avatar.png')}}" class="img-circle">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ Auth::user()->display_name }}</a>
+                <a href="#" class="d-block">{{ $username}}</a>
             </div>
         </div>
 
@@ -23,7 +29,7 @@
         <nav class="mt-2">
             <ul id="nav-left" class="nav nav-pills nav-sidebar flex-column text-sm" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header">MAIN NAVIGATION</li>
-                @if($roles == 'super_admin')
+                @if($role == 'super_admin')
                     <li class="nav-item has-treeview" id="tree_superadmins">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
@@ -47,7 +53,7 @@
                     </li>
                 @endif
 
-                @if($roles == 'admin' || $roles == 'super_admin')
+                @if($role == 'admin' || $role == 'super_admin')
                 <li class="nav-item has-treeview" id="tree_admins">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
@@ -93,7 +99,7 @@
                 </li>
                 @endif
 
-                @if($roles == 'super_admin')
+                @if($role == 'super_admin')
                     <li class="nav-item has-treeview" id="tree_companies">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-building"></i>
@@ -117,11 +123,11 @@
                     </li>
                 @endif
 
-                @if($roles == 'company_admin')
+                @if($role == 'company_admin')
                     <li class="nav-item">
                         <a href="{{route('admin.company.edit', Auth::user()->company->id)}}" class="nav-link">
                             <i class="fas fa-building nav-icon"></i>
-                            <p>@lang('label.company_info')</p>
+                            <p>@lang('label.company')</p>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -131,15 +137,23 @@
                         </a>
                     </li>
                 @endif
-                {{--Auth::user()->company->id--}}
 
-                @if($roles == 'super_admin')
+                @if($role == 'super_admin')
                 <li class="nav-item">
                     <a href="{{route('admin.logactivities.index')}}" class="nav-link">
                         <i class="fas fa-list-alt nav-icon"></i>
                         <p>@lang('label.log_activity')</p>
                     </a>
                 </li>
+                @endif
+
+                @if(Auth::guard('user')->check())
+                    <li class="nav-item">
+                        <a href="{{route('userowner-edit')}}" class="nav-link">
+                            <i class="fas fa-user nav-icon"></i>
+                            <p>@lang('label.user')</p>
+                        </a>
+                    </li>
                 @endif
             </ul>
         </nav>

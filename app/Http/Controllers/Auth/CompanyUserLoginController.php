@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
-class LoginController extends Controller
+class CompanyUserLoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ class LoginController extends Controller
      * Where to redirect users after login.
      * @var string
      */
-    protected $redirectTo = '/admin/admins';
+    protected $redirectTo = '/user';
 
     /**
      * Create a new controller instance.
@@ -36,20 +36,28 @@ class LoginController extends Controller
     }
 
     protected function loggedOut(Request $request) {
-        return redirect('/admin/login');
+        return redirect('/login');
     }
 
     protected function authenticated(Request $request, $user)
     {
-        switch ($user->admin_role_id){
-            case 1:
-                return redirect()->route('admin.superadmin.index');
-            case 2:
-                return redirect()->route('admin.news.index');
-            case 3:
-                return redirect()->route('admin.company.user.index', $user->company->id);
-            default:
-                return redirect('/dashboard');
+        return redirect()->route('user');
+    }
+
+    public function guard()
+    {
+        return auth()->guard('user');
+    }
+
+    protected function showLoginForm(){
+        return view('auth.login-company-user');
+    }
+
+    protected function login(Request $request)
+    {
+        if (auth()->guard('user')->attempt(['email' => $request->email, 'password' => $request->password ])) {
+            return redirect('/user');
         }
+        return back()->withErrors(['email' => 'Email or password are wrong.']);
     }
 }

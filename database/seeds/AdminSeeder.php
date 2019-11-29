@@ -23,8 +23,8 @@ class AdminSeeder extends Seeder
                 'updated_at'        => Carbon::now(),
             ],
             [
-                'display_name'      => 'Admin',
-                'email'             => 'user@admin.com',
+                'display_name'      => 'General Admin',
+                'email'             => 'general@admin.com',
                 'admin_role_id'     => 2,
                 'email_verified_at' => Carbon::now(),
                 'password'          => bcrypt('12345678'),

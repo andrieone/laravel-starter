@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
             [
                 'company_id'        => 1,
                 'user_role_id'      => 2,
-                'display_name'      => 'Operator',
-                'email'             => 'operator@operator.com',
+                'display_name'      => 'User Company',
+                'email'             => 'user@company.com',
                 'password'          => bcrypt('12345678'),
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
