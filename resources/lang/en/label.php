@@ -81,5 +81,5 @@ return [
     'user'                   => 'User',
     'user_role'              => 'User Role',
     'company_info'           => 'Company Info',
-    'userloginscreen'        => 'User Login'
+    'userloginscreen'        => 'User Login',
 ];
