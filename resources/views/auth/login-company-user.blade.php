@@ -11,11 +11,11 @@
     <div class="text-sm">
     @include("backend._includes.alert")
     </div>
-    <div class="card card-admin-login">
+    <div class="card card-user-login">
         <div class="card-body login-card-body">
-            <p class="login-box-msg mb-3 text-uppercase" style="letter-spacing: 1px">@lang("label.adminloginscreen")</p>
+            <p class="login-box-msg mb-3 text-uppercase" style="letter-spacing: 1px">@lang("label.userloginscreen")</p>
 
-            <form class="mb-3" action="{{ route('login') }}" method="post">
+            <form action="{{ route('company-user-login-action') }}" method="post" class="mb-3">
                 @csrf
                 @error('email')
                 <span class="help-block text-sm" role="alert"> <strong>{{ $message }}</strong> </span>
@@ -74,7 +74,6 @@
             {{--    <a href="#" class="text-center">Register a new membership</a>--}}
             {{--</p>--}}
         </div>
-        <!-- /.login-card-body -->
     </div>
     @if (Route::has('password.request'))
         <p class="mb-1 mt-1 ml-1" style="float: left">
@@ -82,6 +81,6 @@
         </p>
     @endif
     <p class="mb-1 mt-1 mr-1" style="float: right">
-        <a href="{{ route('company-user-login') }}"  style="font-weight: normal; font-size: 0.8rem">@lang('label.userloginscreen')</a>
+        <a href="{{ route('login') }}"  style="font-weight: normal; font-size: 0.8rem">@lang('label.adminloginscreen')</a>
     </p>
 @endsection

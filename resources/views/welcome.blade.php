@@ -67,10 +67,10 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/admin/admins') }}">Admin Panel</a>
+                    @if(Auth::check() || Auth::guard('user')->check() )
+
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('/admin/login') }}">Login</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>

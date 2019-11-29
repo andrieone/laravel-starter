@@ -6,16 +6,16 @@
 
 @section('content')
     <div class="login-logo">
-        <a class="text-uppercase" style="letter-spacing: 2px" href="javascript:;">{{ env('APP_NAME','') }}</a>
+        <a href="javascript:;">@lang("label.userloginscreen")</a>
     </div>
     <div class="text-sm">
     @include("backend._includes.alert")
     </div>
-    <div class="card card-admin-login">
+    <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg mb-3 text-uppercase" style="letter-spacing: 1px">@lang("label.adminloginscreen")</p>
+            <h4 class="login-box-msg mb-3">@lang('label.login_form')</h4>
 
-            <form class="mb-3" action="{{ route('login') }}" method="post">
+            <form action="{{ route('login') }}" method="post">
                 @csrf
                 @error('email')
                 <span class="help-block text-sm" role="alert"> <strong>{{ $message }}</strong> </span>
@@ -70,18 +70,16 @@
         {{--    </a>--}}
         {{--</div>--}}
         <!-- /.social-auth-links -->
+
+            @if (Route::has('password.request'))
+                <p class="mb-1 mt-3" style="text-align: right">
+                    <a href="{{ route('password.request') }}"  style="font-weight: normal; font-size: 0.8rem">@lang('label.IForgotMyPassword')</a>
+                </p>
+            @endif
             {{--<p class="mb-0">--}}
             {{--    <a href="#" class="text-center">Register a new membership</a>--}}
             {{--</p>--}}
         </div>
         <!-- /.login-card-body -->
     </div>
-    @if (Route::has('password.request'))
-        <p class="mb-1 mt-1 ml-1" style="float: left">
-            <a href="{{ route('password.request') }}"  style="font-weight: normal; font-size: 0.8rem">@lang('label.IForgotMyPassword')</a>
-        </p>
-    @endif
-    <p class="mb-1 mt-1 mr-1" style="float: right">
-        <a href="{{ route('company-user-login') }}"  style="font-weight: normal; font-size: 0.8rem">@lang('label.userloginscreen')</a>
-    </p>
 @endsection

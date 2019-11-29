@@ -79,5 +79,7 @@ return [
     'phone'                  => 'Phone',
     'access_time'            => 'Access Time',
     'user'                   => 'User',
-    'user_role'              => 'User Role'
+    'user_role'              => 'User Role',
+    'company_info'           => 'Company Info',
+    'userloginscreen'        => 'User Login',
 ];

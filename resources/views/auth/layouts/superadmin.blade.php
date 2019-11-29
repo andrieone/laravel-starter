@@ -19,6 +19,21 @@
     <link rel="stylesheet" href="{{asset('/css/backend/adminlte/adminlte.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <style>
+        .card-admin-login {
+            border-top: 3px solid #ff253a;
+        }
+        .card-user-login {
+            border-top: 3px solid #17a2b8;
+        }
+        a {
+            color: #17a2b8;
+        }
+        .alert ul {
+            margin-bottom: 0px !important;
+        }
+    </style>
 </head>
 <body class="hold-transition login-page">
 

@@ -70,7 +70,14 @@
                 @lang('label.top_page')</a>
             </li>
             <li>
-                <a class="nav-link" href="{{ route('admin.logout') }}"><span><i class="fas fa-sign-out-alt"></i> @lang('label.logout')</span></a>
+                <?php
+                    if(Auth::guard('user')->check()){
+                        $logout = 'logout';
+                    } else {
+                        $logout = 'admin.logout';
+                    }
+                ?>
+                <a class="nav-link" href="{{ route($logout) }}"><span><i class="fas fa-sign-out-alt"></i> @lang('label.logout')</span></a>
             </li>
         </ul>
 

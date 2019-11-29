@@ -76,7 +76,7 @@ class UserController extends Controller
 
         $data['page_title']     = __('label.edit') . ' ' . __('label.user');
         $data['form_action']    = route('admin.company.user.update', [$parent_id, $id]);
-        $data['user_roles'] = UserRole::pluck('label', 'id')->all();
+        $data['user_roles']     = UserRole::pluck('label', 'id')->all();
         $data['page_type']      = 'edit';
 
         return view('backend.user.form', $data);
@@ -105,6 +105,46 @@ class UserController extends Controller
         $this->saveLog('Delete User', 'Delete User, Email : ' . $item->email . '', Auth::user()->id);
 
         return 1;
+    }
+
+    protected function userOwnerValidator( array $data, $type ){
+        return Validator::make($data, [
+            'display_name'  => 'required|string|max:100',
+            'email'         => 'required|email|max:255|unique:users,email' . ($type == 'update' ? ','.$data['id'] : ''),
+            'password'      => $type == 'create' ? 'string|min:8|max:255' : 'string|min:8|max:255',
+        ]);
+    }
+
+    public function editAsUserOwner(){
+        $id                     = Auth::guard('user')->user()->id;
+
+        $data['item']           = User::find( $id );
+
+        $data['page_title']     = __('label.edit') . ' ' . __('label.user');
+        $data['form_action']    = route('userowner-update');
+        $data['page_type']      = 'edit';
+
+        return view('backend.userowner.form', $data);
+    }
+
+    public function updateAsUserOwner(Request $request){
+        $id             = Auth::guard('user')->user()->id;
+        $user_role_id   = Auth::guard('user')->user()->user_role_id;
+
+        $data               = $request->all();
+        $currentData        = User::find($id);
+        $data['password']   = !empty($data['password']) ? $data['password'] : $currentData['password'];
+        $data['id']         = $id; // Secure id
+        $data['user_role_id'] = $user_role_id; // Secure user_role_id
+        $this->validator($data, 'update')->validate();
+
+        if(Hash::needsRehash($data['password']) && !empty($data['password'])){
+            $data['password'] = bcrypt($data['password']);
+        }
+
+        $currentData->update($data);
+
+        return redirect()->back()->with('success', config('const.SUCCESS_UPDATE_MESSAGE'));
     }
 
 }
