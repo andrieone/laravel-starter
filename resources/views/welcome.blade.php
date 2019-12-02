@@ -70,7 +70,7 @@
                     @if(Auth::check() || Auth::guard('user')->check() )
 
                     @else
-                        <a href="{{ route('/admin/login') }}">Login</a>
+                        <a href="{{ route('company-user-login') }}">Login</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
