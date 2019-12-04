@@ -3,16 +3,13 @@
 @section('breadcrumbs')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="{{route('dashboard')}}"><i class="fas fa-tachometer-alt"></i> @lang('label.dashboard')</a></li>
-        @if(Auth::user()->admin_role_id != 3)
-            <li class="breadcrumb-item"><a href="{{route('admin.company.index')}}">@lang('label.company')</a></li>
-        @endif
         <li class="breadcrumb-item active">{{ $page_title }}</li>
     </ol>
 @endsection
 
 @section('top_buttons')
     @if(Auth::user()->admin_role_id != 3)
-        <a href="{{route('admin.company.user.create', $parent_id)}}" class="btn btn-info">@lang(('label.createNew'))</a>
+        <a href="{{route('admin.user.create')}}" class="btn btn-info">@lang(('label.createNew'))</a>
     @endif
 @endsection
 

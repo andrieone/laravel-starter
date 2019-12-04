@@ -11,7 +11,7 @@ trait LogActivityTrait
      * saving admin logging to database.
      * @param $activity
      * @param $detail
-     * @param $admin
+     * @param $admin_id
      */
     private function saveLog($activity, $detail, $current_admin_id){
         $log = new LogActivity();

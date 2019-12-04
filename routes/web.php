@@ -69,6 +69,8 @@ Route::group(['middleware' => 'auth:web'], function(){
         Route::group(['middleware' => ['role:super_admin,company_admin']], function(){
             Route::resource('company', 'CompanyController')->only(['index', 'update', 'show', 'edit']);
             Route::resource('company.user', 'UserController');
+
+            Route::resource('user', 'UserMasterController');
         });
 
         //------------------------------------------------------------------

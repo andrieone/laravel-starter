@@ -33,9 +33,11 @@ class UserController extends Controller
         if( $param == 'json' ){
 
             $model = User::select(['users.*',
-                                    'user_roles.label AS user_roles.label']) // Adding `AS` is important for search and sorting
-                         ->leftJoin('user_roles', 'users.user_role_id', '=', 'user_roles.id')
-                         ->where('company_id', $parent_param);;
+                                    'user_roles.label AS user_roles.label',
+                                    'companies.company_name AS companies.company_name']) // Adding `AS` is important for search and sorting
+                            ->leftJoin('user_roles', 'users.user_role_id', '=', 'user_roles.id')
+                            ->leftJoin('companies', 'users.company_id', '=', 'companies.id')
+                            ->where('company_id', $parent_param);;
             return DatatablesHelper::json($model, true, true, null, null, $parent_param);
 
         }

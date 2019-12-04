@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use League\Flysystem\Filesystem;
 
 class DatabaseSeeder extends Seeder
 {
@@ -9,6 +10,10 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run(){
+        /** Clear Uploads File **/
+        $file = new Filesystem;
+        $file->cleanDirectory( public_path('uploads') );
+
         $this->call(AdminRoleSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(CompanySeeder::class);

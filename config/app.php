@@ -176,8 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         // add manually
         Yajra\DataTables\DataTablesServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
     ],
 
     /*
@@ -230,8 +229,6 @@ return [
         'View'         => Illuminate\Support\Facades\View::class,
         // add manually
         'DataTables'   => Yajra\DataTables\Facades\DataTables::class,
-        'Form'         => Collective\Html\FormFacade::class,
-        'Html'         => Collective\Html\HtmlFacade::class,
         'DatatableHelper' => App\Helpers\DatatableHelper::class,
         'Image' => Intervention\Image\Facades\Image::class
     ],
