@@ -84,7 +84,7 @@ span.brand-text {
 }
 .field-group.is-invalid {
     border: 1px solid #dc3545;
-    padding-left: 10px;
+    padding: 10px;
 }
 .actionDatatables {
     min-width: 100px;
@@ -95,8 +95,17 @@ span.brand-text {
 span.span-locale {
     text-transform: uppercase;
 }
+.icheck-cyan label {
+    min-width: 110px;
+}
+.icheck-cyan.d-inline {
+    display: inline-block !important;
+}
+body label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: normal;
+}
 
-    /* Sidebar */
+/* Sidebar */
 .brand-text {
     color: #fff;
     font-size: 20px;

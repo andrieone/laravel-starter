@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Filesystem\Filesystem;
 
 class DatabaseSeeder extends Seeder
 {
@@ -9,6 +10,15 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run(){
+        /** Clear Uploads File **/
+        $path = public_path('uploads');
+
+        $file = new Filesystem;
+        if (!$file->exists($path)) {
+            $file->makeDirectory($path);
+        }
+        $file->cleanDirectory( public_path('uploads') );
+
         $this->call(AdminRoleSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(CompanySeeder::class);
