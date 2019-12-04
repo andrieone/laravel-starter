@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Helpers\DatatablesHelper;
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
@@ -45,8 +46,9 @@ class UserController extends Controller
     }
 
     public function index($parent_id){
-        $data['parent_id']  = $parent_id;
-        $data['page_title'] = __('label.user');
+        $data['parent_id']      = $parent_id;
+        $data['company_name']   = Company::find($parent_id)->first()->company_name;
+        $data['page_title']     = $data['company_name'] . ' ' . __('label.user') ;
         return view('backend.user.index', $data);
     }
 
