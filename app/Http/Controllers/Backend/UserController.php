@@ -47,7 +47,7 @@ class UserController extends Controller
 
     public function index($parent_id){
         $data['parent_id']      = $parent_id;
-        $data['company_name']   = Company::find($parent_id)->first()->company_name;
+        $data['company_name']   = Company::find($parent_id)->company_name;
         $data['page_title']     = $data['company_name'] . ' ' . __('label.user') ;
         return view('backend.user.index', $data);
     }
