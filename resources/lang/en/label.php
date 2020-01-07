@@ -41,6 +41,7 @@ return [
     'jsConfirmDeleteData'    => 'Are you sure you want to delete this data?',
     'jsInfoDeletedData'      => 'Data has been successfully deleted!',
     'jsSorry'                => 'Sorry, the data could not be deleted',
+    'user'                   => 'User',
     /** =================================== */
     'name'                   => 'Name',
     'email'                  => 'Email',
@@ -78,7 +79,6 @@ return [
     'address'                => 'Address',
     'phone'                  => 'Phone',
     'access_time'            => 'Access Time',
-    'user'                   => 'User',
     'user_role'              => 'User Role',
     'company_info'           => 'Company Info',
     'userloginscreen'        => 'User Login',

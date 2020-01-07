@@ -60,7 +60,7 @@ class NewsController extends Controller
         $data = $request->all();
         $this->validator($data, 'create')->validate();
 
-        $data['image']     = ImageHelper::uploadImage( $request->file('image') );
+        $data['image']     = ImageHelper::upload( $request->file('image') );
         $data['admin_id']  = Auth::user()->id;
 
         $new = new News();
@@ -84,7 +84,7 @@ class NewsController extends Controller
 
         $edit = News::find($id);
 
-        $data['image']     = ImageHelper::updateImage( $request->file('image'), $edit->image, $data['removable_image']['image'] ); // $data['removable_image']['image'] -> ['image'] is field name
+        $data['image']     = ImageHelper::update( $request->file('image'), $edit->image, $data['removable_image']['image'] ); // $data['removable_image']['image'] -> ['image'] is field name
         $data['admin_id']  = Auth::user()->id;
 
         $edit->update($data);

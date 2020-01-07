@@ -27,7 +27,7 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     {{--custom css--}}
-    <link rel="stylesheet" href="{{asset('css/backend/backend-custom.css')}}">
+    <link rel="stylesheet" href="{{AssetHelper::version('css/backend/backend-custom.css')}}">
     @stack('css')
 </head>
 <body class="hold-transition sidebar-mini">
@@ -126,7 +126,7 @@
 <!-- AdminLTE App -->
 <script src="{{asset('js/backend/adminlte/adminlte.min.js')}}"></script>
 <!-- custom backend -->
-<script src="{{asset('js/backend/backend.js')}}"></script>
+<script src="{{AssetHelper::version('js/backend/backend.js')}}"></script>
 
 {{--custom js--}}
 @stack('scripts')

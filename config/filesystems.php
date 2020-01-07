@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'public_upload'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,6 +52,14 @@ return [
             'driver'     => 'local',
             'root'       => storage_path('app/public'),
             'url'        => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
+
+        // @TODO: this setup for development, some condition can't do symlink the storage directory
+        'public_upload' => [
+            'driver'     => 'local',
+            'root'       => public_path('uploads'),
+            'url'        => env('APP_URL') . '/uploads',
             'visibility' => 'public',
         ],
 

@@ -2,9 +2,8 @@
 namespace App\Helpers;
 
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
-class ImageHelper
+class FileHelper
 {
     public static function upload($file, $fileName = null) {
         if(empty($file)){
@@ -12,12 +11,10 @@ class ImageHelper
         }
 
         if(empty($fileName)){
-            $name = time() . '.' . $file->getClientOriginalExtension();
+            $name = time() . '-' . $file->getClientOriginalName();
         } else {
             $name = $fileName . '.' . $file->getClientOriginalExtension();
         }
-
-        Image::make($file->getRealPath())->orientate();
 
         $path = Storage::putFileAs(null, $file, $name, 'public');
 
