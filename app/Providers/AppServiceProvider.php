@@ -15,6 +15,9 @@ class AppServiceProvider extends ServiceProvider
     public function register(){
         require_once app_path() . '/Helpers/DatatablesHelper.php';
         require_once app_path() . '/Helpers/ImageHelper.php';
+        require_once app_path() . '/Helpers/FileHelper.php';
+        require_once app_path() . '/Helpers/Select2AjaxHelper.php';
+        require_once app_path() . '/Helpers/AssetHelper.php';
     }
 
     /**

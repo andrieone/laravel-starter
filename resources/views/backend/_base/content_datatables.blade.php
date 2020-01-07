@@ -68,7 +68,11 @@
                 if (typeof attr !== typeof undefined && attr !== false) {
                     $(this).remove();
                 }
-                $(this).html('<input class="form-control" type="text" placeholder="@lang('label.search') ' + title + '" />');
+                var placeholder = "@lang('label.search') " + title;
+                if( id === "id" ){
+                    placeholder = '';
+                }
+                $(this).html('<input class="form-control" type="text" placeholder="' + placeholder + '" />');
 
                 $('input', this).on('keyup change', function () {
                     if (table.column(i).search() !== this.value) {
