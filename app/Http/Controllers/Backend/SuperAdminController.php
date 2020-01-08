@@ -65,7 +65,7 @@ class SuperAdminController extends Controller
         $data['password']       = bcrypt($data['password']);
         $new = new Admin();
         $new->fill($data)->save();
-        return redirect()->route('admin.superadmin.index')->with('success', config('const.SUCCESS_CREATE_MESSAGE'));
+        return redirect()->route('admin.superadmin.index')->with('success', __('label.SUCCESS_CREATE_MESSAGE'));
     }
 
     public function edit($id){
@@ -91,7 +91,7 @@ class SuperAdminController extends Controller
 
         $currentAdmin->update($data);
 
-        return redirect()->route('admin.superadmin.edit', $id)->with('success', config('const.SUCCESS_UPDATE_MESSAGE'));
+        return redirect()->route('admin.superadmin.edit', $id)->with('success', __('label.SUCCESS_UPDATE_MESSAGE'));
     }
 
     public function destroy($id){

@@ -2,6 +2,20 @@
 
 return [
 
+    // success when data created
+    'SUCCESS_CREATE_MESSAGE'     => '入力した内容を保存しました。',
+    // failed when data created
+    'FAILED_CREATE_MESSAGE'      => '入力した内容を保存できませんでした。',
+    // success when data updated
+    'SUCCESS_UPDATE_MESSAGE'     => '編集した内容を保存しました。',
+    // failed when data updated
+    'FAILED_UPDATE_MESSAGE'      => '編集した内容を保存できませんでした。',
+    // success when data deleted
+    'SUCCESS_DELETE_MESSAGE'     => '対象のデータを削除しました。',
+    // failed when data deleted
+    'FAILED_DELETE_MESSAGE'      => '対象のデータを削除できませんでした。',
+    // failed when logged in user data deleted
+    'FAILED_DELETE_SELF_MESSAGE' => '現在ログインされている方のデータを削除できませんでした。',
     /*
     |--------------------------------------------------------------------------
     | language Label for dashboard

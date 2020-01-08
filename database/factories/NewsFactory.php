@@ -10,17 +10,24 @@ $factory->define(\App\Models\News::class, function (Faker $faker) {
     /** Image faker using storage, works for s3 driver **/
     $image = $faker->image(null, 400,300, 'abstract', true);
     $imageFile = new File($image);
-    $file = Storage::putFile('/', $imageFile, 'public');
+    $img = Storage::putFile('/', $imageFile, 'public');
+
+    $pdf = $faker->image(null, 400,300, 'abstract', true);
+    $pdfFile = new File($pdf);
+    $pdf = Storage::putFile('/', $pdfFile, 'public');
 
     return [
         'admin_id'      => 2,
+        'company_id'    => rand(1, 10),
         'title'         => $faker->words(rand(3, 5), true),
         'body'          => $faker->paragraph,
         /**
          * below does't using storage, does't works for s3 driver
          * 'image'         => 'uploads/' . $faker->image(public_path('uploads'),400,300, 'abstract', false),
          */
-        'image'         => $file, /** Using storage **/
+        'image'         => $img,
+        'pdf_file'      => $pdf,
+        'radius'        => rand(10, 50),
         'publish_date'  => Carbon::now()->subMonths(rand(1,3))->subDays(rand(1,30)),
         'status'        => 'publish'
     ];

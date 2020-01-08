@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Helpers\DatatablesHelper;
+use App\Helpers\FileHelper;
 use App\Helpers\ImageHelper;
+use App\Helpers\Select2AjaxHelper;
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,8 +21,10 @@ class NewsController extends Controller
     protected function validator( array $data, $type ){
         return Validator::make($data, [
             'title'         => 'required|string|max:100',
+            'company_id'    => 'exists:companies,id',
             'body'          => 'required|string|max:255',
             'image'         => 'image|mimes:jpeg,bmp,png,jpg|max:1024',
+            'pdf_file'      => 'file|mimes:pdf|max:20000',
             'publish_date'  => 'date',
             'status'        => 'required|in:draft,publish',
         ]);
@@ -33,11 +38,13 @@ class NewsController extends Controller
      * You may add custom page/api/route, this wrapped middleware as well
      */
     public function show( $param ){
-        if( $param == 'json' ){
-
-            $model = News::query();
-            return DatatablesHelper::json($model);
-
+        switch ($param){
+            case 'json':
+                $model = News::query();
+                return DatatablesHelper::json($model);
+            case 'searchcompany':
+                return Select2AjaxHelper::set(Company::query(), 'id', 'company_name');
+                break;
         }
         abort(404);
     }
@@ -61,11 +68,12 @@ class NewsController extends Controller
         $this->validator($data, 'create')->validate();
 
         $data['image']     = ImageHelper::upload( $request->file('image') );
+        $data['pdf_file']  = FileHelper::upload( $request->file('pdf_file') );
         $data['admin_id']  = Auth::user()->id;
 
         $new = new News();
         $new->fill($data)->save();
-        return redirect()->route('admin.news.index')->with('success', config('const.SUCCESS_CREATE_MESSAGE'));
+        return redirect()->route('admin.news.index')->with('success', __('label.SUCCESS_CREATE_MESSAGE'));
     }
 
     public function edit($id){
@@ -85,11 +93,12 @@ class NewsController extends Controller
         $edit = News::find($id);
 
         $data['image']     = ImageHelper::update( $request->file('image'), $edit->image, $data['removable_image']['image'] ); // $data['removable_image']['image'] -> ['image'] is field name
+        $data['pdf_file']  = FileHelper::update( $request->file('pdf_file'), $edit->pdf_file ); /** @todo : removing file for non required fields like image helper have **/
         $data['admin_id']  = Auth::user()->id;
 
         $edit->update($data);
 
-        return redirect()->route('admin.news.edit', $id)->with('success', config('const.SUCCESS_UPDATE_MESSAGE'));
+        return redirect()->route('admin.news.edit', $id)->with('success', __('label.SUCCESS_UPDATE_MESSAGE'));
     }
 
     public function destroy($id){

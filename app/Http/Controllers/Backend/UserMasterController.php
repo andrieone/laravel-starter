@@ -69,7 +69,7 @@ class UserMasterController extends Controller
         $data['password']       = !empty($data['password']) ? bcrypt($data['password']) : '';
         $new                    = new User();
         $new->fill($data)->save();
-        return redirect()->route('admin.user.index')->with('success', config('const.SUCCESS_CREATE_MESSAGE'));
+        return redirect()->route('admin.user.index')->with('success', __('label.SUCCESS_CREATE_MESSAGE'));
     }
 
     public function edit($id){
@@ -99,7 +99,7 @@ class UserMasterController extends Controller
 
         $currentData->update($data);
 
-        return redirect()->route('admin.user.edit', $id)->with('success', config('const.SUCCESS_UPDATE_MESSAGE'));
+        return redirect()->route('admin.user.edit', $id)->with('success', __('label.SUCCESS_UPDATE_MESSAGE'));
     }
 
     public function destroy($id){

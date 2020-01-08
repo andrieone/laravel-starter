@@ -65,7 +65,7 @@ class AdminController extends Controller
         $data['password']       = bcrypt($data['password']);
         $new = new Admin();
         $new->fill($data)->save();
-        return redirect()->route('admin.admins.index')->with('success', config('const.SUCCESS_CREATE_MESSAGE'));
+        return redirect()->route('admin.admins.index')->with('success', __('label.SUCCESS_CREATE_MESSAGE'));
     }
 
     public function edit($id){
@@ -91,7 +91,7 @@ class AdminController extends Controller
 
         $currentAdmin->update($data);
 
-        return redirect()->route('admin.admins.edit', $id)->with('success', config('const.SUCCESS_UPDATE_MESSAGE'));
+        return redirect()->route('admin.admins.edit', $id)->with('success', __('label.SUCCESS_UPDATE_MESSAGE'));
     }
 
     public function destroy($id){

@@ -51,6 +51,8 @@
     <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 @endpush
 
 @push('scripts')
@@ -59,6 +61,8 @@
     <script src="{{asset('plugins/summernote/summernote.js')}}"></script>
     <script src="{{asset('plugins/moment/moment.min.js')}}"></script>
     <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
+    <script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
+    <script src="{{asset('plugins/select2/js/i18n/ja.js')}}"></script>
     <script>
         $(function () {
             // init: show tooltip on hover
@@ -135,6 +139,94 @@
                 $(this).closest('.image-preview').find('.input-remove-image').val( 'true' );
                 img.attr('src', img.data('empty'));
             })
+
+            $('.select2ajax').each(function(){
+                $(this).select2({
+                    theme: 'bootstrap4',
+                    minimumInputLength: 0,
+                    {!! App::isLocale('jp') ? 'language: "ja",' : '' !!}
+                    ajax: {
+                        delay: 500,
+                        url: $(this).data('url'),
+                        data: function (params) {
+                            var query = {
+                                q: params.term,
+                                page: params.page || 1
+                            };
+                            return query;
+                        },
+                        processResults: function (response) {
+                            var is_more = response.items.next_page_url !== null ? true : false;
+                            return {
+                                results:  $.map(response.items.data, function (item) {
+                                    return {
+                                        text: item[response.display],
+                                        id: item[response.value]
+                                    }
+                                }),
+                                pagination: {
+                                    "more": is_more
+                                }
+                            };
+                        },
+                        cache: true
+                    }
+                });
+                $(this).on('change', function(){
+                    var selected_label = $(this).find('option:selected').text();
+                    $(this).closest('.col-content').find('.selected-label').val( selected_label );
+                });
+            })
+
+            $('.select2ajax').each(function(){
+                $(this).select2({
+                    theme: 'bootstrap4',
+                    minimumInputLength: 0,
+                    {!! App::isLocale('jp') ? 'language: "ja",' : '' !!}
+                    ajax: {
+                        delay: 500,
+                        url: $(this).data('url'),
+                        data: function (params) {
+                            var query = {
+                                q: params.term,
+                                page: params.page || 1
+                            };
+                            return query;
+                        },
+                        processResults: function (response) {
+                            var is_more = response.items.next_page_url !== null ? true : false;
+                            return {
+                                results:  $.map(response.items.data, function (item) {
+                                    return {
+                                        text: item[response.display],
+                                        id: item[response.value]
+                                    }
+                                }),
+                                pagination: {
+                                    "more": is_more
+                                }
+                            };
+                        },
+                        cache: true
+                    }
+                });
+                $(this).on('change', function(){
+                    var selected_label = $(this).find('option:selected').text();
+                    $(this).closest('.col-content').find('.selected-label').val( selected_label );
+                });
+            })
+
+            $('.input-decimal-ratio').each(function(){
+                $( '#' + $(this).data('target') ).val(
+                    parseFloat( $(this).val() * $(this).data('multiply') ).toFixed(2)
+                );
+
+                $(this).on('change keyup', function(){
+                    $( '#' + $(this).data('target') ).val(
+                        parseFloat( $(this).val() * $(this).data('multiply') ).toFixed(2)
+                    );
+                });
+            });
         });
     </script>
 @endpush
