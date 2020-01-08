@@ -11,14 +11,21 @@ class News extends Model
 
     protected $fillable = [
         'admin_id',
+        'company_id',
         'title',
         'body',
         'image',
+        'pdf_file',
+        'radius',
         'publish_date',
-        'status'
+        'status',
     ];
 
     public function admin(){
         return $this->belongsTo('App\Models\Admin');
+    }
+
+    public function company(){
+        return $this->belongsTo('App\Models\Company');
     }
 }
