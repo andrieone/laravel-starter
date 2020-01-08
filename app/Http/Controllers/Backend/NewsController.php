@@ -73,7 +73,7 @@ class NewsController extends Controller
 
         $new = new News();
         $new->fill($data)->save();
-        return redirect()->route('admin.news.index')->with('success', config('const.SUCCESS_CREATE_MESSAGE'));
+        return redirect()->route('admin.news.index')->with('success', __('label.SUCCESS_CREATE_MESSAGE'));
     }
 
     public function edit($id){
@@ -93,12 +93,12 @@ class NewsController extends Controller
         $edit = News::find($id);
 
         $data['image']     = ImageHelper::update( $request->file('image'), $edit->image, $data['removable_image']['image'] ); // $data['removable_image']['image'] -> ['image'] is field name
-        $data['pdf_file']  = FileHelper::upload( $request->file('pdf_file') );
+        $data['pdf_file']  = FileHelper::update( $request->file('pdf_file'), $edit->pdf_file ); /** @todo : removing file for non required fields like image helper have **/
         $data['admin_id']  = Auth::user()->id;
 
         $edit->update($data);
 
-        return redirect()->route('admin.news.edit', $id)->with('success', config('const.SUCCESS_UPDATE_MESSAGE'));
+        return redirect()->route('admin.news.edit', $id)->with('success', __('label.SUCCESS_UPDATE_MESSAGE'));
     }
 
     public function destroy($id){

@@ -70,7 +70,7 @@ class UserController extends Controller
         $data['company_id']     = $parent_id;
         $new                    = new User();
         $new->fill($data)->save();
-        return redirect()->route('admin.company.user.index', $parent_id)->with('success', config('const.SUCCESS_CREATE_MESSAGE'));
+        return redirect()->route('admin.company.user.index', $parent_id)->with('success', __('label.SUCCESS_CREATE_MESSAGE'));
     }
 
     public function edit($parent_id, $id){
@@ -99,7 +99,7 @@ class UserController extends Controller
 
         $currentData->update($data);
 
-        return redirect()->route('admin.company.user.edit', [$parent_id, $id])->with('success', config('const.SUCCESS_UPDATE_MESSAGE'));
+        return redirect()->route('admin.company.user.edit', [$parent_id, $id])->with('success', __('label.SUCCESS_UPDATE_MESSAGE'));
     }
 
     public function destroy($parent_id, $id){
@@ -148,7 +148,7 @@ class UserController extends Controller
 
         $currentData->update($data);
 
-        return redirect()->back()->with('success', config('const.SUCCESS_UPDATE_MESSAGE'));
+        return redirect()->back()->with('success', __('label.SUCCESS_UPDATE_MESSAGE'));
     }
 
 }

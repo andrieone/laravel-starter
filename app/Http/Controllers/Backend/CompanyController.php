@@ -82,7 +82,7 @@ class CompanyController extends Controller
         $new->admin_id = $admin->id;
         $new->fill($data)->save();
 
-        return redirect()->route('admin.company.index')->with('success', config('const.SUCCESS_CREATE_MESSAGE'));
+        return redirect()->route('admin.company.index')->with('success', __('label.SUCCESS_CREATE_MESSAGE'));
     }
 
     public function edit($id){
@@ -111,7 +111,7 @@ class CompanyController extends Controller
         $currentCompany->update($data);
         $currentAdmin->update($data);
 
-        return redirect()->route('admin.company.edit', $id)->with('success', config('const.SUCCESS_UPDATE_MESSAGE'));
+        return redirect()->route('admin.company.edit', $id)->with('success', __('label.SUCCESS_UPDATE_MESSAGE'));
     }
 
     public function destroy($id){
