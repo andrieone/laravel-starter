@@ -27,6 +27,11 @@ return [
     |
     */
     // common words
+    /** Top bar =========================== */
+    'login_form'             => 'Login Form',
+    'language'               => 'Language',
+    'top_page'               => 'TOP PAGE',
+    'logout'                 => 'LOG OUT',
     /** Login ============================= */
     'enterEmailAddress'      => 'Email',
     'enterPassword'          => 'Password',
@@ -35,6 +40,7 @@ return [
     'dashboard'              => 'Dashboard',
     'superAdmin'             => 'Super Admin',
     'admin'                  => 'Admin',
+    'company'                => 'Company',
     'createNew'              => 'Create New',
     'list'                   => 'List',
     'add'                    => 'Add New',
@@ -56,11 +62,18 @@ return [
     'jsInfoDeletedData'      => 'Data has been successfully deleted!',
     'jsSorry'                => 'Sorry, the data could not be deleted',
     'user'                   => 'User',
+    'userloginscreen'        => 'User Login',
     /** =================================== */
     'name'                   => 'Name',
     'email'                  => 'Email',
     'admin_role_id'          => 'Admin role id',
+    'user_role'              => 'User role',
     'email_verified_at'      => 'Email verified at',
+    'post_code'              => 'Post Code',
+    'address'                => 'Address',
+    'phone'                  => 'Phone',
+    'company_name'           => 'Company Name',
+    'company_info'           => 'Company Info',
     /** =================================== */
     'created_at'             => 'Created at',
     'update_at'              => 'Updated at',
@@ -73,29 +86,18 @@ return [
     'ip'                     => 'IP Address',
     'last_access'            => 'Last Access',
     'IForgotMyPassword'      => 'I forgot my password',
-    'language'               => 'Language',
-
-    // @TODO: Below are not arranged well and translated to JP, need some help from linguist
-    'login_form'             => 'Login Form',
-    'last_update'            => 'Last Update',
-    'image'                  => 'Image',
-    'body'                   => 'Body', // Content textarea, not human body
-    'title'                  => 'Title',
-    'publish_date'           => 'Publish Date',
-    'status'                 => 'Status',
-    'news'                   => 'News',
-    'company'                => 'Company',
-    'log_activity'           => 'Log Activity',
-    'top_page'               => 'TOP PAGE',
-    'logout'                 => 'LOG OUT',
-    'company_name'           => 'Company Name',
-    'post_code'              => 'Post Code',
-    'address'                => 'Address',
-    'phone'                  => 'Phone',
-    'access_time'            => 'Access Time',
-    'user_role'              => 'User Role',
-    'company_info'           => 'Company Info',
-    'userloginscreen'        => 'User Login',
+    /** News====================== */
+    'news'                  => 'News',
+    'title'                 => 'Title',
+    'body'                  => 'Body', // Content textarea, not human body
+    'image'                 => 'Image',
+    'publish_date'          => 'Publish Date',
+    'status'                => 'Status',
+    'last_update'           => 'Last Update',
     'pdf_file'               => 'PDF File',
-    'radius'                 => 'Radius'
+    'radius'                 => 'Radius',
+    /** Log Acitivity====================== */
+    'log'                   => 'ログ',
+    'log_activity'          => 'Log Activity',
+    'access_time'           => 'Access Time'
 ];

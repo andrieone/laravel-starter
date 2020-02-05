@@ -57,7 +57,11 @@
 
 @push('scripts')
     <script src="{{asset('plugins/parsley/parsley.min.js')}}"></script>
-    <script src="{{asset('plugins/parsley/i18n/ja.js')}}"></script>
+    @if (App::isLocale('en'))
+      <script src="{{asset('plugins/parsley/i18n/en.js')}}"></script>
+    @else
+      <script src="{{asset('plugins/parsley/i18n/ja.js')}}"></script>
+    @endif
     <script src="{{asset('plugins/summernote/summernote.js')}}"></script>
     <script src="{{asset('plugins/moment/moment.min.js')}}"></script>
     <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>

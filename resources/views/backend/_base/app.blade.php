@@ -77,7 +77,7 @@
                         $logout = 'admin.logout';
                     }
                 ?>
-                <a class="nav-link" href="{{ route($logout) }}"><span><i class="fas fa-sign-out-alt"></i> @lang('label.logout')</span></a>
+                <a class="nav-link" id="admin-logout" href="{{ route($logout) }}"><span><i class="fas fa-sign-out-alt"></i> @lang('label.logout')</span></a>
             </li>
         </ul>
 

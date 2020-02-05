@@ -27,6 +27,11 @@ return [
     |
     */
     // common words
+    /** Top bar =========================== */
+    'login_form'             => 'ログインフォーム',
+    'language'               => '言語',
+    'top_page'               => 'トップページ',
+    'logout'                 => 'ログアウト',
     /** Login ============================= */
     'enterEmailAddress'      => 'メールアドレス',
     'enterPassword'          => 'パスワード',
@@ -57,16 +62,18 @@ return [
     'jsInfoDeletedData'      => 'データが削除されました！',
     'jsSorry'                => 'データの削除は失敗しました。',
     'user'                   => 'ユーザー役割',
+    'userloginscreen'        => 'ユーザーログイン',
     /** =================================== */
     'name'                   => 'お名前',
     'email'                  => 'メールアドレス',
     'admin_role_id'          => '管理者ロールID',
+    'user_role'              => 'ユーザーロール',
     'email_verified_at'      => 'メール確認済み日',
     'post_code'              => '郵便番号',
     'address'                => '住所',
     'phone'                  => '電話番号',
     'company_name'           => '会社名',
-    'post_code'              => '郵便番号',
+    'company_info'           => '会社情報',
     /** =================================== */
     'created_at'             => '作成日',
     'update_at'              => '更新日',
@@ -79,7 +86,6 @@ return [
     'ip'                     => 'IPアドレス',
     'last_access'            => '最終アクセス',
     'IForgotMyPassword'      => 'パスワードをお忘れの方',
-    'language'               => '言語',
     /** News====================== */
     'news'                  => 'ニュース',
     'title'                 => 'タイトル',
@@ -88,8 +94,10 @@ return [
     'publish_date'          => '発行日',
     'status'                => 'ステータス',
     'last_update'           => '最終更新日',
+    'pdf_file'               => 'PDFファイル',
+    'radius'                 => '半径',
     /** Log Acitivity====================== */
     'log'                   => 'ログ',
     'log_activity'          => 'アクティビティログ',
-    'access_time'           => '実行日時',
+    'access_time'           => '実行日時'
 ];
