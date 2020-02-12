@@ -95,13 +95,16 @@ class AdminController extends Controller
     }
 
     public function destroy($id){
+      if(Auth::user()->id != $id){
         $item = Admin::findOrFail($id);
         $item->delete();
 
         $admin_email    = $item->email;
         $this->saveLog('Delete Admin', 'Delete Admin, Email : ' . $admin_email . '', Auth::user()->id);
 
-        return 1;
+        return 1;        
+      }
+
     }
 
 }

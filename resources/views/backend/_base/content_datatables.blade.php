@@ -132,7 +132,13 @@
                     }).always(function (data) {
                         console.log(data);
                         $('#datatable').DataTable().draw(false);
-                        toastr.success('@lang('label.jsInfoDeletedData')');
+                        if (data === 1){
+                          toastr.success('@lang('label.jsInfoDeletedData')');
+                        }
+                        else {
+                          toastr.error('@lang('label.jsSorry')');
+                        }
+                        
                     });
                 } else
                     toastr.error('@lang('label.jsSorry')');
