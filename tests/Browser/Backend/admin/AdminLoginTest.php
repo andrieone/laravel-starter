@@ -4,7 +4,7 @@ namespace Tests\Browser\Backend\admin;
 
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
-use Tests\Browser\TestData\BaseTestData;
+use Tests\Browser\TestData\BaseTestData; 
 
 use App\Traits\DatabaseMigrationsTrait;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -24,6 +24,6 @@ class AdminLoginTest extends DuskTestCase
 
     public function testLogin()
     {
-        $this->common->executeLoginTest();
+        // $this->common->executeAdminLoginTest();
     }
 }

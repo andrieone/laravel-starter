@@ -57,11 +57,11 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                     <a href="{{ route('setlanguage', ['language' => 'en']) }}" class="dropdown-item">
-                        <img src="{{ asset("img/backend/en.png") }}" class="img-lang mr-2" /> English
+                        <img src="{{ asset("img/backend/en.png") }}" class="img-lang mr-2" id="set-english" /> English
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('setlanguage', ['language' => 'jp']) }}" class="dropdown-item">
-                        <img src="{{ asset("img/backend/jp.png") }}" class="img-lang mr-2" /> 日本語
+                        <img src="{{ asset("img/backend/jp.png") }}" class="img-lang mr-2" id="set-japanese" /> 日本語
                     </a>
                 </div>
             </li>

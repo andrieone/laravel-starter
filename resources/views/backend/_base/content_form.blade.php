@@ -59,7 +59,7 @@
     <script src="{{asset('plugins/parsley/parsley.min.js')}}"></script>
     @if (App::isLocale('en'))
       <script src="{{asset('plugins/parsley/i18n/en.js')}}"></script>
-    @else
+    @elseif (App::isLocale('ja'))
       <script src="{{asset('plugins/parsley/i18n/ja.js')}}"></script>
     @endif
     <script src="{{asset('plugins/summernote/summernote.js')}}"></script>

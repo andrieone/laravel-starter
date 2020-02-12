@@ -104,48 +104,50 @@ class BaseTestData extends DuskTestCase
     /*
      * validation text
      */
+    const VALIDATION_TEXT_REQUIRED_EN = 'This value is required.';
     const VALIDATION_TEXT_REQUIRED_JA = 'この値は必須です。';
-    const VALIDATION_FORMAT_PHONE_JA  = '* 電話番号が正しくありません';
 
-    // const php validation error
-    const VALIDATION_ROW_ERROR_JA                 = '行目の以下の項目を修正してください。';
-    const VALIDATION_ROW_INPUT_ERROR_JA           = '行目のデータを取り込みできませんでした。'; 
-    const VALIDATION_REQUIRED_JA                  = 'は必須項目です。';
-    const VALIDATION_NUMERIC_JA                   = 'には、数字を指定してください。';
-    const VALIDATION_INT_JA                       = 'には、整数を指定してください。';
-    const VALIDATION_STRING_JA                    = 'には、文字を指定してください。';
-    const VALIDATION_DATE_JA                      = 'は、正しい日付ではありません。';
-    const VALIDATION_KANA_JA                      = 'はフリガナで入力してください。';
+    const VALIDATION_TYPE_EMAIL_EN = 'This value should be a valid email.';
+    const VALIDATION_TYPE_EMAIL_JA = '有効なメールアドレスを入力してください。';
 
+    const VALIDATION_MINLEN_8_EN = 'This value is too short. It should have 8 characters or more.';
+    const VALIDATION_MINLEN_8_JA = '8 文字以上で入力してください。';
+
+
+    const REQUIRED_LABEL_EN = 'Required';
     const REQUIRED_LABEL_JA = '必須';
+
+    const OPTIONAL_LABEL_EN = 'Optional';
     const OPTIONAL_LABEL_JA = '任意';
-    const AUTOMATIC_LABEL_JA = '自動';
 
     /*
      * admin login
      */
-    public function executeLoginTest()
+    public function executeAdminLoginTest()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/admin/login')
                 ->assertSee('ADMINISTRATION LOGIN')
-                ->type('#email',self::SUCCESS_ADMIN_EMAIL)
-                ->type('#password',self::SUCCESS_PASSWORD)
-                ->press('.btn-info')
+                ->type('email',self::SUCCESS_ADMIN_EMAIL)
+                ->type('password',self::SUCCESS_PASSWORD)
+                ->press('Login')
                 ->waitForText('Admin')
+                ->assertPathIs('/admin/superadmin')
                 ->press('#admin-logout')
                 ->assertSee('ADMINISTRATION LOGIN');
         });
     }
 
-    public function executeLogin()
+    public function adminLogin()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/admin/login')
                 ->assertSee('ADMINISTRATION LOGIN')
-                ->type('#email',self::SUCCESS_ADMIN_EMAIL)
-                ->type('#password',self::SUCCESS_PASSWORD)
-                ->press('.btn-info');
+                ->type('email',self::SUCCESS_ADMIN_EMAIL)
+                ->type('password',self::SUCCESS_PASSWORD)
+                ->press('Login')
+                ->assertPathIs('/admin/superadmin')
+                ->pause(3000);
         });
     }
 
