@@ -136,7 +136,7 @@
                           toastr.success('@lang('label.jsInfoDeletedData')');
                         }
                         else {
-                          toastr.error('@lang('label.jsSorry')');
+                          toastr.error('@lang('label.FAILED_DELETE_SELF_MESSAGE')');
                         }
                         
                     });

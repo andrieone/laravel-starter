@@ -46,6 +46,9 @@ class AdminTest extends DuskTestCase
 
     }
 
+    /**
+    *@group admin
+    */
     public function test_validation()
     {
       $this->browse(function(Browser $browser){
@@ -58,6 +61,10 @@ class AdminTest extends DuskTestCase
       });
     }
 
+
+    /**
+    *@group admin
+    */
     public function test_insert()
     {
       $this->browse(function (Browser $browser){
@@ -76,6 +83,10 @@ class AdminTest extends DuskTestCase
       ]);
     }
 
+
+    /**
+    *@group admin
+    */
     public function test_update()
     {
       $last_admin = Admin::latest()->first();
@@ -95,13 +106,22 @@ class AdminTest extends DuskTestCase
         'email'        => 'updated_email@grune.com',
       ]);
     }
-
+    /**
+    *@group admin
+    */
     public function test_delete()
     {
-      //go to list
-      // pause
-      // assert visible data
-      // delete
+      $last_admin = Admin::latest()->first();
+      $this->browse(function(Browser $browser) use ($last_admin){
+        $browser->visit('/admin/admins')
+                ->assertSeeIn('.content-header', 'Admin')
+                ->waitUntilMissing('.dataTables_processing')
+                ->click('[data-remote$="' . $last_admin->id . '"]')
+                ->acceptDialog()
+                ->waitFor('.toast-message')
+                ->assertSeeIn('.toast-message', $this->common::jsInfoDeletedData_EN);
+
+      });
 
     }
 }

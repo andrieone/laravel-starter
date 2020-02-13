@@ -100,6 +100,9 @@ class BaseTestData extends DuskTestCase
     const FAILED_DELETE_SELF_MESSAGE_EN ='Sorry, we could not delete data of currently logged in person';
     const FAILED_DELETE_SELF_MESSAGE_JA = '現在ログインされている方のデータを削除できませんでした。';
 
+    const jsInfoDeletedData_EN             = 'Data has been successfully deleted!';
+    const jsInfoDeletedData_JP             = 'データが削除されました！';
+
 
     /*
      * validation text
