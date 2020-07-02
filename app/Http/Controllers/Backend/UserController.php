@@ -33,12 +33,8 @@ class UserController extends Controller
     public function show( $parent_param, $param ){ // because this is nested resource, there are 2 prams:
         if( $param == 'json' ){
 
-            $model = User::select(['users.*',
-                                    'user_roles.label AS user_roles.label',
-                                    'companies.company_name AS companies.company_name']) // Adding `AS` is important for search and sorting
-                            ->leftJoin('user_roles', 'users.user_role_id', '=', 'user_roles.id')
-                            ->leftJoin('companies', 'users.company_id', '=', 'companies.id')
-                            ->where('company_id', $parent_param);;
+            $model = User::with(['userRole', 'company'])
+                            ->where('company_id', $parent_param);
             return DatatablesHelper::json($model, true, true, null, null, $parent_param);
 
         }
