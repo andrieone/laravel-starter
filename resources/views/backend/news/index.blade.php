@@ -15,7 +15,7 @@
     <th data-col="id">ID</th>
     <th data-col="title">@lang('label.title')</th>
     <th data-col="body">@lang('label.body')</th>
-    <th data-col="status">@lang('label.status')</th>
+    <th data-col="status" data-select='{!! str_replace("'","`", json_encode($filter_select_columns['status'])) !!}'>@lang('label.status')</th>
     <th data-col="publish_date" width="77">@lang('label.publish_date')</th>
     <th data-col="updated_at" width="120">@lang('label.last_update')</th>
     <th data-col="action">@lang('label.action')</th>

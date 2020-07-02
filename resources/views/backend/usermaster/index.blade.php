@@ -17,7 +17,7 @@
     <th data-col="id">ID</th>
     <th data-col="display_name">@lang('label.name')</th>
     <th data-col="companies.company_name">@lang('label.company_name')</th>
-    <th data-col="user_roles.label">@lang('label.user_role')</th>
+    <th data-col="user_roles.label" data-select='{!! str_replace("'","`", json_encode($filter_select_columns['user_roles'])) !!}'>@lang('label.user_role')</th>
     <th data-col="email">@lang('label.email')</th>
     <th data-col="updated_at">@lang('label.last_update')</th>
     <th data-col="created_at">@lang('label.created_at')</th>

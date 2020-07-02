@@ -56,6 +56,14 @@ class CompanyController extends Controller
 
     public function index(){
         $data['page_title'] = __('label.company');
+        $data['filter_select_columns'] = [
+            'status' => [
+                'pending' => 'pending',
+                'active' => 'active',
+                'block' => 'block',
+            ]
+        ];
+
         return view('backend.company.index', $data);
     }
 

@@ -47,6 +47,9 @@ class UserMasterController extends Controller
 
     public function index(){
         $data['page_title'] = __('label.user');
+        $data['filter_select_columns'] = [
+            'user_roles' => UserRole::pluck('label', 'label')
+        ];
         return view('backend.usermaster.index', $data);
     }
 

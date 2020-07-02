@@ -49,6 +49,9 @@ class UserController extends Controller
         $data['parent_id']      = $parent_id;
         $data['company_name']   = Company::find($parent_id)->company_name;
         $data['page_title']     = $data['company_name'] . ' ' . __('label.user') ;
+        $data['filter_select_columns'] = [
+            'user_roles' => UserRole::pluck('label', 'label')
+        ];
         return view('backend.user.index', $data);
     }
 
