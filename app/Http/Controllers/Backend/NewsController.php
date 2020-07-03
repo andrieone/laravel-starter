@@ -41,7 +41,7 @@ class NewsController extends Controller
         switch ($param){
             case 'json':
                 $model = News::query();
-                return DatatablesHelper::json($model);
+                return (new DatatablesHelper)->instance($model)->toJson();
             case 'searchcompany':
                 return Select2AjaxHelper::set(Company::query(), 'id', 'company_name');
                 break;

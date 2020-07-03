@@ -38,7 +38,8 @@ class SuperAdminController extends Controller
         if( $param == 'json' ){
 
             $model = admin::where('admin_role_id', 1);
-            return DatatablesHelper::json($model,true,false);
+            // return DatatablesHelper::instance($model,true,false);
+            return (new Datatableshelper)->instance($model, true, false)->toJson();
 
         }
         abort(404);

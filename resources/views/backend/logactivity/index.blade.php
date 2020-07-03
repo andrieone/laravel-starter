@@ -12,10 +12,14 @@
 
 @section('content')
     <th data-col="id">ID</th>
-    <th data-col="admins.display_name">@lang('label.name')</th>
-    <th data-col="admins.email">@lang('label.email')</th>
+    <th data-col="admin.display_name">@lang('label.name')</th>
+    <th data-col="admin.email">@lang('label.email')</th>
     <th data-col="activity">@lang('label.activity')</th>
     <th data-col="detail">@lang('label.detail')</th>
     <th data-col="ip">@lang('label.ip')</th>
     <th data-col="access_time">@lang('label.access_time')</th>
+@endsection
+
+@section('extend-datatable')
+    serverSide = false;
 @endsection

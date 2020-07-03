@@ -48,7 +48,8 @@ class CompanyController extends Controller
                     $model = Company::where('admin_id', Auth::user()->id);
                     break;
             }
-            return DatatablesHelper::json($model, true, true, null, ['current_nest' => 'user', 'style' => 'success', 'icon' => 'users']);
+            
+            return (new DatatablesHelper)->instance($model, true, true, null, ['current_nest' => 'user', 'style' => 'success', 'icon' => 'users'])->toJson();
 
         }
         abort(404);

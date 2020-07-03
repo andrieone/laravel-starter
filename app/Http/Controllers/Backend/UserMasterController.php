@@ -34,12 +34,8 @@ class UserMasterController extends Controller
     public function show( $param ){
         if( $param == 'json' ){
 
-            $model = User::select(['users.*',
-                                    'user_roles.label AS user_roles.label',
-                                    'companies.company_name AS companies.company_name']) // Adding `AS` is important for search and sorting
-                         ->leftJoin('user_roles', 'users.user_role_id', '=', 'user_roles.id')
-                         ->leftJoin('companies', 'users.company_id', '=', 'companies.id');
-            return DatatablesHelper::json($model);
+            $model = User::with(['company', 'userRole']);
+            return (new DatatablesHelper)->instance($model)->toJson();
 
         }
         abort(404);

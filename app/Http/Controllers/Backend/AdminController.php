@@ -38,7 +38,7 @@ class AdminController extends Controller
         if( $param == 'json' ){
 
             $model = admin::where('admin_role_id', 2);
-            return DatatablesHelper::json($model);
+            return (new DatatablesHelper)->instance($model)->toJson();
 
         }
         abort(404);
