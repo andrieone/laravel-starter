@@ -19,9 +19,10 @@
 
 Route::get('/', function(){
     return view('welcome');
-});
+})->middleware('guest');
+
 Route::get('/auth-check', function(){
-    dd(Auth::guard("user")->check());
+    dd(Auth::guard("web")->check());
     //dd(Auth::guard("user")->user()->toArray());
 });
 
