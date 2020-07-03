@@ -36,6 +36,7 @@ return [
     'boolean'              => ':attribute の値は true もしくは false のみ有効です',
     'confirmed'            => ':attribute を確認用と一致させてください',
     'date'                 => ':attribute を有効な日付形式にしてください',
+    'date_equals'          => ':attribute は :date と一致させてください',
     'date_format'          => ':attribute を :format 書式と一致させてください',
     'different'            => ':attribute を :other と違うものにしてください',
     'digits'               => ':attribute は :digits 桁のみ有効です',
@@ -43,6 +44,7 @@ return [
     'dimensions'           => ':attribute ルールに合致する画像サイズのみ有効です',
     'distinct'             => ':attribute に重複している値があります',
     'email'                => ':attribute メールアドレスの書式のみ有効です',
+    'ends_with'            => ':attribute は :values で終わらせる必要があります',
     'exists'               => ':attribute 無効な値です',
     'file'                 => ':attribute アップロード出来ないファイルです',
     'filled'               => ':attribute 値を入力してください',
@@ -95,6 +97,7 @@ return [
     'not_in'               => ':attribute 無効な値です',
     'not_regex'            => 'The :attribute format is invalid.',
     'numeric'              => ':attribute は数字のみ有効です',
+    'password'             => 'パスワードが正しくありません',
     'present'              => ':attribute が存在しません',
     'regex'                => ':attribute 無効な値です',
     'required'             => ':attribute は必須です',
@@ -111,11 +114,13 @@ return [
         'string'  => ':attribute は :size 文字のみ有効です',
         'array'   => ':attribute は :size 個のみ有効です',
     ],
+    'starts_with'          => ':attribute は: :values で開始する必要があります',
     'string'               => ':attribute は文字列のみ有効です',
     'timezone'             => ':attribute 正しいタイムゾーンのみ有効です',
     'unique'               => ':attribute は既に存在します',
     'uploaded'             => ':attribute アップロードに失敗しました',
     'url'                  => ':attribute は正しいURL書式のみ有効です',
+    'uuid'                 => ':attribute は正しいUUIDのみ有効です',
 
     /*
     |--------------------------------------------------------------------------
