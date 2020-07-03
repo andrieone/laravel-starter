@@ -176,7 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         // add manually
         Yajra\DataTables\DataTablesServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        Olssonm\VeryBasicAuth\VeryBasicAuthServiceProvider::class
     ],
 
     /*
