@@ -18,7 +18,17 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/dashboard');
+            if(Auth::guard("web")->check()){
+                if(Auth::user()->admin_role_id == 1){
+                    return redirect()->route('admin.superadmin.edit', ['superadmin' => Auth::user()->id]);
+                }else{
+                    return redirect()->route('admin.admins.edit', ['admin' => Auth::user()->id]);
+                }
+            }
+        
+            if(Auth::guard("user")->check()){
+                return redirect()->route('userowner-edit');
+            }
         }
 
         return $next($request);
