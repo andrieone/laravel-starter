@@ -17,6 +17,8 @@
 
 */
 
+Route::group(['middleware' => 'auth.very_basic'], function() { // start basic auth protection
+
 Route::get('/', function(){
     return view('welcome');
 });
@@ -92,4 +94,6 @@ Route::group(['middleware' => 'auth:user'], function() {
         Route::post('user', 'Backend\UserController@updateAsUserOwner')->name('userowner-update');
 
     });
+});
+
 });
