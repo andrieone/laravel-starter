@@ -53,6 +53,12 @@
     <script>
 
         $(function() {
+            // enable or disabled filtering server side
+            var serverSide = true;
+            @hasSection( 'extend-datatable' )
+                @yield( 'extend-datatable' )
+            @endif
+
             $("[data-col=action]").attr("rowspan", 2).addClass("text-center align-middle actionDatatables");
             var column = [];
             // COLUMN SEARCH
@@ -97,9 +103,9 @@
                 "info": true,
                 "scrollX": true,
                 "autoWidth": true,
-                "serverSide": true,
                 "processing": true,
                 "responsive": true,
+                "serverSide": serverSide,
                 "ajax": "{{ url()->current() . "/json" }}",
                 "columnDefs": [
                     {"width": "10px", "targets": 0},

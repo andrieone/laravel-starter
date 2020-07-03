@@ -20,10 +20,7 @@ class LogActivityController extends Controller
      */
     public function show( $param ){
         if( $param == 'json' ){
-            $model = LogActivity::select(['log_activities.*',
-                                           'admins.email AS admins.email', // Adding `AS` is important for search and sorting
-                                           'admins.display_name AS admins.display_name'])
-                                ->leftJoin('admins', 'log_activities.admin_id', '=', 'admins.id');
+            $model = LogActivity::with('admin');
 
             return DatatablesHelper::json($model, false, false);
         }
