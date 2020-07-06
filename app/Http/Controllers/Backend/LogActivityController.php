@@ -21,8 +21,19 @@ class LogActivityController extends Controller
     public function show( $param ){
         if( $param == 'json' ){
             $model = LogActivity::with('admin');
-            
-            return (new DatatablesHelper)->instance($model, false, false)->toJson();
+
+            return (new DatatablesHelper)->instance($model, false, false)
+                                            ->filterColumn('admin.display_name', function($query, $keyword){
+                                                $query->whereHas('admin', function($q) use ($keyword){
+                                                    $q->where('display_name', 'like', '%'.$keyword.'%');
+                                                });
+                                            })
+                                            ->filterColumn('admin.email', function($query, $keyword){
+                                                $query->whereHas('admin', function($q) use ($keyword){
+                                                    $q->where('email', 'like', '%'.$keyword.'%');
+                                                });
+                                            })
+                                            ->toJson();
         }
         abort(404);
     }

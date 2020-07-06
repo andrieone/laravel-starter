@@ -33,9 +33,23 @@ class UserController extends Controller
     public function show( $parent_param, $param ){ // because this is nested resource, there are 2 prams:
         if( $param == 'json' ){
 
-            $model = User::with(['company', 'userRole'])->where('company_id', $parent_param);
-
-            return (new DatatablesHelper)->instance($model, true, true, null, null, $parent_param)->toJson();
+            $model = User::with(['userRole', 'company'])
+                            ->where('company_id', $parent_param);
+            return (new DatatablesHelper)->instance($model, true, true, null, null, $parent_param)
+                                            ->filterColumn('user_role.label', function($query, $keyword){
+                                                $query->whereHas('userRole', function($q) use ($keyword){
+                                                    $q->where('label', 'like', '%'.$keyword.'%');
+                                                });
+                                            })
+                                            ->filterColumn('company.company_name', function($query, $keyword){
+                                                $query->whereHas('company', function($q) use ($keyword){
+                                                    $q->where('company_name', 'like', '%'.$keyword.'%');
+                                                });
+                                            })
+                                            ->orderColumn('user_role.label', function ($query, $order) {
+                                                $query->orderBy('user_role_id', $order);
+                                            })
+                                            ->toJson();
 
         }
         abort(404);
@@ -45,6 +59,9 @@ class UserController extends Controller
         $data['parent_id']      = $parent_id;
         $data['company_name']   = Company::find($parent_id)->company_name;
         $data['page_title']     = $data['company_name'] . ' ' . __('label.user') ;
+        $data['filter_select_columns'] = [
+            'user_roles' => UserRole::pluck('label', 'label')
+        ];
         return view('backend.user.index', $data);
     }
 

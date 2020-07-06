@@ -9,7 +9,7 @@ class UserRole extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'display_name',
+        'name',
         'label'
     ];
 

@@ -53,10 +53,10 @@
     <script>
 
         $(function() {
-            // Set a serverside for filtering
+            // enable or disabled filtering server side
             var serverSide = true;
-            @hasSection('extend-datatable')
-                @yield('extend-datatable')
+            @hasSection( 'extend-datatable' )
+                @yield( 'extend-datatable' )
             @endif
 
             $("[data-col=action]").attr("rowspan", 2).addClass("text-center align-middle actionDatatables");
@@ -71,6 +71,7 @@
 
                 var title = $(this).text();
                 var attr = $(this).attr('rowspan');
+                var select = $(this).data('select');
                 if (typeof attr !== typeof undefined && attr !== false) {
                     $(this).remove();
                 }
@@ -78,13 +79,34 @@
                 if( id === "id" ){
                     placeholder = '';
                 }
-                $(this).html('<input class="form-control" type="text" placeholder="' + placeholder + '" />');
 
-                $('input', this).on('keyup change', function () {
-                    if (table.column(i).search() !== this.value) {
-                        table.column(i).search(this.value).draw();
+                if(select != null){
+                    var html = '<select class="form-control datatable-search-'+i+'" id="search_'+id+'">';
+
+                    html += '<option value="">'+'-'+'</option>';
+
+                    for(var key in select){
+                        var value = select[key];
+                        html += '<option value="'+key+'">'+value+'</option>'
                     }
-                });
+
+                    html += '</select>';
+                    $(this).html(html);
+
+                    $('select', this).on('change', function(){
+                        if(table.column(i).search() !== this.value){
+                            table.column(i).search(this.value).draw();
+                        }
+                    });
+                }else{
+                    $(this).html('<input class="form-control" type="text" placeholder="' + placeholder + '" />');
+
+                    $('input', this).on('keyup change', function () {
+                        if (table.column(i).search() !== this.value) {
+                            table.column(i).search(this.value).draw();
+                        }
+                    });
+                }
             });
             if( $("[data-col=action]").length ){
                 column.push({data: 'action', name: 'action', orderable: false, searchable: false});
@@ -103,9 +125,9 @@
                 "info": true,
                 "scrollX": true,
                 "autoWidth": true,
-                "serverSide": serverSide,
                 "processing": true,
                 "responsive": true,
+                "serverSide": serverSide,
                 "ajax": "{{ url()->current() . "/json" }}",
                 "columnDefs": [
                     {"width": "10px", "targets": 0},

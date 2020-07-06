@@ -34,8 +34,22 @@ class UserMasterController extends Controller
     public function show( $param ){
         if( $param == 'json' ){
 
-            $model = User::with(['company', 'userRole']);
-            return (new DatatablesHelper)->instance($model)->toJson();
+            $model = User::with(['userRole', 'company']);
+            return (new DatatablesHelper)->instance($model)
+                                            ->filterColumn('user_role.label', function($query, $keyword){
+                                                $query->whereHas('userRole', function($q) use ($keyword){
+                                                    $q->where('label', 'like', '%'.$keyword.'%');
+                                                });
+                                            })
+                                            ->filterColumn('company.company_name', function($query, $keyword){
+                                                $query->whereHas('company', function($q) use ($keyword){
+                                                    $q->where('company_name', 'like', '%'.$keyword.'%');
+                                                });
+                                            })
+                                            ->orderColumn('user_role.label', function ($query, $order) {
+                                                $query->orderBy('user_role_id', $order);
+                                            })
+                                            ->toJson();
 
         }
         abort(404);
@@ -43,6 +57,9 @@ class UserMasterController extends Controller
 
     public function index(){
         $data['page_title'] = __('label.user');
+        $data['filter_select_columns'] = [
+            'user_roles' => UserRole::pluck('label', 'label')
+        ];
         return view('backend.usermaster.index', $data);
     }
 

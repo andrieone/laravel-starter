@@ -19,7 +19,3 @@
     <th data-col="ip">@lang('label.ip')</th>
     <th data-col="access_time">@lang('label.access_time')</th>
 @endsection
-
-@section('extend-datatable')
-    serverSide = false;
-@endsection

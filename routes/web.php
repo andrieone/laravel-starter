@@ -17,11 +17,14 @@
 
 */
 
+Route::group(['middleware' => 'auth.very_basic'], function() { // start basic auth protection
+
 Route::get('/', function(){
     return view('welcome');
-});
+})->middleware('guest');
+
 Route::get('/auth-check', function(){
-    dd(Auth::guard("user")->check());
+    dd(Auth::guard("web")->check());
     //dd(Auth::guard("user")->user()->toArray());
 });
 
@@ -92,4 +95,6 @@ Route::group(['middleware' => 'auth:user'], function() {
         Route::post('user', 'Backend\UserController@updateAsUserOwner')->name('userowner-update');
 
     });
+});
+
 });

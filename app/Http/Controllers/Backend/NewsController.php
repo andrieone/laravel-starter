@@ -51,6 +51,13 @@ class NewsController extends Controller
 
     public function index(){
         $data['page_title'] = __('label.news');
+        $data['filter_select_columns'] = [
+            'status' => [
+                'draft' => 'draft',
+                'publish' => 'publish',
+            ]
+        ];
+        
         return view('backend.news.index', $data);
     }
 
