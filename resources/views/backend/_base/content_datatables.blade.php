@@ -81,7 +81,7 @@
                 }
 
                 if(select != null){
-                    var html = '<select class="form-control datatable-search-'+i+'" id="search_'+id+'">';
+                    var html = '<select class="form-control select-'+i+'" id="search_'+id+'">';
 
                     html += '<option value="">'+'-'+'</option>';
 
@@ -99,7 +99,7 @@
                         }
                     });
                 }else{
-                    $(this).html('<input class="form-control" type="text" placeholder="' + placeholder + '" />');
+                    $(this).html('<input class="form-control input-'+i+'" type="text" placeholder="' + placeholder + '" />');
 
                     $('input', this).on('keyup change', function () {
                         if (table.column(i).search() !== this.value) {
@@ -128,6 +128,7 @@
                 "processing": true,
                 "responsive": true,
                 "serverSide": serverSide,
+                "stateSave": true,
                 "ajax": "{{ url()->current() . "/json" }}",
                 "columnDefs": [
                     {"width": "10px", "targets": 0},
@@ -139,6 +140,20 @@
                 }
                 @endif
             });
+
+            // REMEMBER LAST SEARCH
+            let state = table.state.loaded();
+            if(state){
+                table.columns().eq(0).each(function(i){
+                    let colSearch = state.columns[i].search;
+                    if(colSearch.search){
+                        $('.input-'+i).val(colSearch.search);
+                        $('.select-'+i).val(colSearch.search);
+                    }
+                });
+
+                table.draw();
+            }
 
 
             // DELETE
