@@ -183,11 +183,11 @@ old document
 ##Login to app
 http://127.0.0.1:8086/admin/login
 
-Super Admin `admin@admin` `12345678`
+Super Admin `admin@admin.com` `12345678`
 
-Company Admin `company@admin` `12345678`
+Company Admin `company@admin.com` `12345678`
 
-Company User `user@company` `12345678`
+Company User `user@company.com` `12345678`
 
 
 
