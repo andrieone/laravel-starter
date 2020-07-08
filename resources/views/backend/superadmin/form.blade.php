@@ -25,7 +25,6 @@
             @component('backend._components.input_password') @endcomponent
         @else
             @component('backend._components.input_password_edit') @endcomponent
-            <!-- @component('backend.changingpassword.form') @endcomponent -->
         @endif
 
         @component('backend._components.input_buttons', ['page_type' => $page_type])@endcomponent
