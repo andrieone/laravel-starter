@@ -114,6 +114,31 @@
                 }
             });
 
+            //for address search
+            $('.address-search').on('click', function(e){
+                e.preventDefault();
+                $postcode_btn = $(this);
+                $postcode_form = $(this).siblings('input')
+                $address_form = $("#input-address")
+                $url = window.location.origin + '/api/v1/postcode/'+ $postcode_form.val()
+                let request = $.ajax({
+                    url: $url,
+                    type: 'GET',
+                    dataType: 'json',
+                })
+                
+                request.done(function(data){
+                    console.log(data);
+                    $address_form.val(data.address)
+                    $postcode_btn.closest('.postcode-group').siblings('.address-error-text').prop('hidden', true);
+
+                })
+                request.fail(function(data){
+                    $address_form.val('')
+                    $postcode_btn.closest('.postcode-group').siblings('.address-error-text').prop('hidden', false);
+                })
+            })      
+
             $("body").on('change', '.input-image', function() {
                 input = this;
                 var img = $(input).closest('.field-group').find('img');
